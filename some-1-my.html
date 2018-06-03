@@ -7,12 +7,63 @@
     <title>Document</title>
 </head>
 <body>
-        what did ya say, bro?
+        what did ya say, bro!?
     
     <script>
-        document.write("<br><br> wow!");
-    </script>
 
+        document.write("<br><br> wow! it's magic! <br><br>");
+        
+        var MyStr0 = "AbGdeF" + " 333";
+
+        var MyStr1 = "AbGdeF".charAt(5).toLowerCase();
+
+        var MyStr2 = "abcdefg".charCodeAt(2);
+
+        var MyStr3 = "abcdefg".slice(1,-2);
+
+        var MyStr4 = Math.floor(Math.random()*10); 
+
+        var i;
+
+        document.write(MyStr4+"<br>");
+
+        for (i = 0; i < MyStr4; i++) {
+            document.write("<br>wwwz");
+        }
+
+        if (MyStr4 > 4) {
+            document.write("<br><br> so, number > 4");
+        } /* else {
+            alert("naw, number too small... ");
+        } */
+
+        // alert(3 != 3);
+        // document.write("<br>" + MyStr3.length);
+
+        /* var person = prompt("Please enter your name", "Harry");
+            document.write(person); */
+
+        // (function(){})(); 
+
+        var tree = [9, 8, 5, "r", "e", "a", "л", "ф", "н", "щ", "д", "а"];
+
+        tree.lenght = 0;
+
+            document.write("<br>" + tree.sort() + "<br><br>");
+            
+        // console.log(1);
+        
+        function factorial (n){
+  j = 1;
+  for(i=1;i<=n;i++){
+    j = j*i;
+  }
+  return j;
+}
+
+document.write(factorial(145));
+
+    </script>
     
 </body>
 </html>
