@@ -1,0 +1,20 @@
+body {
+	background: #fffeef;
+}
+
+h1 {
+	font-size: 25px;
+}
+
+h2 {
+	font-size: 20px;
+	border-bottom: 1px solid;
+	padding: 3px;
+	border-radius: 3px;
+}
+
+.thinBorder {
+	border: 1px solid;
+	padding: 3px;
+	border-radius: 3px;
+}
