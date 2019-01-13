@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>email change to git</title>
+    <title></title>
 </head>
-<body>
-    <h2>Hello</h2>
 
-    <script>
-        let takefirstH2Obj = document.querySelector('h2');
-        takefirstH2Obj.innerHTML += ' user IDOLZ!';
+<body>
+    <textarea name="text-a" id="tA" cols="30" rows="10">r</textarea>
+
+    <script>         
+            function takeFromTa() {
+                let tAstr = document.querySelector('#tA').value;
+                console.log(tAstr);
+            }
+
+            document.addEventListener('keyup', takeFromTa);
+            document.addEventListener('mousemove', takeFromTa);        
     </script>
 </body>
+
 </html>
