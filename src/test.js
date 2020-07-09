@@ -1,1 +1,0 @@
-export const foo = () => 'bar from test.js <~~~> ' + Math.random()
