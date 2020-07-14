@@ -1,4 +1,5 @@
-import iCreateElement from '../iCreateElement.js'
+/* // import iCreateElement from '../iCreateElement.js'
+import iCreateElement from '/scripts/iCreateElement/iCreateElement'
 // const { queryHelpers } = domTestingLib
 import { screen } from '@testing-library/dom'
 
@@ -15,3 +16,4 @@ describe('iCreateElement()', () => {
         console.log('my new tstng-lbr-tst: someNode.innerHTML')
     })
 })
+ */
