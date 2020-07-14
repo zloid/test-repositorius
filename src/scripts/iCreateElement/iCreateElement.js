@@ -1,7 +1,7 @@
 /**@module scripts-iCreateElement */
 
 /**
- * Fo333... initial tests and simplify creating DOM elements 
+ * For initial tests and simplify creating DOM elements 
  * @function iCreateElement
  * @param {number} a - IEEE 754 standard
  * @param {number} b - IEEE 754 standard
