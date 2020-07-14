@@ -6,8 +6,8 @@
     "scripts": {
         "test": "jest",
         "start": "webpack-dev-server --open",
-        "serve": "serve",
         "build": "webpack",
+        "serve": "serve",
         "doc": "jsdoc -c jsdoc-config.json"
     },
     "keywords": [],
