@@ -8,7 +8,7 @@ describe('iCreateElement()', () => {
         console.log('foooooooo: ', someNode)
         expect(someNode).toBe(null)
     })
-    it('2: does tstng-lbr working?', () => {
+    it('2: does tstng-lbr working?', () => {        
         iCreateElement(111, 222)
         screen.debug()
         const someNode = screen.getByText(/text inside h3 - in prm - 333/i)

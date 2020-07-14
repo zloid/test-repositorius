@@ -1,5 +1,5 @@
 # test-repositorius
-## Branch: trying-avoid-imp-exp-err-in-calc
+## Branch: master-calc
 ## Features:
 * As Starter Pack: correct modern vanilla JS + ecosystem based on webpack
 * only modern vanilla JS
