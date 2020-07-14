@@ -1,5 +1,5 @@
 # test-repositorius
-## Branch: master-calc
+## Branch: master-calc ~> husky-try
 ## Features:
 * As Starter Pack: correct modern vanilla JS + ecosystem based on webpack
 * only modern vanilla JS
