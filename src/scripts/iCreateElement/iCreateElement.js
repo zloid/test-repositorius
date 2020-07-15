@@ -1,25 +1,31 @@
 /**@module scripts-iCreateElement */
 
+export const someFun = a => console.log(a + 123, '  aaaabbbbccc')
+
 /**
- * For initial tests and simplify creating DOM elements 
+ * For simplify creating custom HTMLElements in DOM
  * @function iCreateElement
- * @param {number} a - IEEE 754 standard
- * @param {number} b - IEEE 754 standard
- * @returns {number} summ of {a} and {b}; new h3 HTMLNodeElement
+ * @param {string} tag - any html tag
+ * @param {string} inner - any html; will append to {tag} you set before 
+ * @returns {void} creating custom DOMElement
  * @example
- * // void: <h3>text inside h3 - in prm - 333</h3>
- * // returns 333
- * iCreateElement(111, 222)
+ * // void: <body><div><i>my custom HTMLElement is ...</i></div></body>
+ * iCreateElement({})
+ * @example
+ * // void: <body><h3>hello h3</h3></body>
+ * iCreateElement({ tag: 'h3', inner: 'hello h3' })
+ * @example
+ * // void: <body><span class="i-class"><p>any html code</p></span></body>
+ * iCreateElement({
+            inner: '<span class="i-class"><p>any html code</p></span>',
+        })
  */
-export const someFun = (a) => console.log(a + 123, '  aaaabbbbccc')
-
-export default function iCreateElement(a, b) {
-    const h3 = document.createElement('h3')
-    h3.className = 'some-class'
-    h3.innerHTML = `text inside h3 - in prm - ${a + b}`
-    document.body.appendChild(h3)
-    return a + b
+export default function iCreateElement({
+    tag = 'div',
+    inner = '<i>my custom HTMLElement is ...</i>',
+}) {
+    //var element = document.createElement(tagName[, options]);
+    const customElement = document.createElement(tag)
+    customElement.innerHTML = inner
+    document.body.appendChild(customElement)
 }
-
-
-

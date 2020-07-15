@@ -2,17 +2,40 @@ import iCreateElement from '../iCreateElement.js'
 import { screen } from '@testing-library/dom'
 
 describe('iCreateElement()', () => {
-    it('1: does tstng-lbr working?', () => {
+    it('DOM is empty', () => {
+        const testElement = screen.queryByText(/new test div/i)
+        //test
+        expect(testElement).toBe(null)
         screen.debug()
-        const someNode = screen.queryByText(/text inside h3 - in prm - 333/i)
-        console.log('foooooooo: ', someNode)
-        expect(someNode).toBe(null)
     })
-    it('2: does tstng-lbr working?', () => {        
-        iCreateElement(111, 222)
+    it('created new HTMLElement in DOM: <div>new test div</div>', () => {
+        iCreateElement({ inner: 'new test div' })
+        //test
+        const testElement = screen.getByText(/new test div/i)
+        expect(testElement.tagName).toBe('DIV')
+        expect(testElement.textContent).toBe('new test div')
         screen.debug()
-        const someNode = screen.getByText(/text inside h3 - in prm - 333/i)
-        console.log('baaaaaaaaar: ', someNode.textContent)
-        expect(someNode.textContent).toBe('text inside h3 - in prm - 333')
+    })
+    it('created new HTMLElement in DOM: <h3>hello h3</h3>', () => {
+        iCreateElement({ tag: 'h3', inner: 'hello h3' })
+        //test
+        const testElement = screen.getByText(/hello h3/i)
+        expect(testElement.tagName).toBe('H3')
+        expect(testElement.textContent).toBe('hello h3')
+        screen.debug()
+    })
+    it('quick inserting any html code in DOM', () => {
+        const testElement = screen.queryByText(/any html code/i)
+        //test
+        expect(testElement).toBe(null)
+        //create
+        iCreateElement({
+            inner: '<span class="i-class"><p>any html code</p></span>',
+        })
+        //test
+        const testElementTwo = screen.queryByText(/any html code/i)
+        expect(testElementTwo.textContent).toBe('any html code')
+        expect(testElementTwo.tagName).toBe('P')
+        screen.debug()
     })
 })
