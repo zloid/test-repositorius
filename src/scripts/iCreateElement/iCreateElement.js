@@ -1,12 +1,11 @@
-/**@module scripts-iCreateElement */
-
-export const someFun = a => console.log(a + 123, '  aaaabbbbccc')
+/**@module src-scripts-iCreateElement */
 
 /**
  * For simplify creating custom HTMLElements in DOM
  * @function iCreateElement
- * @param {string} tag - any html tag
- * @param {string} inner - any html; will append to {tag} you set before 
+ * @param {object} props - configure your future DOM element
+ * @param {string} props.tag - any html tag
+ * @param {string} props.inner - any html; will append to {tag} you set before 
  * @returns {void} creating custom DOMElement
  * @example
  * // void: <body><div><i>my custom HTMLElement is ...</i></div></body>
@@ -23,7 +22,7 @@ export const someFun = a => console.log(a + 123, '  aaaabbbbccc')
 export default function iCreateElement({
     tag = 'div',
     inner = '<i>my custom HTMLElement is ...</i>',
-}) {
+}) {    
     //var element = document.createElement(tagName[, options]);
     const customElement = document.createElement(tag)
     customElement.innerHTML = inner
