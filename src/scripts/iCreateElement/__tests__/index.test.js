@@ -16,7 +16,7 @@ describe('iCreateElement()', () => {
         // debug
         screen.debug()
         console.log(216837)
-        // clear dom
+        // clear DOM
         document.body.innerHTML = ''
     })
     it('created new HTMLElement in DOM: <h3>hello h3</h3>', () => {
@@ -35,7 +35,7 @@ describe('iCreateElement()', () => {
         // debug
         screen.debug()
         console.log(12987)
-        //clear dom
+        // clear DOM
         document.body.innerHTML = ''
     })
     it('quick inserting any html code in DOM', () => {
@@ -53,7 +53,7 @@ describe('iCreateElement()', () => {
         // debug
         screen.debug()
         console.log(213978)
-        // clear dom
+        // clear DOM
         document.body.innerHTML = ''
     })
     // html classes
@@ -66,19 +66,59 @@ describe('iCreateElement()', () => {
         // debug
         screen.debug()
         console.log(1209834)
-        // clear dom
+        // clear DOM
         document.body.innerHTML = ''
     })
     it('new class of created node element must be a my-best-html-class', () => {
         // create: DOM-node
-        iCreateElement({ tag: 'div', inner: 'html class', className: 'my-best-html-class' })
+        iCreateElement({
+            tag: 'div',
+            inner: 'html class',
+            className: 'my-best-html-class',
+        })
         // test
         const element = screen.getByText(/^html class$/i)
         expect(element.className).toBe('my-best-html-class')
         // debug
         screen.debug()
-        console.log(978011)        
-        // clear dom
+        console.log(978011)
+        // clear DOM
+        document.body.innerHTML = ''
+    })
+    // appending
+    it('appending rules', () => {
+        // DOM is clear
+        expect(document.body.innerHTML).toBe('')
+        // create: some DOM element
+        iCreateElement({})
+        // appending: by default
+        expect(document.body.innerHTML).toBe(
+            '<div class="defaultClass"><i>my custom HTMLElement is ...</i></div>'
+        )
+        // clear DOm
+        document.body.innerHTML = ''
+        // DOM is clear
+        expect(document.body.innerHTML).toBe('')
+        // appending: by the rule
+        // create: custom DOM elements
+        iCreateElement({
+            tag: 'button',
+            className: 'myButton',
+            inner: 'just a button',
+        })
+        // create and append new element to previous button
+        iCreateElement({
+            tag: 'strong',
+            inner: 'very strong',
+            parentId: '.myButton',
+        })
+        expect(document.body.innerHTML).toBe(
+            '<button class="myButton">just a button<strong class="defaultClass">very strong</strong></button>'
+        )
+        //debug
+        screen.debug()
+        console.log(674852)
+        // clear DOm
         document.body.innerHTML = ''
     })
 })
