@@ -1,6 +1,6 @@
 {
     "name": "test-repositorius",
-    "version": "0.3.51",
+    "version": "0.3.61",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -29,5 +29,5 @@
         "webpack": "^4.43.0",
         "webpack-cli": "^3.3.12",
         "webpack-dev-server": "^3.11.0"
-    }    
+    }
 }
