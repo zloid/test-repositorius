@@ -1,6 +1,7 @@
 // tst
 // import { foo } from './tst'
 import iCreateElement from './scripts/iCreateElement/iCreateElement'
+import './bootstrap.css'
 
 document.body.style.background = 'papayawhip'
 // foo()
@@ -12,6 +13,7 @@ console.log(
 )
 iCreateElement(999, 2)
 
+
 iCreateElement({ tag: 'p', only: true })
 
 iCreateElement({
@@ -22,14 +24,28 @@ iCreateElement({
 
 iCreateElement({ tag: 'p', only: true })
 
-iCreateElement({ id: 'root', className: 'cls', inner: 'rooot', tag: 'button' })
+iCreateElement({ id: 'root', className: 'cls', inner: 'rooot ', tag: 'button' })
 
 iCreateElement({
     tag: 'button',
     inner: `he-l-lo`,
     parentId: '#root',
+    className: 'btn btn-success'
 })
 iCreateElement({ tag: 'button', inner: `he-l-lo22`, parentId: '#root' })
+
+iCreateElement({ tag: 'p', only: true })
+
+iCreateElement({ tag: 'button', inner: 'root_2', id: '#root_2' })
+
+iCreateElement({tag: 'p', only: true})
+
+iCreateElement({
+    tag: 'button',
+    inner: `2he-l-lo33.1`,
+    id: 'diii',
+    className: 'btn btn-success'
+})
 
 /*
 // const btn = () => iCreateElement({ tag: 'button', inner: 'array loop' })
