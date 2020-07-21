@@ -1,0 +1,15 @@
+body {
+    background: papayawhip;
+}
+
+.row, .container {
+    border: 1px solid tomato
+}
+
+.row {
+    border: 1px solid green
+}
+
+.col {
+    border: 1px solid #ccc
+}

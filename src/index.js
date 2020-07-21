@@ -1,9 +1,168 @@
-// tst
-// import { foo } from './tst'
-import iCreateElement from './scripts/iCreateElement/iCreateElement'
+import Reef from 'reefjs'
+// own
+import iCreateElement from './utils/iCreateElement'
+import App from './app/App'
+// styles
 import './bootstrap.css'
+// own styles
+import './own.css'
 
+// create DOM element <div id="root"></div>
+// iCreateElement({ id: 'app', className: '', inner: '' })
+iCreateElement({ id: 'root', fix: 'all' })
+// <div id="root"><div class="badge badge-primary">Hello, world!</div></div>
+App.render()
+
+// iCreateElement({ id: 'toor', fix: 'all', tag: 'p', inner: 'hello' })
+
+// iCreateElement({ id: 'root', fix: 'all' })
+
+/*
+// bg
 document.body.style.background = 'papayawhip'
+
+iCreateElement({ id: 'app', inner: '' })
+
+var app = new Reef('#app', {
+    template: '<h1>Hello, world!</h1>',
+})
+
+// Some data
+var app = new Reef('#app', {
+    data: {
+        greeting: 'Hello',
+        name: 'world',
+    },
+    template: function(props) {
+        // return `<h1>${props.greeting}, ${props.name}!</h1>`;
+        return `
+            <div class="container">i cnt - ${props.greeting} - ${props.name} <button id="btn333">bbee</div>
+        `
+    },
+})
+
+new Reef('#btn333', {
+    template: function(props) {
+        return `
+         <p>ku ku</p>
+        `
+    },
+})
+
+// Nested component
+new Reef('#btn333', {
+    data: {
+        todos: ['Swim', 'Climb', 'Jump', 'Play'],
+    },
+    template: function(props) {
+        return `
+			<ul>
+				${props.todos
+                    .map(function(todo) {
+                        return `<li>${todo}</li>`
+                    })
+                    .join('')}
+                <div class="row">
+                    <div class="col">
+                    
+                        col1
+                     </div>
+                     <div class="col">
+                    
+                        col2
+                     </div>
+                     
+                    rrr
+                </div>
+			</ul>`
+    },
+    attachTo: app,
+})
+
+app.render()
+
+iCreateElement({ className: 'badge_1 badge badge-primary' })
+
+
+let hel = 666
+
+iCreateElement({
+    inner: `
+    <div class="container">
+    <div class="row">
+                    <div class="col">
+                    ${hel}
+                        col1
+                     </div>
+                     <div class="col">
+                    
+                        col2
+                     </div>                     
+                    rrr ${hel}
+                </div>
+                </div>
+                `,
+    parentId: '.badge_1',
+})
+
+iCreateElement({ tag: 'button', inner: 'click this', id: 'clbb' })
+document.querySelector('#clbb').addEventListener('click', ev => {
+    app.data.greeting = 'Hiiiiiiiiiiii'
+})
+
+iCreateElement({
+    inner: '123123',
+    className: 'row_2 row',
+    parentId: '.container',
+})
+
+iCreateElement({
+    inner: `
+    <button>ibb11.1
+        <button>heeee2.2
+            <button>heeee3.3</button>
+        </button>
+    </button>
+`,
+    parentId: '.container',
+})
+*/
+
+/*
+
+// container, main
+iCreateElement({ className: 'container', inner: '' })
+// row_1, main, screen
+iCreateElement({ inner: '', className: 'row_1 row', parentId: '.container' })
+// col_1
+iCreateElement({
+    inner: 'col_1 col',
+    className: 'col_1 col',
+    parentId: '.row_1',
+})
+ 
+// row_2, main, buttons
+iCreateElement({ inner: '', className: 'row_2 row', parentId: '.container' })
+// col_2
+iCreateElement({
+    inner: 'col_2 col',
+    className: 'col_2 col',
+    parentId: '.row_2',
+})
+// col_2
+iCreateElement({
+    inner: 'col_2 col',
+    className: 'col_2 col',
+    parentId: '.row_2',
+})
+// col_2
+iCreateElement({
+    inner: 'col_2 col',
+    className: 'col_2 col',
+    parentId: '.row_2',
+})
+
+/* 
 // foo()
 console.log(
     'calc-correct-branch: ',
@@ -46,6 +205,7 @@ iCreateElement({
     id: 'diii',
     className: 'btn btn-success'
 })
+ */
 
 /*
 // const btn = () => iCreateElement({ tag: 'button', inner: 'array loop' })

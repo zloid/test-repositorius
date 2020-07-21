@@ -1,6 +1,6 @@
 {
     "name": "test-repositorius",
-    "version": "0.3.63",
+    "version": "0.4.1",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -31,5 +31,11 @@
         "webpack": "^4.43.0",
         "webpack-cli": "^3.3.12",
         "webpack-dev-server": "^3.11.0"
+    },
+    "dependencies": {
+        "reefjs": "^7.3.3"
+    },
+    "engines": {
+        "node": "14.4.0"
     }
 }
