@@ -1,21 +1,58 @@
 import Reef from 'reefjs'
 // own
 import iCreateElement from './utils/iCreateElement'
+
 import App from './app/App'
 // styles
 import './bootstrap.css'
 // own styles
 import './own.css'
 
+// const iRnd = () => console.log(Math.random())
+
 // create DOM element <div id="root"></div>
 // iCreateElement({ id: 'app', className: '', inner: '' })
-iCreateElement({ id: 'root', fix: 'all' })
+iCreateElement({ id: 'root', cut: 'all' })
 // <div id="root"><div class="badge badge-primary">Hello, world!</div></div>
 App.render()
 
-// iCreateElement({ id: 'toor', fix: 'all', tag: 'p', inner: 'hello' })
+const WORLD = 'WRLD'
 
-// iCreateElement({ id: 'root', fix: 'all' })
+myLib.create({ tag: 'hr', only: 'true' })
+myLib.create({ tag: 'hr', only: 'true' })
+;[...Array(9)].forEach(() => {
+    // myLib.create({ tag: 'button', className: 'btn btn-success', inner: ' * ' })
+    iCreateElement({tag: 'button', className: 'btn btn-success', inner: ' * - btn -'})
+    // myLib.create({ tag: 'br', only: true })
+    myLib.create({ tag: 'strong', only: true, inner: `<i>hello</i> ${WORLD}` })
+})
+
+// document.querySelector('.badge').onclick = () => console.log(123)
+// iCreateElement({ id: 'toor', cut: 'all', tag: 'p', inner: 'hello' })
+
+/* 
+// Nested component
+var todos = new Reef('#root', {
+	data: {
+		todos: ['Swim', 'Climb', 'Jump', 'Play']
+	},
+	template: function (props) {
+		return `
+			<ul>
+				${props.todos.map(function (todo) {
+					return `<li>${todo}</li>`;
+				}).join('')}
+			</ul>`;
+	}
+});
+
+todos.render(); */
+
+/* 
+iCreateElement({ cut: 'all' })
+iCreateElement({ cut: 'all', id: 'iddd', inner: '123' })
+iCreateElement({ cut: 'class', id: 'iddd22', only: true })
+ */
 
 /*
 // bg

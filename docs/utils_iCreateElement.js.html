@@ -1,4 +1,32 @@
-/** @module src-scripts-iCreateElement */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: utils/iCreateElement.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: utils/iCreateElement.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module src-scripts-iCreateElement */
 
 /**
  * For simplify creating custom HTMLElements in DOM
@@ -13,39 +41,33 @@
  * @param {string} props.cut - default / class / all - for cutting some default behavior
  * @returns {void} creating custom DOMElement
  * @example
- * // void: <body><div class="defaultClass"><i>my custom HTMLElement is ...</i></div></body>
+ * // void: &lt;body>&lt;div class="defaultClass">&lt;i>my custom HTMLElement is ...&lt;/i>&lt;/div>&lt;/body>
  * iCreateElement({})
  * @example
- * // void: <body><h3 class="defaultClass">hello h3</h3></body>
+ * // void: &lt;body>&lt;h3 class="defaultClass">hello h3&lt;/h3>&lt;/body>
  * iCreateElement({ tag: 'h3', inner: 'hello h3' })
  * @example
- * // void: <body><br></body>
+ * // void: &lt;body>&lt;br>&lt;/body>
  * iCreateElement({ tag: 'br', only: true })
  * @example
- * // void: <body><h3></h3></body>
+ * // void: &lt;body>&lt;h3>&lt;/h3>&lt;/body>
  * iCreateElement({ tag: 'h3', only: true })
  * @example
- * // void: <body><h3 class="defaultClass"><i>my custom HTMLElement is ...</i></h3></body>
+ * // void: &lt;body>&lt;h3 class="defaultClass">&lt;i>my custom HTMLElement is ...&lt;/i>&lt;/h3>&lt;/body>
  * iCreateElement({ tag: 'h3', only: false })
  * @example
-  // void: <div> * </div>
-  iCreateElement({ only: 'true', inner: ' * ' })
- * @example
-  // void: <button> * </button>
-  iCreateElement({ tag: 'button', only: 'true', inner: ' * ' })
- * @example
- * // void: <body><div class="defaultClass"><span class="i-class"><p>any html code</p></span></div></body>
+ * // void: &lt;body>&lt;div class="defaultClass">&lt;span class="i-class">&lt;p>any html code&lt;/p>&lt;/span>&lt;/div>&lt;/body>
  * iCreateElement({
-      inner: '<span class="i-class"><p>any html code</p></span>',
+      inner: '&lt;span class="i-class">&lt;p>any html code&lt;/p>&lt;/span>',
    })
  * @example
- * // void: <body><div class="defaultClass">html class</div></body>
+ * // void: &lt;body>&lt;div class="defaultClass">html class&lt;/div>&lt;/body>
  * iCreateElement({ tag: 'div', inner: 'html class' })
  * @example
- * // void: <body><div class="my-best-html-class">html class</div></body>
+ * // void: &lt;body>&lt;div class="my-best-html-class">html class&lt;/div>&lt;/body>
  * iCreateElement({ tag: 'div', inner: 'html class', className: 'my-best-html-class' })
  * @example
- * // void: '<button class="myButton">just a button<strong class="defaultClass">very strong</strong></button>'
+ * // void: '&lt;button class="myButton">just a button&lt;strong class="defaultClass">very strong&lt;/strong>&lt;/button>'
  * iCreateElement({
         tag: 'button',
         className: 'myButton',
@@ -57,14 +79,14 @@
         parentId: '.myButton',
     })    
  * @example
- * // void: <div id="my-best-id" class="defaultClass">html id</div>
+ * // void: &lt;div id="my-best-id" class="defaultClass">html id&lt;/div>
        iCreateElement({
             tag: 'div',
             inner: 'html id',
             id: 'my-best-id    ',
         })
 * @example
-* // void: <button id="root" class="cls">rooot<button class="defaultClass">hello</button></button>
+* // void: &lt;button id="root" class="cls">rooot&lt;button class="defaultClass">hello&lt;/button>&lt;/button>
         iCreateElement({
             id: 'root',
             className: 'cls',
@@ -77,17 +99,16 @@
             parentId: '#root'
         })
 * @example
-  // void: <p id="foo">hello</p>
+  // void: &lt;p id="foo">hello&lt;/p>
   iCreateElement({id: 'foo', cut: 'all', tag: 'p', inner: 'hello'})
 * @example
-  // void: <div id="root"></div>
+  // void: &lt;div id="root">&lt;/div>
   iCreateElement({ id: 'root', cut: 'all' })
-*
  */
 export default function iCreateElement({
     tag = 'div',
     only = false,
-    inner = '<i>my custom HTMLElement is ...</i>',
+    inner = '&lt;i>my custom HTMLElement is ...&lt;/i>',
     className = 'defaultClass',
     id = '',
     parentId = '',
@@ -96,9 +117,6 @@ export default function iCreateElement({
 }) {
     if (only) {
         const customElement = document.createElement(tag.trim())
-
-        inner !== '<i>my custom HTMLElement is ...</i>' &&
-            (customElement.innerHTML = inner)
 
         parentId === ''
             ? document.body.appendChild(customElement)
@@ -109,7 +127,7 @@ export default function iCreateElement({
     // var element = document.createElement(tagName[, options]);
     const customElement = document.createElement(tag.trim())
     // adding id
-    id !== '' && (customElement.id = id.trim())
+    id !== '' &amp;&amp; (customElement.id = id.trim())
     // adding html class
     customElement.className = className.trim()
     // adding innerHTML
@@ -118,7 +136,7 @@ export default function iCreateElement({
     parentId === ''
         ? document.body.appendChild(customElement)
         : document.querySelector(parentId).appendChild(customElement)
-    // we can fix some default behavior
+    // we can fix some default behavior 
     switch (cut) {
         case 'default':
             break
@@ -126,7 +144,7 @@ export default function iCreateElement({
             // works only if props {id} is exist
             if (arguments[0].id) {
                 const element = document.getElementById(id)
-                inner === '<i>my custom HTMLElement is ...</i>' &&
+                inner === '&lt;i>my custom HTMLElement is ...&lt;/i>' &amp;&amp;
                     (element.innerHTML = '')
                 element.removeAttribute('class')
             }
@@ -145,3 +163,26 @@ export default function iCreateElement({
         }
     }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-src-scripts-iCreateElement.html">src-scripts-iCreateElement</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Jul 22 2020 09:38:53 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
