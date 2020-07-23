@@ -1,7 +1,25 @@
-const rnd = () => Math.random()
+const MyComponent = ({
+    foo = 'nope1987',
+    bar = 'nope2',
+    color = 'warning',
+}) => `
+    <p>
+        ${foo}, ${foo}, ${foo + ' ; ' + foo}
+        <br />
+        <i>
+            MyCmpnnt test_87456213 
+        </i>    
+    </p>       
+    <button onclick="window.myLib.iRnd()">
+        ${bar}
+    </button>
+`
 
-const MyComponent = ({ foo = 'nope1', bar = 'nope2', color = 'warning' }) => `
-    ${myLib.create({ tag: 'button', inner: 'MyComponent: myLib.create' })}
+export default MyComponent
+
+/* 
+const rnd = () => Math.random()
+${myLib.create({ tag: 'button', inner: 'MyComponent: myLib.create' })}
         <i>
             hellooo 999 not like
         </i>
@@ -19,6 +37,4 @@ const MyComponent = ({ foo = 'nope1', bar = 'nope2', color = 'warning' }) => `
             <br />
             barrrrrrr is: ${bar} 
         </strong>
-    `
-
-export default MyComponent
+*/

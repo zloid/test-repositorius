@@ -1,11 +1,43 @@
 import Reef from 'reefjs'
 // own
-import myLib from './myLib'
-import iCreateElement from '../utils/iCreateElement'
 import MyComponent from '../components/myComponent/MyComponent'
+import CalcUi from '../components/calcUi/CalcUi'
 
+// App will render to #root at src/index.js
 const App = new Reef('#root', {
     template: () => `
+        ${CalcUi()}       
+    `,
+})
+
+export default App
+
+
+
+
+/* 
+
+        ${MyComponent({ bar: 987 })}  
+ 
+
+*/
+
+
+
+/* 
+
+// creating customEvent - 'cccp'
+// iCreateElement({ id: 'elemm', tag: 'button', inner: 'elemm' })
+let event = new Event('cccp')
+document.addEventListener('cccp', () => alert('is cccp'))
+
+document.getElementById('elemm').addEventListener('click', (ev) => {
+    document.dispatchEvent(event)
+})
+
+// old App
+
+`
         ${MyComponent({ foo: 'fofofo', color: 'success' })}
         <div onclick="msg()" class="badge badge-primary">
             Hello, world!
@@ -29,16 +61,6 @@ const App = new Reef('#root', {
             Autoclick 111
             ${MyComponent({ bar: 'brbrbr' })}
         </button>
-    `,
-})
-
-// creating customEvent - 'cccp'
-iCreateElement({ id: 'elemm', tag: 'button', inner: 'elemm' })
-let event = new Event('cccp')
-document.addEventListener('cccp', () => alert('is cccp'))
-
-document.getElementById('elemm').addEventListener('click', (ev) => {
-    document.dispatchEvent(event)
-})
-
-export default App
+`
+        
+  */
