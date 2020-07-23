@@ -9,7 +9,7 @@ module.exports = {
     //         path.resolve('./src'),
     //     ],
     // },
-     /* resolve: {
+    /* resolve: {
         alias: {
             src: path.resolve(__dirname, './src'),
         },

@@ -29,7 +29,7 @@ export default function iCreateElement({
     parentId === ''
         ? document.body.appendChild(customElement)
         : document.querySelector(parentId).appendChild(customElement)
-    // we can fix some default behavior 
+    // we can fix some default behavior
     switch (cut) {
         case 'default':
             break

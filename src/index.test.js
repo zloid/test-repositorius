@@ -3,7 +3,7 @@ const testingLib = require('@testing-library/dom')
 // testingLib.screen.debug()
 
 test('someee tst', () => {
-  expect(2 + 2).toBe(4)
+    expect(2 + 2).toBe(4)
 })
 
 // import '@testing-library/jest-dom/extend-expect'
@@ -18,7 +18,7 @@ test('someee tst', () => {
 
 // describe('index.html', () => {
 //   beforeEach(() => {
-     
+
 //     dom = new JSDOM(html, { runScripts: 'dangerously' })
 //     container = dom.window.document.body
 //   })
@@ -35,7 +35,7 @@ test('someee tst', () => {
 
 //   it('renders a new paragraph via JavaScript when the button is clicked', async () => {
 //     const button = getByText(container, 'Click me for a terrible pun')
-    
+
 //     fireEvent.click(button)
 //     let generatedParagraphs = container.querySelectorAll('#pun-container p')
 //     expect(generatedParagraphs.length).toBe(1)

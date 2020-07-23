@@ -112,7 +112,7 @@ describe('iCreateElement()', () => {
         // create: some DOM element
         iCreateElement({
             tag: 'div',
-            inner: 'id must not exist'
+            inner: 'id must not exist',
         })
         // test
         const element = screen.getByText(/^id must not exist$/i)

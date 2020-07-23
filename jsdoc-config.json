@@ -1,12 +1,8 @@
 {
     "source": {
         "includePattern": ".+\\.js(doc|x)?$",
-        "include": [
-            "."
-        ],
-        "exclude": [
-            "node_modules"
-        ]
+        "include": ["."],
+        "exclude": ["node_modules"]
     },
     "recurseDepth": 10,
     "opts": {
