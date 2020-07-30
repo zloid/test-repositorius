@@ -8,17 +8,24 @@ window.myLib.create({ id: 'root', cut: 'all' })
 App.render()
 
 describe('App.js', () => {
-    it('show whole DOM-tree ', () => {
+    /* it('show whole DOM-tree ', () => {
         // debug
-        screen.debug()
+        // screen.debug()
         console.log(78456321)
-    })
+    }) */
     it('component CalcUi is render to DOM', () => {
         // find element
         const element = screen.getByText(/^CalcUi_9832$/i)
-        console.log(element)
         // debug
         screen.debug()
         console.log(32445632)
+    })
+    it(`calc's UI is correct`, () => {
+        // element is exist
+        const element = screen.getByRole(/^calcMainScreen$/i)
+        // debug
+        screen.debug()
+        console.log(321231)
+        console.log('element --- ', element)
     })
 })

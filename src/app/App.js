@@ -1,19 +1,91 @@
+// import myLib from '../utils/myLib'
 import Reef from 'reefjs'
 // own
-import MyComponent from '../components/myComponent/MyComponent'
+import { storeTwo } from '../store'
 import CalcUi from '../components/calcUi/CalcUi'
+import iCreateElement from '../utils/iCreateElement'
+
+// todo
+import { store } from '../store'
+
+
+
+store.dispatch({
+    type: 'ADD_TODO',
+    text: '789978987',
+})
+
+// console.log('store.state~>: App.js >>', store.getState())
+
+// window.myLib.create({ parentId: '#root', inner: 'dsfa' })
+// iCreateElement({ parentId: '#root', inner: 'dsfa' })
+
+/* 
+const doSome = () => {
+    storeTwo.data.todos.push('Take a nap... doSome()')
+}
+
+doSome() */
 
 // App will render to #root at src/index.js
+
+// todo 
+// ${props.map((todo) => `<li>${todo}</li>`).join('')}
+ 
+
 const App = new Reef('#root', {
-    template: () => `
-        ${CalcUi()}       
+    store: storeTwo,
+    template: props => `
+        <div class="container">
+            ========
+        ${props.store.join(' <~~> ')}
+            =======
+            ${CalcUi()}   
+
+            ---<br />
+            ${console.log(props)}
+            ---<br />
+            ${store.getState().map((todo) => `<li>${todo}</li>`).join('')}
+            ---<br />
+            <button
+                onClick="window.myLib.strTest()"
+                class="btn btn-primary"
+            >
+                ibtn hello
+            </button>
+            <button
+                onClick="myLib.create({tag: 'button'})"
+                class="btn btn-warning"
+            >
+                ibtn hello
+            </button>
+            
+        </div>
+
+        ===============
+        ${store
+                    .getState()
+                    .map(elem => `<li>${elem}</li>`)
+                    .join('')}
+        
     `,
 })
+
+// storeTwo.data.todos.push('Take a nap... App.js')
+// storeTwo.data.todos.push('Take a nap... App.js')
+
+// storeTwo.data.todos.push('app')
+// storeTwo.data.todos.push('ap')
+
+// store.get('total')
 
 export default App
 
 
-
+store.dispatch({
+    type: 'ADD_TODO',
+    text: 'App.js - 78945621',
+})
 
 /* 
 
@@ -21,8 +93,6 @@ export default App
  
 
 */
-
-
 
 /* 
 

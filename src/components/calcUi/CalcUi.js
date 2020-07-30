@@ -1,13 +1,80 @@
+// import { store } from '../../store'
+
+import { store } from '../../store'
+
+
 const CalcUi = () => `
     <p>
         CalcUi_9832
     </p>
-    <hr />
+    <div class="row">
+        <div class="col">
+            <div 
+                role="calcMainScreen"
+                onclick="window.myLib.iRnd()"
+            >
+                calcScreen
+                ${store
+                    .getState()
+                    .map(elem => `<li>${elem}</li>`)
+                    .join('')}
+            </div>
+            <input
+                    value="3"
+                onmousemove="window.myLib.doRdx(this.value)"
+            />
+                999999977
+            
+             
+        </div>    
+    </div>
+    ${store
+        .getState()
+        .map(elem => `<li>${elem}</li>`)
+        .join('')}
+`
+ 
+
+store.dispatch({
+    type: 'ADD_TODO',
+    text: 'CalcUi - 213454',
+})
+
+
+
+// store.data.todos.push('Take a nap... CalcUi.js')
+// store.data.todos.push('a')
+
+// todo
+ 
+console.log('store.state~>: CalcUi.js >>', store.getState())
+
+export default CalcUi
+
+/*
+
+<!--
+ ${CalcButton({
+     role: 'butnZero',
+     data: '0',
+     className: 'btn',
+     click: 'window.myLib.iRnd()',
+ })} 
+    ${CalcButton({
+        role: 'butnEight',
+        data: '8',
+        className: 'btn',
+        click: 'window.myLib.iRnd()',
+})} 
+    --> 
+
+`
+
+<hr />
             <Container>
                 <Row>
                     <Col>
-                        {/* <br /> */}
-                            <CalcScreen clickOnCalcScreen={this.getAnswerSlim} resultOnScreen={this.state.screenResult} />
+                                                    <CalcScreen clickOnCalcScreen={this.getAnswerSlim} resultOnScreen={this.state.screenResult} />
                         <hr />
                     </Col>
                 </Row>
@@ -84,6 +151,7 @@ const CalcUi = () => `
                     </Col>
                 </Row>
             </Container>
-`
 
-export default CalcUi
+`
+ 
+*/
