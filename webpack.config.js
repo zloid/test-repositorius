@@ -17,7 +17,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'public'),
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -26,7 +26,7 @@ module.exports = {
         }),
     ],
     devServer: {
-        contentBase: './dist',
+        contentBase: './public',
     },
     module: {
         rules: [

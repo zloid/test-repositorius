@@ -1,57 +1,82 @@
 // import { store } from '../../store'
+import { store } from '../../app/store'
 
-import { store } from '../../store'
+import CalcDisplay from '../calcDisplay/CalcDisplay'
 
+import { addButtonValueToScreen } from '../../features/buttonToDisplay/buttonToDisplaySlice'
 
-const CalcUi = () => `
+// store.dispatch({ type: 'ADD_TODO', text: 'mmm987654321' })
+// store.dispatch(addButtonValueToScreen(951))
+
+const CalcUi = () => `<div>
+    <textarea onclick="window.myLib.btnToDspl(this.value)">
+            >>>>>>>>>>>>
+    </textarea>    
+
+    <button 
+        class="btn btn-danger"
+        onclick="window.myLib.buttonToDisplay.btnToDspl(this.innerHTML)"
+    >
+        *
+    </button>
+
+    <button 
+        class="btn btn-danger"
+        onclick="window.myLib.buttonToDisplay.btnToDspl(this.innerHTML)"
+    >
+        9
+    </button>
+
+    <button 
+        class="btn btn-danger"
+        onclick="window.myLib.buttonToDisplay.btnToDspl(this.innerHTML)"
+    >
+        0
+    </button>
+
+    <button 
+        class="btn btn-danger"
+        onclick="window.myLib.buttonToDisplay.btnToDspl(this.innerHTML)"
+    >
+        .
+    </button>
+
+            <input
+                value="7"
+                onclick="window.myLib.doRdx(this.value)"
+            />
+                999999977
+
+    ${CalcDisplay()}
+    
     <p>
         CalcUi_9832
     </p>
+        
     <div class="row">
+    
         <div class="col">
-            <div 
-                role="calcMainScreen"
-                onclick="window.myLib.iRnd()"
-            >
-                calcScreen
-                ${store
-                    .getState()
-                    .map(elem => `<li>${elem}</li>`)
-                    .join('')}
-            </div>
-            <input
-                    value="3"
-                onmousemove="window.myLib.doRdx(this.value)"
-            />
-                999999977
-            
-             
+        
         </div>    
     </div>
-    ${store
-        .getState()
-        .map(elem => `<li>${elem}</li>`)
-        .join('')}
-`
- 
-
-store.dispatch({
-    type: 'ADD_TODO',
-    text: 'CalcUi - 213454',
-})
 
 
+        
+        
+</div>`
+
+export default CalcUi
 
 // store.data.todos.push('Take a nap... CalcUi.js')
 // store.data.todos.push('a')
 
 // todo
- 
-console.log('store.state~>: CalcUi.js >>', store.getState())
 
-export default CalcUi
+// console.log('store.state~>: CalcUi.js >>', store.getState())
 
 /*
+    <h2>${new Date().toLocaleTimeString()}</h2>
+
 
 <!--
  ${CalcButton({

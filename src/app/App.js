@@ -1,13 +1,20 @@
-// import myLib from '../utils/myLib'
 import Reef from 'reefjs'
 // own
-import { storeTwo } from '../store'
+// import { storeTwo } from '../store'
+// import { storeTwo } from '../app/store'
 import CalcUi from '../components/calcUi/CalcUi'
 import iCreateElement from '../utils/iCreateElement'
 
-// todo
-import { store } from '../store'
 
+// todo
+// import { store } from '../store'
+import { store } from '../app/store'
+
+import { tsts } from './rootReducer'
+// import CalcDisplay from '../components/calcDisplay/CalcDisplay'
+
+// console.log(tsts())
+// console.log(CalcDisplay())
 
 
 store.dispatch({
@@ -29,48 +36,43 @@ doSome() */
 
 // App will render to #root at src/index.js
 
-// todo 
+// todo
 // ${props.map((todo) => `<li>${todo}</li>`).join('')}
- 
 
 const App = new Reef('#root', {
-    store: storeTwo,
-    template: props => `
-        <div class="container">
-            ========
-        ${props.store.join(' <~~> ')}
-            =======
-            ${CalcUi()}   
+    // store: storeTwo,
+    template: (props) => `<div class="container">
 
-            ---<br />
-            ${console.log(props)}
-            ---<br />
-            ${store.getState().map((todo) => `<li>${todo}</li>`).join('')}
-            ---<br />
-            <button
-                onClick="window.myLib.strTest()"
-                class="btn btn-primary"
-            >
-                ibtn hello
-            </button>
-            <button
-                onClick="myLib.create({tag: 'button'})"
-                class="btn btn-warning"
-            >
-                ibtn hello
-            </button>
-            
-        </div>
-
-        ===============
-        ${store
-                    .getState()
-                    .map(elem => `<li>${elem}</li>`)
-                    .join('')}
+        ${CalcUi()}     
         
-    `,
+        <button
+            onClick="window.myLib.strTest()"
+            class="btn btn-primary"
+        >
+            ibtn hello
+        </button>
+        <button
+            onClick="myLib.create({tag: 'button'})"
+            class="btn btn-warning"
+        >
+            ibtn hello
+        </button>
+
+        
+        
+    </div>`,
 })
 
+/*
+
+${store
+            .getState()
+            .map((elem) => `<li>${elem}</li>`)
+            .join('')}
+
+            ${store.getState().map((todo) => `<li>${todo}</li>`).join('')}
+ 
+   */
 // storeTwo.data.todos.push('Take a nap... App.js')
 // storeTwo.data.todos.push('Take a nap... App.js')
 
@@ -80,7 +82,6 @@ const App = new Reef('#root', {
 // store.get('total')
 
 export default App
-
 
 store.dispatch({
     type: 'ADD_TODO',

@@ -3,7 +3,8 @@ import myLib from './utils/myLib'
 
 import App from './app/App'
 
-import { store } from './store'
+// import { store } from './store'
+import { store } from './app/store'
 
 // own
 
@@ -16,9 +17,12 @@ import './own.css'
 window.myLib.create({ id: 'root', cut: 'all' })
 
 // render Reef's App to #root
+// first render
 App.render()
+  
 
+// render each time when dispatch redux actions
 store.subscribe(() => {
-    console.log(11111, store)
     App.render()
+    // console.log(store.getState().modernReducer)
 })
