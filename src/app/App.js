@@ -1,14 +1,9 @@
 import Reef from 'reefjs'
+import { store } from '../app/store'
 // own
-// import { storeTwo } from '../store'
-// import { storeTwo } from '../app/store'
 import CalcUi from '../components/calcUi/CalcUi'
 import iCreateElement from '../utils/iCreateElement'
 
-
-// todo
-// import { store } from '../store'
-import { store } from '../app/store'
 
 import { tsts } from './rootReducer'
 // import CalcDisplay from '../components/calcDisplay/CalcDisplay'
@@ -43,7 +38,8 @@ const App = new Reef('#root', {
     // store: storeTwo,
     template: (props) => `<div class="container">
 
-        ${CalcUi()}     
+        ${CalcUi()}    
+          
         
         <button
             onClick="window.myLib.strTest()"
@@ -51,6 +47,7 @@ const App = new Reef('#root', {
         >
             ibtn hello
         </button>
+
         <button
             onClick="myLib.create({tag: 'button'})"
             class="btn btn-warning"

@@ -3,51 +3,30 @@ import { store } from '../../app/store'
 
 import CalcDisplay from '../calcDisplay/CalcDisplay'
 
+import CalcButtons from '../calcButtons/CalcButtons'
+
 import { addButtonValueToScreen } from '../../features/buttonToDisplay/buttonToDisplaySlice'
 
 // store.dispatch({ type: 'ADD_TODO', text: 'mmm987654321' })
 // store.dispatch(addButtonValueToScreen(951))
 
 const CalcUi = () => `<div>
+
+
+    ${CalcDisplay()}
+    ${CalcButtons()}
+<!--
     <textarea onclick="window.myLib.btnToDspl(this.value)">
             >>>>>>>>>>>>
-    </textarea>    
-
-    <button 
-        class="btn btn-danger"
-        onclick="window.myLib.buttonToDisplay.btnToDspl(this.innerHTML)"
-    >
-        *
-    </button>
-
-    <button 
-        class="btn btn-danger"
-        onclick="window.myLib.buttonToDisplay.btnToDspl(this.innerHTML)"
-    >
-        9
-    </button>
-
-    <button 
-        class="btn btn-danger"
-        onclick="window.myLib.buttonToDisplay.btnToDspl(this.innerHTML)"
-    >
-        0
-    </button>
-
-    <button 
-        class="btn btn-danger"
-        onclick="window.myLib.buttonToDisplay.btnToDspl(this.innerHTML)"
-    >
-        .
-    </button>
+    </textarea>  
 
             <input
                 value="7"
                 onclick="window.myLib.doRdx(this.value)"
             />
                 999999977
+-->      
 
-    ${CalcDisplay()}
     
     <p>
         CalcUi_9832
@@ -61,7 +40,7 @@ const CalcUi = () => `<div>
     </div>
 
 
-        
+         
         
 </div>`
 

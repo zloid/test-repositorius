@@ -1,6 +1,6 @@
 {
     "name": "test-repositorius",
-    "version": "0.6.21",
+    "version": "0.6.27",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -36,7 +36,6 @@
     },
     "dependencies": {
         "@reduxjs/toolkit": "^1.4.0",
-        "redux": "^4.0.5",
         "reefjs": "^7.3.3"
     },
     "engines": {
