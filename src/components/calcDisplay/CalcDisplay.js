@@ -19,24 +19,28 @@ const CalcDisplay = () => `<div class="clcdspl">
     ${store.getState().modernReducer.foo}
 -->
 
+<p>calcScreen_74568</p>
 
     <div
         class="badge badge-success"
         role="calcMainScreen"
         onclick="window.myLib.iRnd()"
     >
+    
         <h3>
         
-            <p>calcScreen_74568</p>
-            <span role="calcMainScreenData">${store.getState()
-                .buttonToDisplay.displayData}</span>
+            ${store.getState()
+                .buttonToDisplay.displayData}
             
         </h3>
+
     </div>
 
     <hr />
+
     length_arr_nmbr_784562513: 
     ${store.getState().buttonToDisplay.displayData.length}
+
     <hr />
 
 </div>`

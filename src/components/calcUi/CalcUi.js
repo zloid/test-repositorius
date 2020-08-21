@@ -12,9 +12,10 @@ import { addButtonValueToScreen } from '../../features/buttonToDisplay/buttonToD
 
 const CalcUi = () => `<div>
 
-
     ${CalcDisplay()}
-    ${CalcButtons()}
+
+     ${CalcButtons()}
+        
 <!--
     <textarea onclick="window.myLib.btnToDspl(this.value)">
             >>>>>>>>>>>>

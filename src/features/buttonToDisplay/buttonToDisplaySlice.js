@@ -31,8 +31,8 @@ const regExpForGoodDisplay = str => {
     //.7 > 0.7
     middleStr = middleStr.replace(/[^\d]\./, ' 0.')
     middleStr = middleStr.replace(/^\./, '0.')
-    //7. + > 7 +
-    middleStr = middleStr.replace(/([\d])\.\s/g, ' $1 ')
+    // todo 7. + > 7 +
+    middleStr = middleStr.replace(/([\d])\.\s/g, '$1 ')
     // '' * 5 > 5 * 5  ; ÷ 5 > 5 ÷ 5
     middleStr = middleStr.replace(/^\s*(\*|÷)\s*(\d+)/, '$2 $1 $2 ')
     // '    ' -> ' '
@@ -71,10 +71,11 @@ const buttonToDisplaySlice = createSlice({
             },
             prepare: payload => {
                 // prettyString(payload)
+                console.log(payload)
                 payload = payload.trim()
 
                 return {
-                    payload: payload,
+                    payload,
                 }
             },
         },

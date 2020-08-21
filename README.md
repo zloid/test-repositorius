@@ -11,7 +11,7 @@
 -   Use as 'Starter Pack': correct modern vanilla JS + ecosystem based on Webpack
 -   Webpack for: bundling, minification, dev-server, clean-webpack-plugin, html-webpack-plugin
 -   Only jest and @testing-library/dom for tests
--   Only ESM (EcmaScriptModules) (both source code and tests)
+-   Only ESM (EcmaScript modules): both source code and tests
 -   @babel for: es6 to es5, for correct work with jest & ESM
 -   JSDoc as documentation
 -   husky: for pre-commit hooks
