@@ -54,10 +54,70 @@ const CalcButtons = () => `<div class="clcdspl">
     </button> 
 
     <hr />
+    
 
+    <button
+        role="calcBtnOne"
+        class="btn btn-danger"
+        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+    >
+        1
+    </button> 
 
-    <!-- own tests todo replace -->
+    <button
+        role="calcBtnTwo"
+        class="btn btn-danger"
+        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+    >
+        2
+    </button> 
+
+    <button
+        role="calcBtnThree"
+        class="btn btn-danger"
+        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+    >
+        3
+    </button> 
+
+    <hr />
+
     <button 
+        role="calcBtnZero"
+        class="btn btn-danger"
+        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+    >
+        0
+    </button>
+
+    <hr />
+
+    <button 
+        role="calcBtnDecimalPoint"
+        class="btn btn-danger"
+        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+    >
+        .
+    </button>
+
+    <button 
+        role="calcBtnPlus"
+        class="btn btn-danger"
+        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+    >
+        +
+    </button>
+
+    <button 
+        role="calcBtnMinus"
+        class="btn btn-danger"
+        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+    >
+        -
+    </button>
+
+    <button 
+        role="calcBtnMultiply"
         class="btn btn-danger"
         onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
     >
@@ -65,26 +125,14 @@ const CalcButtons = () => `<div class="clcdspl">
     </button>
 
     <button 
+        role="calcBtnDivision"
         class="btn btn-danger"
         onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
     >
-        (
+        ÷
     </button>
 
-    <button 
-        class="btn btn-danger"
-        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
-    >
-        0
-    </button>
-
-    <button 
-        class="btn btn-danger"
-        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
-    >
-        .
-    </button>
-
+ 
 </div>`
 
 export default CalcButtons
