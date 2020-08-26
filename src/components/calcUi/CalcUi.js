@@ -15,20 +15,7 @@ const CalcUi = () => `<div>
     ${CalcDisplay()}
 
      ${CalcButtons()}
-        
-<!--
-    <textarea onclick="window.myLib.btnToDspl(this.value)">
-            >>>>>>>>>>>>
-    </textarea>  
-
-            <input
-                value="7"
-                onclick="window.myLib.doRdx(this.value)"
-            />
-                999999977
--->      
-
-    
+      
     <p>
         CalcUi_9832
     </p>

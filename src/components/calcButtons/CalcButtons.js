@@ -132,7 +132,26 @@ const CalcButtons = () => `<div class="clcdspl">
         ÷
     </button>
 
- 
+    <hr />
+
+    <button 
+        role="calcBtnEqual"
+        class="btn btn-danger"
+        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+    >
+        =
+    </button>
+
+    <button 
+        role="calcBtnClear"
+        class="btn btn-danger"
+        onclick="window.myLib.buttonToDisplay.clearAll()"     
+    >
+        Clear
+    </button>
+
+
+
 </div>`
 
 export default CalcButtons

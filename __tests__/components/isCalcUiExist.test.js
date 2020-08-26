@@ -10,7 +10,6 @@ document.body.innerHTML = CalcUi()
 describe('CalcUi.js', () => {   
     it('calc screen is exist', () => {           
         screen.getByRole(/^calcMainScreen$/i)   
-        // screen.debug()
     })
      it('calc screen data is -zero-', () => {
         const element = screen.getByRole(/^calcMainScreen$/i) 
@@ -91,5 +90,15 @@ describe('CalcUi.js', () => {
         const element = screen.getByRole(/^calcBtnDivision$/i)
 
         expect(element.textContent.trim()).toBe('÷')
+    })
+    it('calc button -equal- is exist, with text "="', () => {
+        const element = screen.getByRole(/^calcBtnEqual$/i)
+
+        expect(element.textContent.trim()).toBe('=')
+    })
+    it('calc button -clear- is exist, with text "clear"', () => {
+        const element = screen.getByRole(/^calcBtnClear$/i)
+
+        expect(element.textContent.toLowerCase().trim()).toBe('clear')
     })
 })
