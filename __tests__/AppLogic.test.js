@@ -13,7 +13,7 @@ store.subscribe(() => {
     App.render()
 })
 
-describe('App.js - calc logic', () => {     
+describe('App.js - calc logic', () => {
     it('initial div "root" is exist', () => {
         screen.getByTestId(/^mainRootDiv$/)
     })
@@ -38,19 +38,32 @@ describe('App.js - calc logic', () => {
 
         // console.log('213546987::: ', elementClcScrn.textContent.trim())
     })
-    it('clear calc screen, after click "clear" button', () => {
+    it('click "clear" button is clearing calc screen', () => {
         // initial
         document.getElementById('root').innerHTML += ''
         const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
 
-        // click some button
+        // click some buttons
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+
+        // calc screen is not clear
+        expect(elementClcScrn.textContent.trim()).not.toBe('0')
+
         // click clear
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
-        // console.log(screen.getByRole(/^calcBtnClear$/i).textContent)
 
-        // expect(elementClcScrn.textContent.trim()).toBe('0')
-        // console.log('213546987::: ', elementClcScrn.textContent.trim())
+        // calc screen is clear
+        expect(elementClcScrn.textContent.trim()).toBe('0')
+    })
+    it('calc button "+" is working', () => {
+        // initial
+        document.getElementById('root').innerHTML += ''
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
+        // calc screen is clear
+        expect(elementClcScrn.textContent.trim()).toBe('0')
     })
 })
 

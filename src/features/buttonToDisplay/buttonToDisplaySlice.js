@@ -5,7 +5,7 @@ const initialState = {
     displayData: '0',
 }
 
-const regExpForGoodDisplay = str => {
+const regExpForGoodDisplay = (str) => {
     // return str + 'dsa'
     let middleStr
     middleStr = str
@@ -69,7 +69,7 @@ const buttonToDisplaySlice = createSlice({
                     state.displayData + action.payload
                 )
             },
-            prepare: payload => {
+            prepare: (payload) => {
                 // prettyString(payload)
                 console.log(payload)
                 payload = payload.trim()
@@ -79,9 +79,12 @@ const buttonToDisplaySlice = createSlice({
                 }
             },
         },
+        clearAllFromCalcScreen(state) {
+            state.displayData = '0'
+        },
     },
 })
 
-export const { addButtonValueToScreen } = buttonToDisplaySlice.actions
+export const { addButtonValueToScreen, clearAllFromCalcScreen } = buttonToDisplaySlice.actions
 
 export default buttonToDisplaySlice.reducer

@@ -2,7 +2,7 @@ import iCreateElement from '../utils/iCreateElement'
 
 import { store } from '../app/store'
 // RTK action
-import { addButtonValueToScreen } from '../features/buttonToDisplay/buttonToDisplaySlice'
+import { addButtonValueToScreen, clearAllFromCalcScreen } from '../features/buttonToDisplay/buttonToDisplaySlice'
 
 // define own lib
 const rnd = () => Math.floor(Math.random() * 20)
@@ -19,7 +19,7 @@ const myLib = {
     },
     buttonToDisplay: {
         btnToDspl: val => store.dispatch(addButtonValueToScreen(val)),
-        clearAll: () => console.log('9898989898989clearAll::: test')
+        clearAll: () => store.dispatch(clearAllFromCalcScreen())
     }
 }
 
