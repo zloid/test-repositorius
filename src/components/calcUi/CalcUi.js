@@ -1,5 +1,5 @@
-// import { store } from '../../store'
-// import { store } from '../../app/store'
+// import store  from '../../store'
+// import store  from '../../app/store'
 
 import CalcDisplay from '../calcDisplay/CalcDisplay'
 

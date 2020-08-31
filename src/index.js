@@ -3,7 +3,7 @@ import myLib from './utils/myLib'
 
 import App from './app/App'
 
-import { store } from './app/store'
+import store from './app/store'
 
 // own
 // styles
@@ -18,8 +18,7 @@ window.myLib.create({ id: 'root', cut: 'all' })
 // first render
 App.render()
 
-console.log('store.modernReducer.foo::: ', store.getState().modernReducer.foo )
-  
+console.log('store.modernReducer.foo::: ', store.getState().modernReducer.foo)
 
 // render each time when dispatch redux actions
 store.subscribe(() => {

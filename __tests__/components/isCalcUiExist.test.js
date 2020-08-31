@@ -7,23 +7,23 @@ import CalcUi from '../../src/components/calcUi/CalcUi'
 // document.getElementById('root').innerHTML = CalcUi()
 document.body.innerHTML = CalcUi()
 
-describe('CalcUi.js', () => {   
-    it('calc screen is exist', () => {           
-        screen.getByRole(/^calcMainScreen$/i)   
+describe('CalcUi.js', () => {
+    it('calc screen is exist', () => {
+        screen.getByRole(/^calcMainScreen$/i)
     })
-     it('calc screen data is -zero-', () => {
-        const element = screen.getByRole(/^calcMainScreen$/i) 
-        
+    it('calc screen data is -zero-', () => {
+        const element = screen.getByRole(/^calcMainScreen$/i)
+
         expect(element.textContent.trim()).toBe('0')
     })
     it('calc button -7- is exist, with text 7', () => {
         const element = screen.getByRole(/^calcBtnSeven$/i)
 
-        expect(element.textContent.trim()).toBe('7')        
+        expect(element.textContent.trim()).toBe('7')
     })
     it('calc button -8- is exist, with text 8', () => {
         const element = screen.getByRole(/^calcBtnEight$/i)
-        
+
         expect(element.textContent.trim()).toBe('8')
     })
     it('calc button -9- is exist, with text 9', () => {

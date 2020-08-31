@@ -1,5 +1,5 @@
-import { store } from '../../app/store'
- 
+import store from '../../app/store'
+
 const CalcDisplay = () => `<div class="clcdspl">
         CalcDisplay_67808
 
@@ -7,7 +7,7 @@ const CalcDisplay = () => `<div class="clcdspl">
 <!--
     ${store
         .getState()
-        .modernReducer.defaultArray.map(elem => `<li>${elem}</li>`)
+        .modernReducer.defaultArray.map((elem) => `<li>${elem}</li>`)
         .join('')}
 -->           
 
@@ -29,8 +29,7 @@ const CalcDisplay = () => `<div class="clcdspl">
     
         <h3>
         
-            ${store.getState()
-                .buttonToDisplay.displayData}
+            ${store.getState().buttonToDisplay.displayData}
             
         </h3>
 

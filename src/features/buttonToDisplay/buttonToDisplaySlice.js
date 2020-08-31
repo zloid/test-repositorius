@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
+import selectCorrectRegExpForCalcScreen from './selectCorrectRegExpForCalcScreen'
 
 const initialState = {
-    // displayData: ['0'],
     displayData: '0',
 }
 
+/* 
 const regExpForGoodDisplay = (str) => {
     // return str + 'dsa'
     let middleStr
@@ -39,28 +40,13 @@ const regExpForGoodDisplay = (str) => {
     middleStr = middleStr.replace(/\s{2}/g, ' ')
     return middleStr
 }
-
-// function prettyString(notPrettyString) {
-//     switch (true) {
-//         case /\*/i.test(notPrettyString):
-//             return '*'
-//         case /\./i.test(notPrettyString):
-//             return '.'
-
-//         default:
-//             console.log(Number(notPrettyString))
-//             return Number(notPrettyString).toString()
-//     }
-// }
-
-function prettyString(notPrettyString) {
-    return notPrettyString.trim()
-}
+ */
 
 const buttonToDisplaySlice = createSlice({
     name: 'digitalsDisplay',
     initialState,
     reducers: {
+        /*
         addButtonValueToScreen: {
             reducer: (state, action) => {
                 // state.displayData.push(action.payload)
@@ -70,21 +56,51 @@ const buttonToDisplaySlice = createSlice({
                 )
             },
             prepare: (payload) => {
-                // prettyString(payload)
-                console.log(payload)
-                payload = payload.trim()
+                // console.log(payload)
+                //  payload = payload.trim()
 
+                // return {
+                //     payload,
+                // } 
                 return {
-                    payload,
+                    payload: payload.trim()
                 }
             },
+        },
+*/
+
+        addButtonValueToScreen(state, action) {
+            // example: '   4   ' ~> '4'
+            // example: '   +   ' ~> '+'
+            // const payload = action.payload.trim()
+            // run regExp for correct calc screen data
+            // example: '++++' ~> '+'
+            // example: '7....' ~> '7.'
+            state.displayData = selectCorrectRegExpForCalcScreen(
+                state,
+                action.payload
+            )
+
+            /* 
+            state.displayData = regExpForGoodDisplay(
+                state.displayData + payload
+            )
+             */
         },
         clearAllFromCalcScreen(state) {
             state.displayData = '0'
         },
+        doEqual(state, action) {
+            console.log('12312345::: ', state.displayData.split(' '))
+            console.log('87954::: ', action.payload)
+        },
     },
 })
 
-export const { addButtonValueToScreen, clearAllFromCalcScreen } = buttonToDisplaySlice.actions
+export const {
+    addButtonValueToScreen,
+    clearAllFromCalcScreen,
+    doEqual,
+} = buttonToDisplaySlice.actions
 
 export default buttonToDisplaySlice.reducer

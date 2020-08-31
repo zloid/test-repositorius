@@ -4,7 +4,7 @@
 
 ## Features:
 
--   modern js SPA without frameworks, but React-like 
+-   modern js SPA without frameworks, but React-like
 -   Reef.js + RTK (Redux Toolkit) for reactivity and state management
 -   Components architecture, rely on predictable RTK style
 -   All RTK features: Redux Dev Tools, slices, immer, etc.

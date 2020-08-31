@@ -1,17 +1,9 @@
 import Reef from 'reefjs'
-import { store } from '../app/store'
+// import store  from '../app/store'
 // own
 import CalcUi from '../components/calcUi/CalcUi'
-// import iCreateElement from '../utils/iCreateElement'
 
-// import { tsts } from './rootReducer'
- 
-// store.dispatch({
-//     type: 'ADD_TODO',
-//     text: '789978987',
-// })
- 
-const App = new Reef('#root', {    
+const App = new Reef('#root', {
     template: (props) => `<div class="container">
 
         ${CalcUi()}    
@@ -34,11 +26,5 @@ const App = new Reef('#root', {
         
     </div>`,
 })
- 
 
 export default App
-
-// store.dispatch({
-//     type: 'ADD_TODO',
-//     text: 'App.js - 78945621',
-// })
