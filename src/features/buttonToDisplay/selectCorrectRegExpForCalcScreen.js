@@ -3,7 +3,7 @@
 /**
  * For transpile any string to correct data for calculator screen
  * @function selectCorrectRegExpForCalcScreen
- * @param {object} state - RTK state
+ * @param {{displayData: ''}} state - RTK state.displayData
  * @param {string} payload - action.payload
  * @returns {string}
  * @example
@@ -13,9 +13,7 @@
 export default function (state, payload) {
     const oldWithNewScreenData = state.displayData + payload.trim()
     // const regExpForGoodDisplay = (str) => {
-    // return str + 'dsa'
-    let middleStr
-    middleStr = oldWithNewScreenData
+    let middleStr = oldWithNewScreenData
     //begin > 00 > 0
     middleStr = middleStr.replace(/^0+/, '0')
     //begin > 02 > 0
