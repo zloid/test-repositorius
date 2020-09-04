@@ -8,7 +8,7 @@
  * @returns {string}
  * @example
  * //returns: '0.1 + 2214 * 21'
- *  selectCorrectRegExpForCalcScreen('0', '   000 00.....1 ++ 2214 *** 21   ')
+ *  selectCorrectRegExpForCalcScreen({displayData: '0'}, '   000 00.....1 ++ 2214 *** 21   ')
  */
 export default function (state, payload) {
     const oldWithNewScreenData = state.displayData + payload.trim()

@@ -1,5 +1,4 @@
 import Reef from 'reefjs'
-// import store  from '../app/store'
 // own
 import CalcUi from '../components/calcUi/CalcUi'
 

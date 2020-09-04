@@ -82,4 +82,7 @@ describe('App.js - calc addition logic', () => {
         // calc screen result
         expect(elementClcScrn.textContent.trim()).toBe('12.4')
     })
+    // todo
+    // 0.1 + 0.2
+    // 2 + 2.11
 })

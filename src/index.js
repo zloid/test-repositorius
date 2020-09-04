@@ -1,4 +1,4 @@
-// it must be here
+// -myLib- must be here, there all dispatch actions
 import myLib from './utils/myLib'
 
 import App from './app/App'
