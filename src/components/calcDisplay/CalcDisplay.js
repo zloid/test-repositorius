@@ -29,7 +29,7 @@ const CalcDisplay = () => `<div class="clcdspl">
     
         <h3>
         
-            ${store.getState().buttonToDisplay.displayData}
+            ${store.getState().buttonToDisplay.displayData}             
             
         </h3>
 
@@ -41,6 +41,7 @@ const CalcDisplay = () => `<div class="clcdspl">
     ${store.getState().buttonToDisplay.displayData.length}
 
     <hr />
+    ${store.getState().buttonToDisplay.displayData}
 
 </div>`
 

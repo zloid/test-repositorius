@@ -48,5 +48,4 @@ describe('App.js - calc logic', () => {
         // calc screen is clear
         expect(elementClcScrn.textContent.trim()).toBe('0')
     })
-       
 })

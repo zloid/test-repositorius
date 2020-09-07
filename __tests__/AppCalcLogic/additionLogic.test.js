@@ -30,7 +30,7 @@ describe('App.js - calc addition logic', () => {
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))         
+        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
@@ -44,7 +44,7 @@ describe('App.js - calc addition logic', () => {
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // calc screen is clear
         expect(elementClcScrn.textContent.trim()).toBe('0')
-        // addition         
+        // addition
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnFour$/i))
@@ -63,7 +63,7 @@ describe('App.js - calc addition logic', () => {
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // calc screen is clear
         expect(elementClcScrn.textContent.trim()).toBe('0')
-        // addition         
+        // addition
         // 1 + 0003 + 1.4 + 7
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
