@@ -100,5 +100,5 @@ describe('CalcUi.js', () => {
         const element = screen.getByRole(/^calcBtnClear$/i)
 
         expect(element.textContent.toLowerCase().trim()).toBe('clear')
-    })
+    })    
 })

@@ -64,4 +64,25 @@ describe('App.js - calc division logic', () => {
         // calc screen result
         expect(elementClcScrn.textContent.trim()).toBe('3.3')
     })
+    it('v23156213, calc button "÷" is working', () => {
+        // initial
+        // must be here
+        document.getElementById('root').innerHTML += ''
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // clear screen
+        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
+        // calc screen is clear
+        expect(elementClcScrn.textContent.trim()).toBe('0')
+
+        // division
+        // 0 ÷ 0
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('Error')
+    })
 })

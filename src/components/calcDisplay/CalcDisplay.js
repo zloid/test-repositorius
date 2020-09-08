@@ -24,12 +24,12 @@ const CalcDisplay = () => `<div class="clcdspl">
     <div
         class="badge badge-success"
         role="calcMainScreen"
-        onclick="window.myLib.iRnd()"
+        onclick="window.myLib.buttonToDisplay.doEqual()"
     >
     
         <h3>
         
-            ${store.getState().buttonToDisplay.displayData}             
+            ${store.getState().buttonToDisplay.displayData}            
             
         </h3>
 

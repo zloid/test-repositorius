@@ -137,7 +137,7 @@ const CalcButtons = () => `<div class="clcdspl">
     <button 
         role="calcBtnEqual"
         class="btn btn-danger"
-        onclick="window.myLib.buttonToDisplay.doEqual(this.textContent)"
+        onclick="window.myLib.buttonToDisplay.doEqual()"
     >
         =
     </button>

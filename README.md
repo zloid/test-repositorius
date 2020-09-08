@@ -12,7 +12,7 @@
 -   Webpack for: bundling, minification, dev-server, clean-webpack-plugin, html-webpack-plugin
 -   Only jest and @testing-library/dom for tests
 -   Only ESM (EcmaScript modules): both source code and tests
--   @babel for: es6 to es5, for correct work with jest & ESM
+-   @babel for: es6 to es5 and correct work with jest & ESM
 -   JSDoc as documentation
 -   husky: for pre-commit hooks
 

@@ -19,14 +19,14 @@ export default function (state) {
     }
 
     // todo
-    //'^-3' > '0 - 3'
+    //'^-3' ~> '0 - 3'
     // inp = inp.replace(/^-(\d*)/, '0 - $1')
 
     // let beginDataSubstract = state.displayData().replace(/^-(\d*)/, '0 - $1')
     // todo
     // '- 8' ~> '0 - 8'
     const beginDataSubstract = state.displayData.replace(/^-\s*(\d*)/, '0 - $1')
-    console.log('beginDataSubstract::: ', beginDataSubstract)
+    // console.log('beginDataSubstract::: ', beginDataSubstract)
 
     // initial
     // '2 + 225' ~> [2, '+', 225]
@@ -81,17 +81,14 @@ export default function (state) {
     )
 
     // todo
-    // console.log('state.displayData::: ', state.displayData)
-    // console.log('987564::: ', state.displayData.split(''))
-    console.log('21867 displayDataToArray::: ', displayDataToArray)
-    // console.log('213584::: ', getAllNumbersForAddition)
-    console.log('31867 - return - additionResult::: ', String(additionResult))
+    // console.log('21867 displayDataToArray::: ', displayDataToArray)
+    // console.log('31867 - return - additionResult::: ', String(additionResult))
 
     // todo
     // -8 ~> '- 8'
     const finalResult = String(additionResult).replace(/^-(\s*)+/g, '- $1')
-    console.log('finalResult::: ', finalResult)
-    console.log('isNaN(finalResult)::: ', isNaN(finalResult))
+    // console.log('finalResult::: ', finalResult)
+    // console.log('isNaN(finalResult)::: ', isNaN(finalResult))
 
     // if (isNaN(finalResult)) {
     //     return 'Error'

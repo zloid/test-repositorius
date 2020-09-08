@@ -12,9 +12,12 @@ import {
 const rnd = () => Math.floor(Math.random() * 20)
 
 const myLib = {
+    // todo
     iRnd: () => alert(store.getState().buttonToDisplay.displayData),
+    // todo
     create: iCreateElement,
     strTest: () => iCreateElement({}),
+    // todo
     doRdx: (nmbr = 123123123) => {
         store.dispatch({
             type: 'ADD_TODO',
@@ -24,7 +27,7 @@ const myLib = {
     buttonToDisplay: {
         btnToDspl: (payload) => store.dispatch(addButtonValueToScreen(payload)),
         clearAll: () => store.dispatch(clearAllFromCalcScreen()),
-        doEqual: (payload) => store.dispatch(doEqual(payload)),
+        doEqual: () => store.dispatch(doEqual()),
     },
 }
 

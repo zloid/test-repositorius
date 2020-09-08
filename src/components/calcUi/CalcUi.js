@@ -14,7 +14,7 @@ const CalcUi = () => `<div>
 
     ${CalcDisplay()}
 
-     ${CalcButtons()}
+    ${CalcButtons()}
       
     <p>
         CalcUi_9832
