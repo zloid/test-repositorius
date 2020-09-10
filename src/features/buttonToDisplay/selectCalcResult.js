@@ -39,7 +39,7 @@ export default function (state) {
 
     // multiplication and division logic
     // [9, '*', 4] ~> [null, null, 36]
-    // [9, '*', 4] ~> [null, null, 2.25]
+    // [9, '÷', 4] ~> [null, null, 2.25]
     displayDataToArray.forEach((element, index) => {
         if (element === '*') {
             displayDataToArray[index + 1] =
@@ -75,24 +75,15 @@ export default function (state) {
         (e) => typeof e === 'number'
     )
     // [2, 225] ~> 227
-    // [36] ~> [36]
+    // [36] ~> 36
     const additionResult = getAllNumbersForAddition.reduce(
         (accum, currentVal) => accum + currentVal
     )
 
     // todo
-    // console.log('21867 displayDataToArray::: ', displayDataToArray)
-    // console.log('31867 - return - additionResult::: ', String(additionResult))
-
-    // todo
-    // -8 ~> '- 8'
+    // -8 ~> '-8' ~> '- 8'
     const finalResult = String(additionResult).replace(/^-(\s*)+/g, '- $1')
-    // console.log('finalResult::: ', finalResult)
-    // console.log('isNaN(finalResult)::: ', isNaN(finalResult))
 
-    // if (isNaN(finalResult)) {
-    //     return 'Error'
-    // }
     // 'NaN' ~> 'Error'
     if (/nan/gi.test(finalResult)) {
         return 'Error'

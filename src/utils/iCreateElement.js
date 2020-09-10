@@ -1,4 +1,4 @@
-/** @module src-scripts-iCreateElement */
+/** @module utils-iCreateElement */
 
 /**
  * For simplify creating custom HTMLElements in DOM
@@ -97,8 +97,19 @@ export default function iCreateElement({
     if (only) {
         const customElement = document.createElement(tag.trim())
 
-        inner !== '<i>my custom HTMLElement is ...</i>' &&
-            (customElement.innerHTML = inner)
+        /**
+         * Sanitize and encode all HTML in a user-submitted string. Preventing cross-site scripting attacks when using innerHTML
+         * @function sanitizeHTML
+         * @date 2020-09-09 based on (c) 2018 Chris Ferdinandi, MIT License
+         * @param {string} str The user-submitted string with tags
+         * @returns {string} The sanitized string
+         */
+        const sanitizeHTML = function (str) {
+            customElement.textContent = str
+            return customElement.innerHTML
+        }
+
+        inner !== '<i>my custom HTMLElement is ...</i>' && sanitizeHTML(inner)
 
         parentId === ''
             ? document.body.appendChild(customElement)

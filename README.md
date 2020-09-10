@@ -2,7 +2,13 @@
 
 ## Branch: master-calc ~> husky-try ~> calc-begin
 
-## Features:
+## Features for USER:
+
+[+] click on calc's screen for get answer
+[-] keyboard for input numbers
+[-][-]
+
+## Features for DEV:
 
 -   modern js SPA without frameworks, but React-like
 -   Reef.js + RTK (Redux Toolkit) for reactivity and state management
@@ -10,7 +16,7 @@
 -   All RTK features: Redux Dev Tools, slices, immer, etc.
 -   Use as 'Starter Pack': correct modern vanilla JS + ecosystem based on Webpack
 -   Webpack for: bundling, minification, dev-server, clean-webpack-plugin, html-webpack-plugin
--   Only jest and @testing-library/dom for tests
+-   TDD, Only jest and @testing-library/dom for tests
 -   Only ESM (EcmaScript modules): both source code and tests
 -   @babel for: es6 to es5 and correct work with jest & ESM
 -   JSDoc as documentation

@@ -50,7 +50,7 @@ describe('App.js - calc logic', () => {
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // calc screen is clear
         expect(elementClcScrn.textContent.trim()).toBe('0')
-    })     
+    })
     it('v435132435, click on "=" for getting result ', () => {
         // initial
         // must be here
@@ -100,4 +100,8 @@ describe('App.js - calc logic', () => {
         expect(elementClcScrn.textContent.trim()).toBe('1')
     })
 
+    // todo
+    // click 5 / 0 = 'infiniti'
+    // after
+    // click 5 = 5
 })

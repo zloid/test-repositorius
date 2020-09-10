@@ -1,3 +1,4 @@
+/** @module utils-myLib */
 import iCreateElement from '../utils/iCreateElement'
 
 import store from '../app/store'
@@ -9,6 +10,11 @@ import {
 } from '../features/buttonToDisplay/buttonToDisplaySlice'
 
 // define own lib
+/**
+ * library for compose RTK actions
+ * @date 2020-09-10
+ * @returns {object} window.object
+ */
 const rnd = () => Math.floor(Math.random() * 20)
 
 const myLib = {

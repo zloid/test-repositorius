@@ -424,39 +424,41 @@
                 f = r.cut,
                 b = void 0 === f ? 'default' : f
             if (o) {
-                var g = document.createElement(t.trim())
+                var g = document.createElement(t.trim()),
+                    u = function (r) {
+                        return (g.textContent = r), g.innerHTML
+                    }
                 return (
-                    '<i>my custom HTMLElement is ...</i>' !== i &&
-                        (g.innerHTML = i),
+                    '<i>my custom HTMLElement is ...</i>' !== i && u(i),
                     void ('' === p
                         ? document.body.appendChild(g)
                         : document.querySelector(p).appendChild(g))
                 )
             }
-            var u = document.createElement(t.trim())
+            var x = document.createElement(t.trim())
             switch (
-                ('' !== c && (u.id = c.trim()),
-                (u.className = m.trim()),
-                (u.innerHTML = i),
+                ('' !== c && (x.id = c.trim()),
+                (x.className = m.trim()),
+                (x.innerHTML = i),
                 '' === p
-                    ? document.body.appendChild(u)
-                    : document.querySelector(p).appendChild(u),
+                    ? document.body.appendChild(x)
+                    : document.querySelector(p).appendChild(x),
                 b)
             ) {
                 case 'default':
                     break
                 case 'all':
                     if (arguments[0].id) {
-                        var x = document.getElementById(c)
+                        var h = document.getElementById(c)
                         '<i>my custom HTMLElement is ...</i>' === i &&
-                            (x.innerHTML = ''),
-                            x.removeAttribute('class')
+                            (h.innerHTML = ''),
+                            h.removeAttribute('class')
                     }
                     break
                 case 'class':
                     if (arguments[0].id) {
-                        var h = document.getElementById(c)
-                        h.removeAttribute('class')
+                        var w = document.getElementById(c)
+                        w.removeAttribute('class')
                     }
             }
         }
@@ -495,7 +497,7 @@
         function l(r, n, t) {
             void 0 === t && (t = !1),
                 0 === m(r)
-                    ? (t ? Object.keys : J)(r).forEach(function (e) {
+                    ? (t ? Object.keys : V)(r).forEach(function (e) {
                           ;(t && 'symbol' == typeof e) || n(e, r[e], r)
                       })
                     : r.forEach(function (t, e) {
@@ -546,9 +548,9 @@
         }
         function u(r) {
             if (Array.isArray(r)) return r.slice()
-            var n = V(r)
+            var n = J(r)
             delete n[Y]
-            for (var t = J(n), e = 0; e < t.length; e++) {
+            for (var t = V(n), e = 0; e < t.length; e++) {
                 var o = t[e],
                     a = n[o]
                 !1 === a.writable && ((a.writable = !0), (a.configurable = !0)),
@@ -584,11 +586,11 @@
             return null == r || 'object' != typeof r || Object.isFrozen(r)
         }
         function v(r) {
-            var n = G[r]
+            var n = Z[r]
             return n || o(19, r), n
         }
         function y(r, n) {
-            G[r] = n
+            Z[r] = n
         }
         function k() {
             return U
@@ -609,7 +611,7 @@
             var n = r[Y]
             0 === n.i || 1 === n.i ? n.j() : (n.g = !0)
         }
-        function P(r, n) {
+        function C(r, n) {
             n._ = n.p.length
             var t = n.p[0],
                 e = void 0 !== r && r !== t
@@ -617,15 +619,15 @@
                 n.h.O || v('ES5').S(n, r, e),
                 e
                     ? (t[Y].P && (z(n), o(4)),
-                      i(r) && ((r = T(n, r)), n.l || A(n, r)),
+                      i(r) && ((r = P(n, r)), n.l || D(n, r)),
                       n.u && v('Patches').M(t[Y], r, n.u, n.s))
-                    : (r = T(n, t, [])),
+                    : (r = P(n, t, [])),
                 z(n),
                 n.u && n.v(n.u, n.s),
                 r !== K ? r : void 0
             )
         }
-        function T(r, n, t) {
+        function P(r, n, t) {
             if (w(n)) return n
             var e = n[Y]
             if (!e)
@@ -633,28 +635,28 @@
                     l(
                         n,
                         function (o, a) {
-                            return D(r, e, n, o, a, t)
+                            return T(r, e, n, o, a, t)
                         },
                         !0
                     ),
                     n
                 )
             if (e.A !== r) return n
-            if (!e.P) return A(r, e.t, !0), e.t
+            if (!e.P) return D(r, e.t, !0), e.t
             if (!e.I) {
                 ;(e.I = !0), e.A._--
                 var o = 4 === e.i || 5 === e.i ? (e.o = u(e.k)) : e.o
                 l(3 === e.i ? new Set(o) : o, function (n, a) {
-                    return D(r, e, o, n, a, t)
+                    return T(r, e, o, n, a, t)
                 }),
-                    A(r, o, !1),
+                    D(r, o, !1),
                     t && r.u && v('Patches').R(e, t, r.u, r.s)
             }
             return e.o
         }
-        function D(r, n, t, e, o, l) {
+        function T(r, n, t, e, o, l) {
             if (a(o)) {
-                var m = T(
+                var m = P(
                     r,
                     o,
                     l && n && 3 !== n.i && !d(n.D, e) ? l.concat(e) : void 0
@@ -664,13 +666,13 @@
             }
             if (i(o) && !w(o)) {
                 if (!r.h.N && r._ < 1) return
-                T(r, o), (n && n.A.l) || A(r, o)
+                P(r, o), (n && n.A.l) || D(r, o)
             }
         }
-        function A(r, n, t) {
+        function D(r, n, t) {
             void 0 === t && (t = !1), r.h.N && r.m && x(n, t)
         }
-        function C(r, n) {
+        function A(r, n) {
             var t = r[Y]
             return (t ? g(t) : r)[n]
         }
@@ -682,10 +684,10 @@
                     t = Object.getPrototypeOf(t)
                 }
         }
-        function N(r) {
-            r.P || ((r.P = !0), r.l && N(r.l))
-        }
         function L(r) {
+            r.P || ((r.P = !0), r.l && L(r.l))
+        }
+        function N(r) {
             r.o || (r.o = u(r.t))
         }
         function _(r, n, t) {
@@ -710,7 +712,7 @@
                               C: !1,
                           },
                           o = e,
-                          a = Z
+                          a = G
                       t && ((o = [e]), (a = Q))
                       var i = Proxy.revocable(o, a),
                           l = i.revoke,
@@ -730,8 +732,8 @@
                         o = m(n)
                     if (e) {
                         if (!e.P && (e.i < 4 || !v('ES5').K(e))) return e.t
-                        ;(e.I = !0), (t = R(n, o)), (e.I = !1)
-                    } else t = R(n, o)
+                        ;(e.I = !0), (t = B(n, o)), (e.I = !1)
+                    } else t = B(n, o)
                     return (
                         l(t, function (n, o) {
                             ;(e && c(e.t, n) === o) || s(t, n, r(o))
@@ -741,7 +743,7 @@
                 })(r)
             )
         }
-        function R(r, n) {
+        function B(r, n) {
             switch (n) {
                 case 2:
                     return new Map(r)
@@ -750,7 +752,7 @@
             }
             return u(r)
         }
-        function B() {
+        function R() {
             function r(r, n) {
                 var t = o[r]
                 return (
@@ -761,11 +763,11 @@
                               enumerable: n,
                               get: function () {
                                   var n = this[Y]
-                                  return Z.get(n, r)
+                                  return G.get(n, r)
                               },
                               set: function (n) {
                                   var t = this[Y]
-                                  Z.set(t, r, n)
+                                  G.set(t, r, n)
                               },
                           }),
                     t
@@ -777,16 +779,16 @@
                     if (!o.P)
                         switch (o.i) {
                             case 5:
-                                e(o) && N(o)
+                                e(o) && L(o)
                                 break
                             case 4:
-                                t(o) && N(o)
+                                t(o) && L(o)
                         }
                 }
             }
             function t(r) {
                 for (
-                    var n = r.t, t = r.k, e = J(t), o = e.length - 1;
+                    var n = r.t, t = r.k, e = V(t), o = e.length - 1;
                     o >= 0;
                     o--
                 ) {
@@ -800,7 +802,7 @@
                     }
                 }
                 var c = !!n[Y]
-                return e.length !== J(n).length + (c ? 0 : 1)
+                return e.length !== V(n).length + (c ? 0 : 1)
             }
             function e(r) {
                 var n = r.k
@@ -822,9 +824,9 @@
                                     Object.defineProperty(e, '' + o, r(o, !0))
                                 return e
                             }
-                            var a = V(t)
+                            var a = J(t)
                             delete a[Y]
-                            for (var i = J(a), l = 0; l < i.length; l++) {
+                            for (var i = V(a), l = 0; l < i.length; l++) {
                                 var m = i[l]
                                 a[m] = r(m, n || !!a[m].enumerable)
                             }
@@ -866,17 +868,17 @@
                                                       (void 0 !== o[n] ||
                                                       d(o, n)
                                                           ? i[n] || r(a[n])
-                                                          : ((i[n] = !0), N(t)))
+                                                          : ((i[n] = !0), L(t)))
                                               }),
                                                   l(o, function (r) {
                                                       void 0 !== a[r] ||
                                                           d(a, r) ||
-                                                          ((i[r] = !1), N(t))
+                                                          ((i[r] = !1), L(t))
                                                   })
                                           else if (5 === m) {
                                               if (
                                                   (e(t) &&
-                                                      (N(t), (i.length = !0)),
+                                                      (L(t), (i.length = !0)),
                                                   a.length < o.length)
                                               )
                                                   for (
@@ -928,7 +930,7 @@
                 : (((F = {})['immer-nothing'] = !0), F),
             W = H ? Symbol.for('immer-draftable') : '__$immer_draftable',
             Y = H ? Symbol.for('immer-state') : '__$immer_state',
-            J =
+            V =
                 ('undefined' != typeof Symbol && Symbol.iterator,
                 'undefined' != typeof Reflect && Reflect.ownKeys
                     ? Reflect.ownKeys
@@ -939,19 +941,19 @@
                           )
                       }
                     : Object.getOwnPropertyNames),
-            V =
+            J =
                 Object.getOwnPropertyDescriptors ||
                 function (r) {
                     var n = {}
                     return (
-                        J(r).forEach(function (t) {
+                        V(r).forEach(function (t) {
                             n[t] = Object.getOwnPropertyDescriptor(r, t)
                         }),
                         n
                     )
                 },
-            G = {},
-            Z = {
+            Z = {},
+            G = {
                 get: function (r, n) {
                     if (n === Y) return r
                     var t = g(r)
@@ -970,8 +972,8 @@
                     var e = t[n]
                     return r.I || !i(e)
                         ? e
-                        : e === C(r.t, n)
-                        ? (L(r), (r.o[n] = _(r.A.h, e, r)))
+                        : e === A(r.t, n)
+                        ? (N(r), (r.o[n] = _(r.A.h, e, r)))
                         : e
                 },
                 has: function (r, n) {
@@ -985,16 +987,16 @@
                     if (null == e ? void 0 : e.set)
                         return e.set.call(r.k, t), !0
                     if (((r.D[n] = !0), !r.P)) {
-                        if (p(t, C(g(r), n)) && (void 0 !== t || d(r.t, n)))
+                        if (p(t, A(g(r), n)) && (void 0 !== t || d(r.t, n)))
                             return !0
-                        L(r), N(r)
+                        N(r), L(r)
                     }
                     return (r.o[n] = t), !0
                 },
                 deleteProperty: function (r, n) {
                     return (
-                        void 0 !== C(r.t, n) || n in r.t
-                            ? ((r.D[n] = !1), L(r), N(r))
+                        void 0 !== A(r.t, n) || n in r.t
+                            ? ((r.D[n] = !1), N(r), L(r))
                             : delete r.D[n],
                         r.o && delete r.o[n],
                         !0
@@ -1023,7 +1025,7 @@
                 },
             },
             Q = {}
-        l(Z, function (r, n) {
+        l(G, function (r, n) {
             Q[r] = function () {
                 return (
                     (arguments[0] = arguments[0][0]), n.apply(this, arguments)
@@ -1031,10 +1033,10 @@
             }
         }),
             (Q.deleteProperty = function (r, n) {
-                return Z.deleteProperty.call(this, r[0], n)
+                return G.deleteProperty.call(this, r[0], n)
             }),
             (Q.set = function (r, n, t) {
-                return Z.set.call(this, r[0], n, t, r[0])
+                return G.set.call(this, r[0], n, t, r[0])
             })
         var rr = new ((function () {
                 function r(r) {
@@ -1096,13 +1098,13 @@
                                 l instanceof Promise
                                 ? l.then(
                                       function (r) {
-                                          return j(m, t), P(r, m)
+                                          return j(m, t), C(r, m)
                                       },
                                       function (r) {
                                           throw (z(m), r)
                                       }
                                   )
-                                : (j(m, t), P(l, m))
+                                : (j(m, t), C(l, m))
                         }
                         if (!r || 'object' != typeof r) {
                             if ((l = n(r)) === K) return
@@ -1146,7 +1148,7 @@
                     }),
                     (n.finishDraft = function (r, n) {
                         var t = (r && r[Y]).A
-                        return j(t, n), P(void 0, t)
+                        return j(t, n), C(void 0, t)
                     }),
                     (n.setAutoFreeze = function (r) {
                         this.N = r
@@ -1633,13 +1635,13 @@
                               ? fr
                               : fr.apply(null, arguments)
                   }
-        function Pr(r) {
+        function Cr(r) {
             if ('object' != typeof r || null === r) return !1
             for (var n = r; null !== Object.getPrototypeOf(n); )
                 n = Object.getPrototypeOf(n)
             return Object.getPrototypeOf(r) === n
         }
-        var Tr = (function (r) {
+        var Pr = (function (r) {
             var n, t
             function e() {
                 return r.apply(this, arguments) || this
@@ -1676,14 +1678,14 @@
                 e
             )
         })(Sr(Array))
-        function Dr() {
+        function Tr() {
             return function (r) {
                 return (function (r) {
                     void 0 === r && (r = {})
                     var n = r,
                         t = n.thunk,
                         e = void 0 === t || t,
-                        o = (n.immutableCheck, n.serializableCheck, new Tr())
+                        o = (n.immutableCheck, n.serializableCheck, new Pr())
                     e &&
                         (!(function (r) {
                             return 'boolean' == typeof r
@@ -1695,7 +1697,7 @@
                 })(r)
             }
         }
-        function Ar(r, n) {
+        function Dr(r, n) {
             function t() {
                 if (n) {
                     var t = n.apply(void 0, arguments)
@@ -1726,7 +1728,7 @@
                 t
             )
         }
-        function Cr(r) {
+        function Ar(r) {
             var n,
                 t = {},
                 e = [],
@@ -1750,7 +1752,7 @@
         }
         function Mr(r, n, t, e) {
             void 0 === t && (t = [])
-            var o = 'function' == typeof n ? Cr(n) : [n, t, e],
+            var o = 'function' == typeof n ? Ar(n) : [n, t, e],
                 l = o[0],
                 m = o[1],
                 d = o[2]
@@ -1797,8 +1799,8 @@
             'undefined' != typeof Symbol &&
                 (Symbol.asyncIterator ||
                     (Symbol.asyncIterator = Symbol('Symbol.asyncIterator')))
-        B()
-        var Nr = (function (r) {
+        R()
+        var Lr = (function (r) {
                 var n = r.name,
                     t = r.initialState
                 if (!n)
@@ -1810,7 +1812,7 @@
                         void 0 === r.extraReducers
                             ? []
                             : 'function' == typeof r.extraReducers
-                            ? Cr(r.extraReducers)
+                            ? Ar(r.extraReducers)
                             : [r.extraReducers],
                     a = o[0],
                     i = void 0 === a ? {} : a,
@@ -1832,7 +1834,7 @@
                         : (t = a),
                         (p[r] = t),
                         (f[i] = t),
-                        (b[r] = o ? Ar(i, o) : Ar(i))
+                        (b[r] = o ? Dr(i, o) : Dr(i))
                 })
                 var g = Mr(t, yr({}, i, {}, f), m, c)
                 return { name: n, reducer: g, actions: b, caseReducers: p }
@@ -1843,13 +1845,13 @@
                     addButtonValueToScreen: function (r, n) {
                         r.displayData = (function (r, n) {
                             var t = r.displayData + n.trim()
-                            return (t = (t = (t = (t = (t = (t = (t = (t = (t = (t = (t = (t = t.replace(
-                                /^0+/,
-                                '0'
-                            )).replace(/^0(\d|[(])/, '$1')).replace(
-                                /([+-]|÷|\*)\s*0(\d)/,
-                                '$1 $2'
-                            )).replace(
+                            return (t = (t = (t = (t = (t = (t = (t = (t = (t = (t = (t = (t = (t = t.replace(
+                                /error/gi,
+                                ''
+                            )).replace(/^0+/, '0')).replace(
+                                /^0(\d|[(])/,
+                                '$1'
+                            )).replace(/([+-]|÷|\*)\s*0(\d)/, '$1 $2')).replace(
                                 /(\s*\+\s*|\s*-\s*|\s*÷\s*|\s*\*\s*)+/g,
                                 ' $1 '
                             )).replace(/(\.|\(|\))+/g, '$1')).replace(
@@ -1863,7 +1865,7 @@
                                 '$1 '
                             )).replace(
                                 /^\s*(\*|÷)\s*(\d+)/,
-                                '$2 $1 $2 '
+                                '$2 $1 $2'
                             )).replace(/\s{2}/g, ' '))
                         })(r, n.payload)
                     },
@@ -1872,38 +1874,57 @@
                     },
                     doEqual: function (r) {
                         r.displayData = (function (r) {
-                            var n = r.displayData.split(' ').map(function (r) {
+                            if (/error/gi.test(r.displayData)) return 'Error'
+                            var n = r.displayData
+                                .replace(/^-\s*(\d*)/, '0 - $1')
+                                .split(' ')
+                                .map(function (r) {
                                     return /\d/.test(r) ? Number(r) : r
-                                }),
-                                t = n
+                                })
+                            n.forEach(function (r, t) {
+                                '*' === r &&
+                                    ((n[t + 1] = n[t - 1] * n[t + 1]),
+                                    (n[t] = null),
+                                    (n[t - 1] = null)),
+                                    '÷' === r &&
+                                        ((n[t + 1] = n[t - 1] / n[t + 1]),
+                                        (n[t] = null),
+                                        (n[t - 1] = null))
+                            }),
+                                (n = n.filter(function (r) {
+                                    return null !== r
+                                })).forEach(function (r, t) {
+                                    '-' === r &&
+                                        ((n[t + 1] = n[t - 1] - n[t + 1]),
+                                        (n[t] = null),
+                                        (n[t - 1] = null))
+                                })
+                            var t = n
                                     .filter(function (r) {
                                         return 'number' == typeof r
                                     })
                                     .reduce(function (r, n) {
                                         return r + n
-                                    })
-                            return (
-                                console.log('21867::: ', n),
-                                console.log('31867::: additionResult ', t),
-                                t
-                            )
+                                    }),
+                                e = String(t).replace(/^-(\s*)+/g, '- $1')
+                            return /nan/gi.test(e) ? 'Error' : e
                         })(r)
                     },
                 },
             }),
-            Lr = Nr.actions,
-            _r = Lr.addButtonValueToScreen,
-            Ir = Lr.clearAllFromCalcScreen,
-            Rr = Lr.doEqual,
-            Br = Nr.reducer
+            Nr = Lr.actions,
+            _r = Nr.addButtonValueToScreen,
+            Ir = Nr.clearAllFromCalcScreen,
+            Br = Nr.doEqual,
+            Rr = Lr.reducer
         var Fr,
             Ur,
             Hr,
             qr,
-            $r = Ar('ADD_TODO'),
+            $r = Dr('ADD_TODO'),
             Xr = (function (r) {
                 var n,
-                    t = Dr(),
+                    t = Tr(),
                     e = r || {},
                     o = e.reducer,
                     a = void 0 === o ? void 0 : o,
@@ -1917,7 +1938,7 @@
                     f = void 0 === p ? void 0 : p
                 if ('function' == typeof a) n = a
                 else {
-                    if (!Pr(a))
+                    if (!Cr(a))
                         throw new Error(
                             '"reducer" is a required argument, and must be a function or an object of functions that can be passed to combineReducers'
                         )
@@ -1953,7 +1974,7 @@
                             : (Fr[Ur] = Hr),
                         Fr)
                     ),
-                    buttonToDisplay: Br,
+                    buttonToDisplay: Rr,
                 }),
             }),
             Kr = function () {
@@ -1986,27 +2007,27 @@
                     clearAll: function () {
                         return Xr.dispatch(Ir())
                     },
-                    doEqual: function (r) {
-                        return Xr.dispatch(Rr(r))
+                    doEqual: function () {
+                        return Xr.dispatch(Br())
                     },
                 },
             },
             Yr = ((window.myLib = Wr), ['checked', 'selected', 'value']),
-            Jr = {},
-            Vr = !1,
-            Gr = function (r) {
+            Vr = {},
+            Jr = !1,
+            Zr = function (r) {
                 return Object.prototype.toString
                     .call(r)
                     .slice(8, -1)
                     .toLowerCase()
             }
-        Jr.trueTypeOf = Gr
-        var Zr = function (r) {
-            if (Vr) throw new Error(r)
+        Vr.trueTypeOf = Zr
+        var Gr = function (r) {
+            if (Jr) throw new Error(r)
         }
-        Jr.err = Zr
+        Vr.err = Gr
         var Qr = function (r, n) {
-                var t = Gr(r)
+                var t = Zr(r)
                 if ('object' === t) {
                     var e = {}
                     for (var o in r) r.hasOwnProperty(o) && (e[o] = Qr(r[o], n))
@@ -2031,7 +2052,7 @@
             nn = function (r) {
                 return {
                     get: function (n, t) {
-                        return ['object', 'array'].indexOf(Gr(n[t])) > -1
+                        return ['object', 'array'].indexOf(Zr(n[t])) > -1
                             ? new Proxy(n[t], nn(r))
                             : n[t]
                     },
@@ -2046,11 +2067,11 @@
             },
             en = function (r, n) {
                 if (!(r || (n && n.lagoon)))
-                    return Zr(
+                    return Gr(
                         'You did not provide an element to make into a component.'
                     )
                 if (!n || (!n.template && !n.lagoon))
-                    return Zr(
+                    return Gr(
                         'You did not provide a template for this component.'
                     )
                 var t = this,
@@ -2092,7 +2113,7 @@
                         Object.defineProperty(t, 'do', {
                             value: function (r) {
                                 if (!i[r])
-                                    return Zr(
+                                    return Gr(
                                         'There is no setter with this name.'
                                     )
                                 var n = Array.prototype.slice.call(arguments)
@@ -2105,13 +2126,13 @@
                             value: function (r) {
                                 return l[r]
                                     ? l[r](e)
-                                    : Zr('There is no getter with this name.')
+                                    : Gr('There is no getter with this name.')
                             },
                         }),
                     a && 'addComponent' in a && a.addComponent(t),
                     o && 'attach' in o && o.attach(t),
                     n.attachTo &&
-                        ('array' === Gr(n.attachTo)
+                        ('array' === Zr(n.attachTo)
                             ? n.attachTo
                             : [n.attachTo]
                         ).forEach(function (r) {
@@ -2341,7 +2362,7 @@
                 r &&
                     r.forEach(function (r) {
                         if (r.attached.indexOf(n) > -1)
-                            return Zr(
+                            return Gr(
                                 n.elem +
                                     ' has attached nodes that it is also attached to, creating an infinite loop.'
                             )
@@ -2351,20 +2372,20 @@
         ;(en.emit = function (r, n, t) {
             var e
             if (!r || !n)
-                return Zr('You did not provide an element or event name.')
+                return Gr('You did not provide an element or event name.')
             ;(e = new CustomEvent(n, { bubbles: !0, detail: t })),
                 r.dispatchEvent(e)
         }),
             (en.prototype.render = function () {
                 if (this.lagoon) bn(this.attached, this)
                 else {
-                    if (!this.template) return Zr('No template was provided.')
+                    if (!this.template) return Gr('No template was provided.')
                     var r =
-                        'string' === Gr(this.elem)
+                        'string' === Zr(this.elem)
                             ? document.querySelector(this.elem)
                             : this.elem
                     if (!r)
-                        return Zr(
+                        return Gr(
                             'The DOM element to render your template into was not found.'
                         )
                     var n = Qr(
@@ -2372,13 +2393,13 @@
                             this.allowHTML
                         ),
                         t =
-                            'function' === Gr(this.template)
+                            'function' === Zr(this.template)
                                 ? this.template(
                                       n,
                                       this.router ? this.router.current : null
                                   )
                                 : this.template
-                    if (!(['string', 'number'].indexOf(Gr(t)) < 0)) {
+                    if (!(['string', 'number'].indexOf(Zr(t)) < 0)) {
                         var e = this.attached.map(function (r) {
                             return r.elem
                         })
@@ -2420,12 +2441,12 @@
                 }
             }),
             (en.prototype.attach = function (r) {
-                'array' === Gr(r)
+                'array' === Zr(r)
                     ? this.attached.concat(r)
                     : this.attached.push(r)
             }),
             (en.prototype.detach = function (r) {
-                var n = 'array' === Gr(r) ? r : [r],
+                var n = 'array' === Zr(r) ? r : [r],
                     t = this
                 n.forEach(function (r) {
                     var n = t.attached.indexOf(r)
@@ -2433,10 +2454,10 @@
                 })
             }),
             (en.debug = function (r) {
-                Vr = !!r
+                Jr = !!r
             }),
             (en.clone = Qr),
-            (en._ = Jr),
+            (en._ = Vr),
             (qr = (function () {
                 if (!window.DOMParser) return !1
                 var r = new DOMParser()
@@ -2459,23 +2480,27 @@
                     )
                     .concat(
                         Xr.getState().modernReducer.foo,
-                        '\n--\x3e\n\n<p>calcScreen_74568</p>\n\n    <div\n        class="badge badge-success"\n        role="calcMainScreen"\n        onclick="window.myLib.iRnd()"\n    >\n    \n        <h3>\n        \n            '
+                        '\n--\x3e\n\n<p>calcScreen_74568</p>\n\n    <div\n        class="badge badge-success"\n        role="calcMainScreen"\n        onclick="window.myLib.buttonToDisplay.doEqual()"\n    >\n    \n        <h3>\n        \n            '
                     )
                     .concat(
                         Xr.getState().buttonToDisplay.displayData,
-                        '\n            \n        </h3>\n\n    </div>\n\n    <hr />\n\n    length_arr_nmbr_784562513: \n    '
+                        '            \n            \n        </h3>\n\n    </div>\n\n    <hr />\n\n    length_arr_nmbr_784562513: \n    '
                     )
                     .concat(
                         Xr.getState().buttonToDisplay.displayData.length,
-                        '\n\n    <hr />\n\n</div>'
+                        '\n\n    <hr />\n    '
+                    )
+                    .concat(
+                        Xr.getState().buttonToDisplay.displayData,
+                        '\n\n</div>'
                     )
             },
             un = function () {
-                return '<div class="clcdspl">\n        CalcButtons_78954612\n\n    <hr />\n\n    <button\n        role="calcBtnSeven"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        7\n    </button>   \n\n     <button\n        role="calcBtnEight"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        8\n    </button>   \n\n     <button\n        role="calcBtnNine"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        9\n    </button>  \n\n    <hr />\n\n    <button\n        role="calcBtnFour"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        4\n    </button> \n\n    <button\n        role="calcBtnFive"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        5\n    </button> \n\n    <button\n        role="calcBtnSix"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        6\n    </button> \n\n    <hr />\n    \n\n    <button\n        role="calcBtnOne"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        1\n    </button> \n\n    <button\n        role="calcBtnTwo"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        2\n    </button> \n\n    <button\n        role="calcBtnThree"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        3\n    </button> \n\n    <hr />\n\n    <button \n        role="calcBtnZero"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        0\n    </button>\n\n    <hr />\n\n    <button \n        role="calcBtnDecimalPoint"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        .\n    </button>\n\n    <button \n        role="calcBtnPlus"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        +\n    </button>\n\n    <button \n        role="calcBtnMinus"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        -\n    </button>\n\n    <button \n        role="calcBtnMultiply"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        *\n    </button>\n\n    <button \n        role="calcBtnDivision"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        ÷\n    </button>\n\n    <hr />\n\n    <button \n        role="calcBtnEqual"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.doEqual(this.textContent)"\n    >\n        =\n    </button>\n\n    <button \n        role="calcBtnClear"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.clearAll()"     \n    >\n        Clear\n    </button>\n\n\n\n</div>'
+                return '<div class="clcdspl">\n        CalcButtons_78954612\n\n    <hr />\n\n    <button\n        role="calcBtnSeven"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        7\n    </button>   \n\n     <button\n        role="calcBtnEight"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        8\n    </button>   \n\n     <button\n        role="calcBtnNine"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        9\n    </button>  \n\n    <hr />\n\n    <button\n        role="calcBtnFour"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        4\n    </button> \n\n    <button\n        role="calcBtnFive"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        5\n    </button> \n\n    <button\n        role="calcBtnSix"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        6\n    </button> \n\n    <hr />\n    \n\n    <button\n        role="calcBtnOne"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        1\n    </button> \n\n    <button\n        role="calcBtnTwo"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        2\n    </button> \n\n    <button\n        role="calcBtnThree"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        3\n    </button> \n\n    <hr />\n\n    <button \n        role="calcBtnZero"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        0\n    </button>\n\n    <hr />\n\n    <button \n        role="calcBtnDecimalPoint"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        .\n    </button>\n\n    <button \n        role="calcBtnPlus"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        +\n    </button>\n\n    <button \n        role="calcBtnMinus"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        -\n    </button>\n\n    <button \n        role="calcBtnMultiply"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        *\n    </button>\n\n    <button \n        role="calcBtnDivision"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"\n    >\n        ÷\n    </button>\n\n    <hr />\n\n    <button \n        role="calcBtnEqual"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.doEqual()"\n    >\n        =\n    </button>\n\n    <button \n        role="calcBtnClear"\n        class="btn btn-danger"\n        onclick="window.myLib.buttonToDisplay.clearAll()"     \n    >\n        Clear\n    </button>\n\n\n\n</div>'
             },
             xn = function () {
                 return '<div>\n\n    '
-                    .concat(gn(), '\n\n     ')
+                    .concat(gn(), '\n\n    ')
                     .concat(
                         un(),
                         '\n      \n    <p>\n        CalcUi_9832\n    </p>\n        \n    <div class="row">\n    \n        <div class="col">\n        \n        </div>    \n    </div>\n         \n        \n</div>'
@@ -2483,9 +2508,13 @@
             },
             hn = new en('#root', {
                 template: function (r) {
-                    return '<div class="container">\n\n        '.concat(
+                    return '<div class="container">\n\n\n        '.concat(
                         xn(),
-                        '    \n                  \n        <button\n            onClick="window.myLib.strTest()"\n            class="btn btn-primary"\n        >\n            ibtn_hello_0\n        </button>\n\n        <button\n            onClick="myLib.create({tag: \'button\', inner: \'blah\'})"\n            class="btn btn-warning"\n        >\n        ibtn_hello_1\n        </button>\n\n        \n        \n    </div>'
+                        '    \n                  \n        <button\n            onClick="window.myLib.strTest()"\n            class="btn btn-primary"\n        >\n            ibtn_hello_0\n        </button>\n\n        <button\n            onClick="myLib.create({tag: \'button\', inner: \'<img src=',
+                        'https://avatars1.githubusercontent.com/u/63253189?s=400&u=44cbb26bdf951e137f6e9c7076719d0088d989de&v=4',
+                        '><p>any html code</p>\', only: true})"\n            class="btn btn-warning"\n        >\n            ibtn_hello_1_only_true\n        </button>\n        <button\n            onClick="myLib.create({tag: \'button\', inner: \'<img src=',
+                        'https://avatars1.githubusercontent.com/u/63253189?s=400&u=44cbb26bdf951e137f6e9c7076719d0088d989de&v=4',
+                        '><p>any html code</p>\', only: false})"\n            class="btn btn-success"\n        >\n            ibtn_hello_2_only_false\n        </button>\n        \x3c!-- github-corner svg logo-link --\x3e\n        <a href="https://github.com/zloid/test-repositorius/tree/calc-begin" target="_blank" role="githubCorner" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>\n        \n    </div>'
                     )
                 },
             })
