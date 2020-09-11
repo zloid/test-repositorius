@@ -3,30 +3,12 @@ import Reef from 'reefjs'
 import CalcUi from '../components/calcUi/CalcUi'
 import keyboardEventListener from '../utils/keyboardEventListener'
 
-/* 
-
-        ${
-            document.addEventListener('keydown', (e) => {
-            if (!e.repeat)
-                console.log(`Key "${e.key}" pressed  [event: keydown]`)
-            else console.log(`Key "${e.key}" repeating  [event: keydown]`)
-
-            if (e.key === '1') {
-                window.myLib.buttonToDisplay.btnToDspl(e.key)
-            }
-        })
-    }
-
-*/
-
 const App = new Reef('#root', {
     template: (props) => `<div class="container">
 
-
         ${CalcUi()}    
 
-
-    ${keyboardEventListener()}
+        ${keyboardEventListener()}
                   
         <button
             onClick="window.myLib.strTest()"

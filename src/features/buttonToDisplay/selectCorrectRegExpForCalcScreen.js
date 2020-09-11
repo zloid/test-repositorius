@@ -26,8 +26,11 @@ export default function (state, payload) {
     // 'error' ~> ''
     middleStr = middleStr.replace(/error/gi, '')
 
-    //'/' ~> '÷'
+    // '/' ~> '÷'
     middleStr = middleStr.replace(/\//g, '÷')
+
+    // ',' ~> '.'
+    middleStr = middleStr.replace(/\,/g, '.')
 
     //begin > 00 > 0
     middleStr = middleStr.replace(/^0+/, '0')

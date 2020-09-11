@@ -17,7 +17,7 @@ export default () =>
             }
 
             switch (true) {
-                case /[0-9|+|\-|/|\*|\.]/.test(event.key):
+                case /[0-9|+|\-|/|\*|\.|\,]/.test(event.key):
                     window.myLib.buttonToDisplay.btnToDspl(event.key)
                     break
                 case /enter/gi.test(event.key):
