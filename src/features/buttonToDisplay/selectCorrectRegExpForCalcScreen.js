@@ -11,7 +11,7 @@
  * //returns: '0.1 + 2214 * 21'
  *  selectCorrectRegExpForCalcScreen({displayData: '0'}, '   000 00.....1 ++ 2214 *** 21   ')
  */
-export default function (state, payload) {
+export default function (state = { displayData: '' }, payload = '') {
     const oldWithNewScreenData = state.displayData + payload.trim()
     // const regExpForGoodDisplay = (str) => {
     let middleStr = oldWithNewScreenData
@@ -69,6 +69,14 @@ export default function (state, payload) {
     middleStr = middleStr.replace(/^\s*(\*|÷)\s*(\d+)/, '$2 $1 $2')
     // '    ' -> ' '
     middleStr = middleStr.replace(/\s{2}/g, ' ')
+
+    // todo
+    // 1000_000 ~> 1000000
+
+    // todo
+    // '8.1e - 9' ~> '8.1e-9'
+    middleStr = middleStr.replace(/e - /g, 'e-')
+
     return middleStr
     // }
 }

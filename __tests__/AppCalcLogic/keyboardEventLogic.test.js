@@ -23,6 +23,7 @@ describe('App.js - calc keyboard events logic', () => {
         document.getElementById('root').innerHTML += ''
         // result will be here
         const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+
         // clear screen
         // fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // main keyboard key Delete
@@ -87,7 +88,7 @@ describe('App.js - calc keyboard events logic', () => {
         expect(elementClcScrn.textContent.trim()).toBe('0')
 
         // main keyboard key 0-9
-        // '1234567890.1'         
+        // '1234567890.1'
         for (let i = 0; i < 9; i++) {
             fireEvent.keyDown(document, {
                 key: `${i + 1}`,
@@ -104,7 +105,7 @@ describe('App.js - calc keyboard events logic', () => {
         fireEvent.keyDown(document, { key: '+', code: 'NumpadAdd' })
 
         // Numpad keyboard key 0-9
-        // `1234567890,1`        
+        // `1234567890,1`
         for (let i = 0; i < 9; i++) {
             fireEvent.keyDown(document, {
                 key: `${i + 1}`,
@@ -127,6 +128,10 @@ describe('App.js - calc keyboard events logic', () => {
         document.getElementById('root').innerHTML += ''
         // result will be here
         const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+
+        // test keyboard key
+        fireEvent.keyDown(document, { key: '1' })
+
         // clear screen
         // key Delete
         fireEvent.keyDown(document, { key: 'Delete' })
@@ -137,7 +142,7 @@ describe('App.js - calc keyboard events logic', () => {
         // '1234567890.1 + 1234567890,1 - 9 - 9 + 18 * 1 / 1'
 
         // main keyboard key 0-9
-        // '1234567890.1'         
+        // '1234567890.1'
         for (let i = 0; i < 9; i++) {
             fireEvent.keyDown(document, {
                 key: `${i + 1}`,
@@ -153,7 +158,7 @@ describe('App.js - calc keyboard events logic', () => {
         fireEvent.keyDown(document, { key: '+', code: 'NumpadAdd' })
 
         // Numpad key 0-9
-        // `1234567890,1`        
+        // `1234567890,1`
         for (let i = 0; i < 9; i++) {
             fireEvent.keyDown(document, {
                 key: `${i + 1}`,
@@ -168,19 +173,19 @@ describe('App.js - calc keyboard events logic', () => {
         // '-' on keyboard
         fireEvent.keyDown(document, { key: '-', code: 'Minus' })
         fireEvent.keyDown(document, { key: '9' })
-         // '-' on numPad
-         fireEvent.keyDown(document, { key: '-', code: 'NumpadSubtract' })
-         fireEvent.keyDown(document, { key: '9' })         
-         // '+'
-         fireEvent.keyDown(document, { key: '+' })
-         fireEvent.keyDown(document, { key: '1' })
-         fireEvent.keyDown(document, { key: '8' })
-         // '*'
-         fireEvent.keyDown(document, { key: '*' })
-         fireEvent.keyDown(document, { key: '1' })
-         // '/'
-         fireEvent.keyDown(document, { key: '/' })
-         fireEvent.keyDown(document, { key: '1' })
+        // '-' on numPad
+        fireEvent.keyDown(document, { key: '-', code: 'NumpadSubtract' })
+        fireEvent.keyDown(document, { key: '9' })
+        // '+'
+        fireEvent.keyDown(document, { key: '+' })
+        fireEvent.keyDown(document, { key: '1' })
+        fireEvent.keyDown(document, { key: '8' })
+        // '*'
+        fireEvent.keyDown(document, { key: '*' })
+        fireEvent.keyDown(document, { key: '1' })
+        // '/'
+        fireEvent.keyDown(document, { key: '/' })
+        fireEvent.keyDown(document, { key: '1' })
 
         // equal, numPad key Enter
         fireEvent.keyDown(document, { key: 'Enter', code: 'NumpadEnter' })

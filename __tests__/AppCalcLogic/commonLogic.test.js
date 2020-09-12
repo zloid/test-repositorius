@@ -20,7 +20,6 @@ describe('App.js - calc logic', () => {
     it('-GitHub Corners- is exist', () => {
         screen.getByRole(/^githubCorner$/i)
     })
-
     it('click on some calc buttons is correct', () => {
         // initial
         document.getElementById('root').innerHTML += ''
@@ -28,8 +27,7 @@ describe('App.js - calc logic', () => {
         // before click
         expect(elementClcScrn.textContent.trim()).toBe('0')
         // click
-        const elementBtn = screen.getByRole(/^calcBtnFour$/i)
-        fireEvent.click(elementBtn)
+        fireEvent.click(screen.getByRole(/^calcBtnFour$/i))
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
         fireEvent.click(screen.getByRole(/^calcBtnFive$/i))
@@ -51,7 +49,7 @@ describe('App.js - calc logic', () => {
         // calc screen is clear
         expect(elementClcScrn.textContent.trim()).toBe('0')
     })
-    it('v435132435, click on "=" for getting result ', () => {
+    it('click on "=" for getting result: "99 ÷ 11"', () => {
         // initial
         // must be here
         document.getElementById('root').innerHTML += ''
@@ -61,9 +59,8 @@ describe('App.js - calc logic', () => {
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // calc screen is clear
         expect(elementClcScrn.textContent.trim()).toBe('0')
-
         // division
-        // 99 ÷ 11
+        //
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
@@ -74,7 +71,7 @@ describe('App.js - calc logic', () => {
         // calc screen result
         expect(elementClcScrn.textContent.trim()).toBe('9')
     })
-    it('v56489, click on -calc screen- for getting result ', () => {
+    it('click on -calc screen- for getting result: "99 ÷ 3 ÷ 33"', () => {
         // initial
         // must be here
         document.getElementById('root').innerHTML += ''
@@ -84,9 +81,7 @@ describe('App.js - calc logic', () => {
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // calc screen is clear
         expect(elementClcScrn.textContent.trim()).toBe('0')
-
         // division
-        // 99 ÷ 3 ÷ 33
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
@@ -98,6 +93,37 @@ describe('App.js - calc logic', () => {
         fireEvent.click(screen.getByRole(/^calcMainScreen$/i))
         // calc screen result
         expect(elementClcScrn.textContent.trim()).toBe('1')
+    })
+    it('regExp for calc is works: "9......3...1 + 0002" ~> "11.31" ', () => {
+        // initial
+        // must be here
+        document.getElementById('root').innerHTML += ''
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // clear screen
+        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
+        // calc screen is clear
+        expect(elementClcScrn.textContent.trim()).toBe('0')
+        // do clicks
+        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        // click "="
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('11.31')
     })
 
     // todo

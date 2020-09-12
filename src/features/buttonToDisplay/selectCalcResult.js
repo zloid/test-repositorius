@@ -14,6 +14,9 @@
  * selectCalcResult({displayData: '0 ÷ 0'})
  */
 export default function (state) {
+    // todo
+    console.log(state.displayData)
+
     if (/error/gi.test(state.displayData)) {
         return 'Error'
     }
@@ -76,9 +79,13 @@ export default function (state) {
     )
     // [2, 225] ~> 227
     // [36] ~> 36
-    const additionResult = getAllNumbersForAddition.reduce(
+    let additionResult = getAllNumbersForAddition.reduce(
         (accum, currentVal) => accum + currentVal
     )
+
+    // avoid 0.1 + 0.2
+    // additionResult = parseFloat(additionResult.toFixed(15))
+    additionResult = parseFloat(additionResult.toFixed(11))
 
     // todo
     // -8 ~> '-8' ~> '- 8'
@@ -88,6 +95,7 @@ export default function (state) {
     if (/nan/gi.test(finalResult)) {
         return 'Error'
     }
+
     return finalResult
     // return String(additionResult)
 }

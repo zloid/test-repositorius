@@ -82,7 +82,63 @@ describe('App.js - calc addition logic', () => {
         // calc screen result
         expect(elementClcScrn.textContent.trim()).toBe('12.4')
     })
+    it('calc addition is working: "0.1 + 0.2"', () => {
+        // todo
+        // 0.1 + 0.2
+
+        // initial
+        document.getElementById('root').innerHTML += ''
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // clear screen
+        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
+        // calc screen is clear
+        expect(elementClcScrn.textContent.trim()).toBe('0')
+
+        // addition
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+
+        fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
+
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('0.3')
+    })
+    it('calc addition is working: "0.1 + 0.002"', () => {
+        // todo
+        // 0.1 + 0.2
+
+        // initial
+        document.getElementById('root').innerHTML += ''
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // clear screen
+        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
+        // calc screen is clear
+        expect(elementClcScrn.textContent.trim()).toBe('0')
+
+        // addition
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+
+        fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
+
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('0.102')
+    })
+
     // todo
-    // 0.1 + 0.2
     // 2 + 2.11
 })
