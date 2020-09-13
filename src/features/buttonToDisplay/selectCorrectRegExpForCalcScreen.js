@@ -12,19 +12,25 @@
  *  selectCorrectRegExpForCalcScreen({displayData: '0'}, '   000 00.....1 ++ 2214 *** 21   ')
  */
 export default function (state = { displayData: '' }, payload = '') {
-    const oldWithNewScreenData = state.displayData + payload.trim()
-    // const regExpForGoodDisplay = (str) => {
-    let middleStr = oldWithNewScreenData
-
+    const oldWithNewScreenData = state.displayData.trim() + payload.trim()
     // todo
-    /* 
-    if ((/error/ig).test(middleStr)) {
-        middleStr.replace(/[error]/ig, '')
-    }
-     */
+    // const regExpForGoodDisplay = (str) => {
 
+    let middleStr = oldWithNewScreenData
+ 
+    // todo
     // 'error' ~> ''
-    middleStr = middleStr.replace(/error/gi, '')
+    // middleStr = middleStr.replace(/error/gi, '')        
+    switch (true) {
+        case /error/gi.test(middleStr): 
+        // 'error' ~> ''
+        // middleStr = middleStr.replace(/error/gi, '')
+        // return middleStr
+        return middleStr.replace(/error/gi, '')
+                
+        default:
+            break;
+    }
 
     // '/' ~> '÷'
     middleStr = middleStr.replace(/\//g, '÷')
@@ -36,8 +42,11 @@ export default function (state = { displayData: '' }, payload = '') {
     middleStr = middleStr.replace(/^0+/, '0')
     //begin > 02 > 0
     middleStr = middleStr.replace(/^0(\d|[(])/, '$1')
-    //begin > 012 > 12; + 02 > + 2
+    //begin > 012 > 12; + 02 > + 2 || -*÷
     middleStr = middleStr.replace(/([+-]|÷|\*)\s*0(\d)/, '$1 $2')
+
+    // '' * 5 > 5 * 5  ; ÷ 5 > 5 ÷ 5
+    middleStr = middleStr.replace(/^\s*(\*|÷)\s*(\d+)/, '$2 $1 $2')
 
     //++ -- ÷÷ *** +-÷  > + - * ÷
     // '+5' ~> '+ 5'
@@ -64,10 +73,9 @@ export default function (state = { displayData: '' }, payload = '') {
     middleStr = middleStr.replace(/[^\d]\./, ' 0.')
     middleStr = middleStr.replace(/^\./, '0.')
     // todo 7. + > 7 +
-    middleStr = middleStr.replace(/([\d])\.\s/g, '$1 ')
-    // '' * 5 > 5 * 5  ; ÷ 5 > 5 ÷ 5
-    middleStr = middleStr.replace(/^\s*(\*|÷)\s*(\d+)/, '$2 $1 $2')
-    // '    ' -> ' '
+    middleStr = middleStr.replace(/([\d])\.\s/g, '$1 ')    
+    
+    // '1     +    2    ' -> '1 + 2'
     middleStr = middleStr.replace(/\s{2}/g, ' ')
 
     // todo
