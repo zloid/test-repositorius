@@ -1,7 +1,14 @@
 import selectCorrectRegExpForCalcScreen from '../../src/features/buttonToDisplay/selectCorrectRegExpForCalcScreen'
 
 describe('selectCorrectRegExpForCalcScreen.js', () => {
-    
+    it('RegExp for calcScreen is work: "0" ~> "0" ', () => {
+        // run function
+        const data = selectCorrectRegExpForCalcScreen({
+            displayData: ' 0 ',
+        })
+        // expectation
+        expect(data).toBe('0')
+    })
     it('RegExp for calcScreen is work: "Error" ~> "" ', () => {
         // run function
         const data = selectCorrectRegExpForCalcScreen({
@@ -41,6 +48,14 @@ describe('selectCorrectRegExpForCalcScreen.js', () => {
         })
         // expectation
         expect(data).toBe('0')
+    })
+    it('v9023, RegExp for calcScreen is work: "000" ~> "0" ', () => {
+        // run function
+        const data = selectCorrectRegExpForCalcScreen({
+            displayData: '000008',
+        })
+        // expectation
+        expect(data).toBe('8')
     })
     it('RegExp for calcScreen is work: "02" ~> "2" ', () => {
         // run function
@@ -133,18 +148,10 @@ describe('selectCorrectRegExpForCalcScreen.js', () => {
     it('v2164, RegExp for calcScreen is work: ".7" ~> "0.7" ', () => {
         // run function
         const data = selectCorrectRegExpForCalcScreen({
-            displayData: '.7 + .123',
+            displayData: '.7 + .123 - .5 / ,8',
         })
         // expectation
-        expect(data).toBe('0.7 + 0.123')
-    })
-    it('RegExp for calcScreen is work: "" ~> "" ', () => {
-        // run function
-        const data = selectCorrectRegExpForCalcScreen({
-            displayData: '',
-        })
-        // expectation
-        expect(data).toBe('')
+        expect(data).toBe('0.7 + 0.123 - 0.5 ÷ 0.8')
     })
     it('if exist some -e-exponential notation, then ~> "8.1e - 9" ~> "8.1e-9 "', () => {
         // run function
@@ -154,8 +161,24 @@ describe('selectCorrectRegExpForCalcScreen.js', () => {
         // expectation
         expect(data).toBe('8.1e-9')
     })
+    it('RegExp for calcScreen is work: "7. + 1" ~> "7 + 1" ', () => {
+        // run function
+        const data = selectCorrectRegExpForCalcScreen({
+            displayData: '7. + 1',
+        })
+        // expectation
+        expect(data).toBe('7 + 1')
+    })
+    it('v3265, RegExp for calcScreen is work: "7. + 1" ~> "7 + 1" ', () => {
+        // run function
+        const data = selectCorrectRegExpForCalcScreen({
+            displayData: '7. + 32. - 5.',
+        })
+        // expectation
+        expect(data).toBe('7 + 32 - 5.')
+    })
     // /////////////////////EXAMPLE//////////////////////////
-    it('RegExp for calcScreen is work: "  " ~> "" ', () => {
+    it('RegExp for calcScreen is work: "" ~> "" ', () => {
         // run function
         const data = selectCorrectRegExpForCalcScreen({
             displayData: '',
