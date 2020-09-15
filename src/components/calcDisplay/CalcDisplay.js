@@ -1,47 +1,20 @@
 import store from '../../app/store'
 
-const CalcDisplay = () => `<div class="clcdspl">
-        CalcDisplay_67808
-
-
-<!--
-    ${store
-        .getState()
-        .modernReducer.defaultArray.map((elem) => `<li>${elem}</li>`)
-        .join('')}
--->           
-
-
-<!--
-    <u>foo (store
-        .getState()
-        .modernReducer.foo):</u>
-    ${store.getState().modernReducer.foo}
--->
-
-<p>calcScreen_74568</p>
+const CalcDisplay = () => `<div>
 
     <div
-        class="badge badge-success"
+        /*class="badge badge-success"*/
+        class="row"
         role="calcMainScreen"
         onclick="window.myLib.buttonToDisplay.doEqual()"
     >
-    
-        <h3>
-        
+    <div class="col calcScreen">
+                
             ${store.getState().buttonToDisplay.displayData}            
             
-        </h3>
-
     </div>
 
-    <hr />
-
-    length_arr_nmbr_784562513: 
-    ${store.getState().buttonToDisplay.displayData.length}
-
-    <hr />
-    ${store.getState().buttonToDisplay.displayData}
+    </div>
 
 </div>`
 

@@ -2,13 +2,19 @@
 
 // todo
 /**
- * keydown events handler, keyboard to screen
- * @date 2020-09-10
- * @param {any} "keydown"
- * @param {any} 'event'
- * @returns {void}
+ * Function which returns keydown events handler, catching keyboard and write to screen
+ * @function keyboardEventListener
+ * @date 2020-09-15
+ * @returns {document.addEventListener('keydown', listener)}  EventListener for catching Keyboard and NumPad buttons:  1234567890.,+-*÷ enter delete; and ignoring all f-buttons on keyboard
+ * @example
+ * // click on keyboard -5- ~> show '5' on screen
+ * // click on keyboard -*- ~> show '*' on screen
+ * // click on keyboard -enter- ~> do calc Equal
+ * // click on keyboard -delete- ~> clear calc screen
+ * // click on keyboard -f5- ~> usual OS behavior, nothing for calc
+ * keyboardEventListener()
  */
-export default () =>
+export default () => {
     document.addEventListener(
         'keydown',
         (event) => {
@@ -35,3 +41,6 @@ export default () =>
         },
         true
     )
+    // for UI, to avoid undefined
+    return ''
+}

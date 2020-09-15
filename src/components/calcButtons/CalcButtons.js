@@ -1,8 +1,5 @@
-const CalcButtons = () => `<div class="clcdspl">
-        CalcButtons_78954612
-
-    <hr />
-
+const CalcButtons = () => `<div>
+        
     <button
         role="calcBtnSeven"
         class="btn btn-danger"
@@ -150,7 +147,7 @@ const CalcButtons = () => `<div class="clcdspl">
         Clear
     </button>
 
-
+ 
 
 </div>`
 

@@ -3,17 +3,18 @@
 /**
  * For getting calc result, main logic
  * @function selectCalcResult
- * @date 2020-09-02
- * @param {{displayData: ''}} state - RTK state.displayData
+ * @date 2020-09-15
+ * @param {object} state - Redux state
+ * @param {string} state.displayData - data from calc screen, f.e. '2 + 456 * 9', spaces are required
  * @returns {string} result of calculation
  * @example
- * // returns: 229
+ * // returns: '229'
  * selectCalcResult({displayData: '2 + 225 + 2'})
  * @example
  * // returns: 'Error'
  * selectCalcResult({displayData: '0 ÷ 0'})
  */
-export default function (state) {
+export default (state) => {
     // todo
     console.log(state.displayData)
 

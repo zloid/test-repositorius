@@ -9,10 +9,11 @@ import store from './app/store'
 // styles
 import './bootstrap.css'
 // own styles
-import './own.css'
+// import './own.css'
+import './app/app.css'
 
 // creating DOM element: <div id="root"></div>
-window.myLib.create({ id: 'root', cut: 'all' })
+document.body.innerHTML = '<div id="root"></div>'
 
 // render Reef's App to #root
 // first render
