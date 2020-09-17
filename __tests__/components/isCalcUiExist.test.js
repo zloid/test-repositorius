@@ -96,9 +96,9 @@ describe('CalcUi.js', () => {
 
         expect(element.textContent.trim()).toBe('=')
     })
-    it('calc button -clear- is exist, with text "clear"', () => {
+    it('calc button -clear- is exist, with text "c"', () => {
         const element = screen.getByRole(/^calcBtnClear$/i)
 
-        expect(element.textContent.toLowerCase().trim()).toBe('clear')
+        expect(element.textContent.toLowerCase().trim()).toBe('c')
     })
 })

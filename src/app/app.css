@@ -11,9 +11,9 @@ body {
     font-size: 25px;
 
     /* stop select any on page */
-    /* -webkit-user-select: none;
+    -webkit-user-select: none;
     -moz-user-select: none;
-    -ms-user-select: none; */
+    -ms-user-select: none;
 }
 
 .container {
@@ -31,4 +31,11 @@ body {
     overflow: hidden;
     text-align: right;
     padding: 5px 40px 5px 5px;
+}
+
+.calc-btn {
+    border-color: silver;
+    font-size: 20px;
+    color: #000;
+    font-weight: 700;
 }
