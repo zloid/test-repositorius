@@ -88,7 +88,6 @@ const CalcButtons = () => `<div>
 
     </div>
 
-
     <div class="row">
 
         <div class="col">
@@ -152,7 +151,6 @@ const CalcButtons = () => `<div>
     
     </div>
 
-
     <div class="row">
 
         <div class="col">
@@ -196,9 +194,7 @@ const CalcButtons = () => `<div>
         </div>  
 
     </div>
-  
- 
-
+   
 </div>`
 
 export default CalcButtons

@@ -3,11 +3,15 @@ import Reef from 'reefjs'
 import CalcUi from '../components/calcUi/CalcUi'
 import keyboardEventListener from '../utils/keyboardEventListener'
 
+import CalcFeatures from '../components/calcFeatures/CalcFeatures'
+
 const App = new Reef('#root', {
     template: () => `<div class="container">
 
         ${CalcUi()}    
-
+        
+        ${CalcFeatures()}    
+        
         ${keyboardEventListener()}
              
         <!-- github-corner svg logo-link -->

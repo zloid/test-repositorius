@@ -125,9 +125,20 @@ describe('App.js - calc logic', () => {
         // calc screen result
         expect(elementClcScrn.textContent.trim()).toBe('11.31')
     })
+    it('list of Calc Features, for users, is exist', () => {
+        // screen.getByRole(/^calcFeaturesForUsers$/i)
+        //
+        const elem = screen.getByRole(/^popc$/i)
+        console.log('elem.innerText::: ', elem.textContent)
+    })
+
+    
 
     // todo
     // click 5 / 0 = 'infiniti'
     // after
     // click 5 = 5
+
+    // todo -fn- + F4 ~> -nothing-
+    // '9LaunchApplication2' ~> '9'
 })
