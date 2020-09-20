@@ -2,13 +2,12 @@
 import myLib from './utils/myLib'
 
 import App from './app/App'
+import uiDidMount from './utils/uiDidMount'
 
 import store from './app/store'
 
-// own
 // styles
 import './bootstrap.css'
-// own styles
 // import './own.css'
 import './app/app.css'
 
@@ -18,6 +17,7 @@ document.body.innerHTML = '<div id="root"></div>'
 // render Reef's App to #root
 // first render
 App.render()
+uiDidMount()
 
 console.log('store.modernReducer.foo::: ', store.getState().modernReducer.foo)
 

@@ -3,11 +3,13 @@ import { screen, fireEvent } from '@testing-library/dom'
 import myLib from '../../src/utils/myLib'
 import App from '../../src/app/App'
 import store from '../../src/app/store'
+import uiDidMount from '../../src/utils/uiDidMount'
 
 // creating DOM div #root
 document.body.innerHTML = '<div id="root" data-testid="mainRootDiv"></div>'
 // first render App to #root
 App.render()
+uiDidMount()
 // render each time when dispatch redux actions
 store.subscribe(() => {
     App.render()

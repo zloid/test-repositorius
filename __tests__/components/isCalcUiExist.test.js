@@ -101,4 +101,9 @@ describe('CalcUi.js', () => {
 
         expect(element.textContent.toLowerCase().trim()).toBe('c')
     })
+    it('list of Calc Features for users is exist', () => {
+        const element = screen.getAllByRole(/^calcFeaturesForUsers$/i)
+
+        expect(element.length).toBe(2)
+    })
 })

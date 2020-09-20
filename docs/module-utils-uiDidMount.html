@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>JSDoc: Source: utils/myLib.js</title>
+        <title>JSDoc: Module: utils-uiDidMount</title>
 
         <script src="scripts/prettify/prettify.js"></script>
         <script src="scripts/prettify/lang-css.js"></script>
@@ -23,53 +23,56 @@
 
     <body>
         <div id="main">
-            <h1 class="page-title">Source: utils/myLib.js</h1>
+            <h1 class="page-title">Module: utils-uiDidMount</h1>
 
             <section>
+                <header></header>
+
                 <article>
-                    <pre
-                        class="prettyprint source linenums"
-                    ><code>/** @module utils-myLib */
-import iCreateElement from '../utils/iCreateElement'
+                    <div class="container-overview"></div>
 
-import store from '../app/store'
-// RTK action
-import {
-    addButtonValueToScreen,
-    clearAllFromCalcScreen,
-    doEqual,
-} from '../features/buttonToDisplay/buttonToDisplaySlice'
+                    <h3 class="subsection-title">Methods</h3>
 
-// define own lib
-/**
- * library for compose RTK actions
- * @date 2020-09-10
- * @returns {object} window.object
- */
-const rnd = () => Math.floor(Math.random() * 20)
+                    <h4 class="name" id="~uiDidMount">
+                        <span class="type-signature">(inner) </span
+                        >uiDidMount<span class="signature">()</span
+                        ><span class="type-signature"> &rarr; {void}</span>
+                    </h4>
 
-const myLib = {
-    // todo
-    iRnd: () => alert(store.getState().buttonToDisplay.displayData),
-    // todo
-    create: iCreateElement,
-    strTest: () => iCreateElement({}),
-    // todo
-    doRdx: (nmbr = 123123123) => {
-        store.dispatch({
-            type: 'ADD_TODO',
-            text: `myLib.js - ${nmbr.trim()} ~> ${rnd()}`,
-        })
-    },
-    buttonToDisplay: {
-        btnToDspl: (payload) => store.dispatch(addButtonValueToScreen(payload)),
-        clearAll: () => store.dispatch(clearAllFromCalcScreen()),
-        doEqual: () => store.dispatch(doEqual()),
-    },
-}
+                    <div class="description">
+                        Must be called when UI did first mount
+                    </div>
 
-export default window.myLib = myLib
-</code></pre>
+                    <dl class="details">
+                        <dt class="tag-source">Source:</dt>
+                        <dd class="tag-source">
+                            <ul class="dummy">
+                                <li>
+                                    <a href="utils_uiDidMount.js.html"
+                                        >utils/uiDidMount.js</a
+                                    >,
+                                    <a href="utils_uiDidMount.js.html#line12"
+                                        >line 12</a
+                                    >
+                                </li>
+                            </ul>
+                        </dd>
+                    </dl>
+
+                    <h5>Returns:</h5>
+
+                    <div class="param-desc">
+                        call all callbacks after ui did first render
+                    </div>
+
+                    <dl>
+                        <dt>
+                            Type
+                        </dt>
+                        <dd>
+                            <span class="param-type">void</span>
+                        </dd>
+                    </dl>
                 </article>
             </section>
         </div>
