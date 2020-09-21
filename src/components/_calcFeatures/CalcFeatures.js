@@ -1,5 +1,5 @@
 const CalcFeatures = () => `<div>
-    
+
     <hr role="featuresHr" />
 
     <div role="calcFeaturesForUsers" id="calcFeatures" aria-describedby="tooltip" class="badge badge-primary">
@@ -12,7 +12,6 @@ const CalcFeatures = () => `<div>
         - Keyboard enable
             <div id="arrow" data-popper-arrow></div>
         </div>  
-
-    </div>`
+</div>`
 
 export default CalcFeatures

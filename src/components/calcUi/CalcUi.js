@@ -1,6 +1,8 @@
 import CalcDisplay from '../calcDisplay/CalcDisplay'
 import CalcButtons from '../calcButtons/CalcButtons'
-import CalcFeatures from '../CalcFeatures/CalcFeatures'
+//import CalcFeatures from '../CalcFeatures/CalcFeatures'
+
+import FeaturesArea from '../featuresArea/FeaturesArea'
 
 const CalcUi = () => `<div>
 
@@ -8,9 +10,9 @@ const CalcUi = () => `<div>
 
     <hr />  
 
-    ${CalcButtons()}
-    
-    ${CalcFeatures()}
+    ${CalcButtons()}         
+
+    ${FeaturesArea()}
                
 </div>`
 
