@@ -6,7 +6,7 @@ export default () => `<div>
         Calc's features
     </div>
     
-    <div role="calcFeaturesForUsers" id="tooltip">
+    <div role="calcFeaturesForUsers" id="calc-tooltip">
         - Click on screen for get result
         <br />    
         - Keyboard enable

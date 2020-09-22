@@ -1,36 +1,25 @@
 const path = require('path')
+const glob = require('glob')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const PurgecssPlugin = require('purgecss-webpack-plugin')
+
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
+const PATHS = {
+    src: path.join(__dirname, 'src'),
+}
+
 module.exports = {
-    // resolve: {
-    //     root: [
-    //         path.resolve('./node_modules'),
-    //         path.resolve('./src'),
-    //     ],
-    // },
-    /* resolve: {
-        alias: {
-            src: path.resolve(__dirname, './src'),
-        },
-    },  */
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'public'),
+        path: path.join(__dirname, 'public'),
     },
-    plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            title: 'js calc',
-        }),
-    ],
-    devServer: {
-        contentBase: './public',
-    },
+
     module: {
         rules: [
-            {
+{
                 test: /\.m?js$/i,
                 exclude: /(node_modules|bower_components)/,
                 use: {
@@ -38,7 +27,22 @@ module.exports = {
                     options: { presets: ['@babel/preset-env'] },
                 },
             },
-            { test: /\.css$/i, use: ['style-loader', 'css-loader'] },
+            {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+            },
         ],
     },
+    plugins: [
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+        }),
+        new PurgecssPlugin({
+            paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+        }),
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'js calc',
+        }),
+    ],
 }

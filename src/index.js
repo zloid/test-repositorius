@@ -7,8 +7,15 @@ import uiDidMount from './utils/uiDidMount'
 import store from './app/store'
 
 // styles
-import './bootstrap.css'
+// import './bootstrap.min.css'
+// import * as btp './bootstrap.min.js'
+// import './bootstrap.css'
+//import './bootstrap-theme.css'
 // import './own.css'
+
+// import 'bootstrap/js/dist/button.js'
+//import 'bootstrap/dist/js/bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './app/app.css'
 
 // creating DOM element: <div id="root"></div>

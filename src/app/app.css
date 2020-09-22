@@ -43,7 +43,7 @@ body {
     font-weight: 700;
 }
 
-#tooltip {
+#calc-tooltip {
     background: #333;
     color: white;
     font-weight: bold;
@@ -52,7 +52,7 @@ body {
     border-radius: 4px;
     display: none;
 }
-#tooltip[data-show] {
+#calc-tooltip[data-show] {
     display: block;
 }
 #arrow,
@@ -65,20 +65,9 @@ body {
 #arrow::before {
     content: '';
     transform: rotate(45deg);
-    background: #333;
+    background: #333;    
 }
-#tooltip[data-popper-placement^='top'] > #arrow {
-    bottom: -4px;
-}
-
-#tooltip[data-popper-placement^='bottom'] > #arrow {
+#arrow {
     top: -4px;
 }
 
-#tooltip[data-popper-placement^='left'] > #arrow {
-    right: -4px;
-}
-
-#tooltip[data-popper-placement^='right'] > #arrow {
-    left: -4px;
-}
