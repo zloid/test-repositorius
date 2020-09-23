@@ -3,7 +3,7 @@ import Reef from 'reefjs'
 import CalcUi from '../components/calcUi/CalcUi'
 
 const App = new Reef('#root', {
-    template: () => `<div class="container">
+    template: () => `<div>
 
         ${CalcUi()}    
                              

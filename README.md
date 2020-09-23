@@ -1,12 +1,12 @@
 # test-repositorius
 
-## Current branch: master-calc ~> husky-try ~> calc-begin ~> rpi_features_area
+## Current branch: master-calc ~> husky-try ~> calc-begin ~> rpi_features_area 
 
 ## Features for USER:
 
-[+] click on calc's screen for get answer
-[-] keyboard for input numbers
-[-][-]
+[+] click on calc's screen for get result \
+[+] keyboard is enable for inputting numbers \
+
 
 ## Features for DEV:
 
@@ -21,6 +21,7 @@
 -   @babel for: es6 to es5 and correct work with jest & ESM
 -   JSDoc as documentation
 -   husky: for pre-commit hooks
+-   CSS is Auto-Purge, while build creating
 
 ## You can:
 

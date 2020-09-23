@@ -7,9 +7,9 @@ export default () => `<div>
     </div>
     
     <div role="calcFeaturesForUsers" id="calc-tooltip">
-        - Click on screen for get result
+        - Click on calc\'s screen for get result
         <br />    
-        - Keyboard enable
+        - Have a keyboard? Click it! 
             <div id="arrow" data-popper-arrow></div>
         </div>  
 </div>`

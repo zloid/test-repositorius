@@ -65,9 +65,8 @@ body {
 #arrow::before {
     content: '';
     transform: rotate(45deg);
-    background: #333;    
+    background: #333;
 }
 #arrow {
     top: -4px;
 }
-
