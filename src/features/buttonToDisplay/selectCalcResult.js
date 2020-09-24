@@ -14,13 +14,34 @@
  * // returns: 'Error'
  * selectCalcResult({displayData: '0 ÷ 0'})
  */
+/* 
+class CalcResult {
+    constructor(state) {
+        this.displayData = state.displayData
+    }
+    catchError() {
+        console.log('errr')
+        if (/error/gi.test(this.displayData)) {
+            return 'Error'
+        }
+    }
+} */
+ 
+
+
 export default (state) => {
     // todo
     console.log(state.displayData)
-
+    // todo
+    /* 
     if (/error/gi.test(state.displayData)) {
         return 'Error'
     }
+    */
+   
+//    let result = new CalcResult(state)
+// result.catchError()
+
 
     // todo
     //'^-3' ~> '0 - 3'
@@ -36,6 +57,13 @@ export default (state) => {
     // '2 + 225' ~> [2, '+', 225]
     let displayDataToArray = beginDataSubstract.split(' ').map((e) => {
         if (/\d/.test(e)) {
+            function name(params) {
+                function name(params) {
+                    function name(params) {
+                
+                    }
+                }
+            }
             return Number(e)
         }
         return e
@@ -58,7 +86,7 @@ export default (state) => {
             displayDataToArray[index - 1] = null
         }
     })
-
+    
     // subtraction logic
     // [null, null, 36, '-', 3] ~> [36, '-', 3]
     displayDataToArray = displayDataToArray.filter((e) => e !== null)
@@ -71,7 +99,6 @@ export default (state) => {
             displayDataToArray[index - 1] = null
         }
     })
-
     // addition logic
     // [null, 2, '+', 225] ~> [2, 225]
     // [null, null, 36] ~> [36]

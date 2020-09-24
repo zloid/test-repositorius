@@ -1,12 +1,12 @@
 # test-repositorius
 
-## Current branch: master-calc ~> husky-try ~> calc-begin ~> rpi_features_area 
+## Current branch: master-calc ~> husky-try ~> calc-begin ~> rpi_features_area
 
 ## Features for USER:
 
 [+] click on calc's screen for get result \
 [+] keyboard is enable for inputting numbers \
-
+[-] 1000000 ~> 1000_000 ~> 1000000
 
 ## Features for DEV:
 
