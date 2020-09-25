@@ -31,3 +31,4 @@
 -   npm run build (for creating public build, index.html autogenerate)
 -   npm run doc (for create docs for app by jsdoc)
 -   npm run serve (for run app local server and www)
+-   use VSC + Extensions: "Comment tagged templates", "lit-html", for best expierence with js template literals

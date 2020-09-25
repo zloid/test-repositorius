@@ -1,7 +1,6 @@
-const CalcButtons = () => `<div>
+const CalcButtons = () => /*html*/ `<div>    
 
     <div class="row">
-
         <div class="col">
             <button
                 role="calcBtnSeven"
@@ -9,9 +8,9 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 7
-            </button> 
-        </div>  
-        
+            </button>
+        </div>
+
         <div class="col">
             <button
                 role="calcBtnEight"
@@ -19,8 +18,8 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 8
-            </button> 
-        </div>  
+            </button>
+        </div>
 
         <div class="col">
             <button
@@ -29,8 +28,8 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 9
-            </button> 
-        </div>  
+            </button>
+        </div>
 
         <div class="col">
             <button
@@ -39,13 +38,11 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 ÷
-            </button> 
-        </div>  
-
+            </button>
+        </div>
     </div>
 
     <div class="row">
-
         <div class="col">
             <button
                 role="calcBtnFour"
@@ -53,9 +50,9 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 4
-            </button> 
-        </div>  
-        
+            </button>
+        </div>
+
         <div class="col">
             <button
                 role="calcBtnFive"
@@ -63,8 +60,8 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 5
-            </button> 
-        </div>  
+            </button>
+        </div>
 
         <div class="col">
             <button
@@ -73,8 +70,8 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 6
-            </button> 
-        </div>  
+            </button>
+        </div>
 
         <div class="col">
             <button
@@ -83,13 +80,11 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 *
-            </button> 
-        </div>  
-
+            </button>
+        </div>
     </div>
 
     <div class="row">
-
         <div class="col">
             <button
                 role="calcBtnOne"
@@ -97,9 +92,9 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 1
-            </button> 
-        </div>  
-        
+            </button>
+        </div>
+
         <div class="col">
             <button
                 role="calcBtnTwo"
@@ -107,8 +102,8 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 2
-            </button> 
-        </div>  
+            </button>
+        </div>
 
         <div class="col">
             <button
@@ -117,8 +112,8 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 3
-            </button> 
-        </div>  
+            </button>
+        </div>
 
         <div class="col">
             <button
@@ -127,14 +122,12 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 -
-            </button> 
-        </div>  
-
-    </div>
-    
-    <div class="row">
-        <div class="col">
+            </button>
         </div>
+    </div>
+
+    <div class="row">
+        <div class="col"></div>
         <div class="col">
             <button
                 role="calcBtnZero"
@@ -142,36 +135,32 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 0
-            </button> 
-        </div> 
-        <div class="col">
+            </button>
         </div>
-        <div class="col">
-        </div> 
-    
+        <div class="col"></div>
+        <div class="col"></div>
     </div>
 
     <div class="row">
+        <div class="col">
+            <button
+                role="calcBtnClear"
+                class="calc-btn btn btn-outline-secondary btn-lg btn-block"
+                onclick="window.myLib.buttonToDisplay.clearAll()"
+            >
+                C
+            </button>
+        </div>
 
         <div class="col">
             <button
-            role="calcBtnClear"
-            class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-            onclick="window.myLib.buttonToDisplay.clearAll()"
-            >
-                C
-            </button> 
-        </div>  
-        
-        <div class="col">
-            <button
-            role="calcBtnEqual"
-            class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-            onclick="window.myLib.buttonToDisplay.doEqual()"
+                role="calcBtnEqual"
+                class="calc-btn btn btn-outline-secondary btn-lg btn-block"
+                onclick="window.myLib.buttonToDisplay.doEqual()"
             >
                 =
-            </button> 
-        </div>  
+            </button>
+        </div>
 
         <div class="col">
             <button
@@ -180,8 +169,8 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 .
-            </button> 
-        </div>  
+            </button>
+        </div>
 
         <div class="col">
             <button
@@ -190,11 +179,9 @@ const CalcButtons = () => `<div>
                 onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
             >
                 +
-            </button> 
-        </div>  
-
+            </button>
+        </div>
     </div>
-   
 </div>`
 
 export default CalcButtons

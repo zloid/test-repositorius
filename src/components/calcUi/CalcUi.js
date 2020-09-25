@@ -2,16 +2,13 @@ import CalcDisplay from '../calcDisplay/CalcDisplay'
 import CalcButtons from '../calcButtons/CalcButtons'
 import FeaturesArea from '../featuresArea/FeaturesArea'
 
-const CalcUi = () => `<div class="container">
-
+const CalcUi = () => /* html */ `<div class="container">
     ${CalcDisplay()}
 
-    <hr />  
+    <hr />
 
-    ${CalcButtons()}         
-
+    ${CalcButtons()} 
     ${FeaturesArea()}
-               
 </div>`
 
 export default CalcUi

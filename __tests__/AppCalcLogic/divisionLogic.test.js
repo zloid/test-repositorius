@@ -69,4 +69,21 @@ describe('App.js - calc division logic', () => {
         // calc screen result
         expect(elementClcScrn.textContent.trim()).toBe('Error')
     })
+    it('is correct: 0 / 0 = "Error", "=", "=", "Error" ', () => {
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // division
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('Error')
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('Error')
+    })
 })

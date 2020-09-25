@@ -1,6 +1,6 @@
 {
     "name": "test-repositorius",
-    "version": "0.7.28",
+    "version": "0.7.33",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -26,6 +26,7 @@
         "html-webpack-plugin": "^4.3.0",
         "husky": "^4.2.5",
         "jest": "^26.1.0",
+        "jest-cli": "^26.4.2",
         "jsdoc": "^3.6.4",
         "mini-css-extract-plugin": "^0.11.2",
         "prettier": "2.0.5",
