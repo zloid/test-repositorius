@@ -2,18 +2,17 @@ export default () => /* html */ `<div>
     <hr role="featuresHr" />
 
     <div
-        role="calcFeaturesForUsers"
         id="calcFeatures"
-        aria-describedby="tooltip"
+        role="calcFeaturesForUsers"
         class="badge badge-primary"
     >
         Calc's features
     </div>
 
-    <div role="calcFeaturesForUsers" id="calc-tooltip">
-        - Click on calc's screen for get result
+    <div id="calc-tooltip" role="calcFeaturesForUsers">
+        - Have a keyboard? Math buttons available!
         <br />
-        - Have a keyboard? Click it!
-        <div id="arrow" data-popper-arrow></div>
+        - Click on calc's screen for get result
+        <!-- <div id="arrw" data-popper-arrow></div> -->
     </div>
 </div>`

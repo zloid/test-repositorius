@@ -55,18 +55,18 @@ body {
 #calc-tooltip[data-show] {
     display: block;
 }
-#arrow,
-#arrow::before {
+/*
+todo
+#arrw,
+#arrw::before {
     position: absolute;
     width: 8px;
     height: 8px;
     z-index: -1;
 }
-#arrow::before {
+#arrw::before {
     content: '';
     transform: rotate(45deg);
     background: #333;
 }
-#arrow {
-    top: -4px;
-}
+ */

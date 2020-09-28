@@ -20,9 +20,9 @@ export default (state) => {
     console.log(state.displayData)
 
     // todo
-    let { displayData } = state
-    displayData = 123123
-    console.log('dd::: ', displayData)
+    // let { displayData } = state
+    // displayData = 123123
+    // console.log('dd::: ', displayData)
     
 
     if (/error/gi.test(state.displayData)) {
