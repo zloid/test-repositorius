@@ -1,6 +1,6 @@
 {
     "name": "test-repositorius",
-    "version": "0.7.35",
+    "version": "0.7.37",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -45,6 +45,6 @@
         "reefjs": "^7.3.3"
     },
     "engines": {
-        "node": "14.4.0"
+        "node": "14.4.0>10.21.0"
     }
 }

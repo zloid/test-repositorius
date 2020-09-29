@@ -86,4 +86,7 @@ describe('App.js - calc division logic', () => {
         // calc screen result
         expect(elementClcScrn.textContent.trim()).toBe('Error')
     })
+
+    // todo
+    // '123 /' ~> '123 /' 
 })

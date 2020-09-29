@@ -1,4 +1,4 @@
-import CalcDisplay from '../calcDisplay/CalcDisplay'
+import { CalcDisplay } from '../calcDisplay/CalcDisplay'
 import { CalcButtons } from '../calcButtons/CalcButtons'
 import { FeaturesArea } from '../featuresArea/FeaturesArea'
 
