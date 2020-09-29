@@ -1,6 +1,6 @@
 import store from '../../app/store'
 
-const CalcDisplay = () => /* html */ `<div>
+export const CalcDisplay = () => /* html */ `<div>
     <div
         class="row"
         role="calcMainScreen"
@@ -11,5 +11,3 @@ const CalcDisplay = () => /* html */ `<div>
         </div>
     </div>
 </div>`
-
-export default CalcDisplay

@@ -1,4 +1,4 @@
-export default () => /* html */ `<div>
+export const FeaturesArea = () => /* html */ `<div>
     <hr role="featuresHr" />
 
     <div

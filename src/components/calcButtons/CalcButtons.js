@@ -1,5 +1,4 @@
-const CalcButtons = () => /*html*/ `<div>    
-
+export const CalcButtons = () => /*html*/ `<div>    
     <div class="row">
         <div class="col">
             <button
@@ -183,5 +182,3 @@ const CalcButtons = () => /*html*/ `<div>
         </div>
     </div>
 </div>`
-
-export default CalcButtons
