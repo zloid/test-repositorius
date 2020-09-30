@@ -1,39 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>
-            JSDoc: Source: features/buttonToDisplay/selectCalcResult.js
-        </title>
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: features/buttonToDisplay/selectCalcResult.js</title>
 
-        <script src="scripts/prettify/prettify.js"></script>
-        <script src="scripts/prettify/lang-css.js"></script>
-        <!--[if lt IE 9]>
-            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-        <link
-            type="text/css"
-            rel="stylesheet"
-            href="styles/prettify-tomorrow.css"
-        />
-        <link
-            type="text/css"
-            rel="stylesheet"
-            href="styles/jsdoc-default.css"
-        />
-    </head>
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
 
-    <body>
-        <div id="main">
-            <h1 class="page-title">
-                Source: features/buttonToDisplay/selectCalcResult.js
-            </h1>
+<body>
 
-            <section>
-                <article>
-                    <pre
-                        class="prettyprint source linenums"
-                    ><code>/** @module selector-selectCalcResult */
+<div id="main">
+
+    <h1 class="page-title">Source: features/buttonToDisplay/selectCalcResult.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module selector-selectCalcResult */
 
 /**
  * For getting calc result, main logic
@@ -49,27 +42,51 @@
  * // returns: 'Error'
  * selectCalcResult({displayData: '0 ÷ 0'})
  */
+
 export default (state) => {
     // todo
-    console.log(state.displayData)
+    console.log('state.displayData::: ', state.displayData)
+    
+    let { displayData } = state
 
-    if (/error/gi.test(state.displayData)) {
+    // todo
+    console.log('displayData::: ', displayData)
+
+    // displayData = 123123
+    // console.log('dd::: ', displayData)
+
+    // todo
+    /*
+     * @param {string} stringForCheck - from state
+     * @returns {void | string}
+     */
+    /* function errorHandler(stringForCheck) {
+        if (/error/gi.test(stringForCheck)) {
+            return 'Error'
+        }
+    } */
+
+    // errorHandler for getting quick answer
+    if (/error|nan/gi.test(displayData)) {
         return 'Error'
     }
 
     // todo
-    //'^-3' ~> '0 - 3'
-    // inp = inp.replace(/^-(\d*)/, '0 - $1')
+    /**
+     * for handle of early data
+     * @param {string} data - from state
+     * @example
+     * // '0 - 8'
+     * correctBeginOfSingleNegativeNmbr('- 8')
+     */
+    function correctBeginOfSingleNegativeNmbr(data) {
+        return data.replace(/^-\s*(\d*)/, '0 - $1')
+    }
+    // displayData = displayData.replace(/^-\s*(\d*)/, '0 - $1')
+    displayData = correctBeginOfSingleNegativeNmbr(displayData)
 
-    // let beginDataSubstract = state.displayData().replace(/^-(\d*)/, '0 - $1')
-    // todo
-    // '- 8' ~> '0 - 8'
-    const beginDataSubstract = state.displayData.replace(/^-\s*(\d*)/, '0 - $1')
-    // console.log('beginDataSubstract::: ', beginDataSubstract)
-
-    // initial
     // '2 + 225' ~> [2, '+', 225]
-    let displayDataToArray = beginDataSubstract.split(' ').map((e) => {
+    let displayDataToArray = displayData.split(' ').map((e) => {
         if (/\d/.test(e)) {
             return Number(e)
         }
@@ -106,7 +123,6 @@ export default (state) => {
             displayDataToArray[index - 1] = null
         }
     })
-
     // addition logic
     // [null, 2, '+', 225] ~> [2, 225]
     // [null, null, 36] ~> [36]
@@ -136,53 +152,25 @@ export default (state) => {
     // return String(additionResult)
 }
 </code></pre>
-                </article>
-            </section>
-        </div>
+        </article>
+    </section>
 
-        <nav>
-            <h2><a href="index.html">Home</a></h2>
-            <h3>Modules</h3>
-            <ul>
-                <li>
-                    <a href="module-selector-selectCalcResult.html"
-                        >selector-selectCalcResult</a
-                    >
-                </li>
-                <li>
-                    <a
-                        href="module-selector-selectCorrectRegExpForCalcScreen.html"
-                        >selector-selectCorrectRegExpForCalcScreen</a
-                    >
-                </li>
-                <li>
-                    <a href="module-utils-iCreateElement.html"
-                        >utils-iCreateElement</a
-                    >
-                </li>
-                <li>
-                    <a href="module-utils-keyboardEventListener.html"
-                        >utils-keyboardEventListener</a
-                    >
-                </li>
-                <li><a href="module-utils-myLib.html">utils-myLib</a></li>
-                <li>
-                    <a href="module-utils-uiDidMount.html">utils-uiDidMount</a>
-                </li>
-            </ul>
-        </nav>
 
-        <br class="clear" />
 
-        <footer>
-            Documentation generated by
-            <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sun Sep
-            20 2020 13:44:20 GMT+0200 (GMT+02:00)
-        </footer>
 
-        <script>
-            prettyPrint()
-        </script>
-        <script src="scripts/linenumber.js"></script>
-    </body>
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-selector-selectCalcResult.html">selector-selectCalcResult</a></li><li><a href="module-selector-selectCorrectRegExpForCalcScreen.html">selector-selectCorrectRegExpForCalcScreen</a></li><li><a href="module-utils-iCreateElement.html">utils-iCreateElement</a></li><li><a href="module-utils-keyboardEventListener.html">utils-keyboardEventListener</a></li><li><a href="module-utils-myLib.html">utils-myLib</a></li><li><a href="module-utils-uiDidMount.html">utils-uiDidMount</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Sep 30 2020 10:13:15 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
 </html>

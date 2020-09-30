@@ -186,4 +186,13 @@ describe('selectCorrectRegExpForCalcScreen.js', () => {
         // expectation
         expect(data).toBe('')
     })
+    it('RegExp for calcScreen is work: every character and word becoming to "" except "error" and "e" ', () => {
+        // run function
+        const data = selectCorrectRegExpForCalcScreen({
+            // '2e-11 - 5658 + 645 * 465 ÷ 4LaunchApplication2 ÷ 6'
+            displayData: '321LaunchApplication2',
+        })
+        // expectation
+        expect(data).toBe('321')        
+    })
 })

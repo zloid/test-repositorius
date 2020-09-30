@@ -3,7 +3,7 @@
 /**
  * For transpile any string to correct data for calculator screen
  * @function selectCorrectRegExpForCalcScreen
- * @date 2020-09-07
+ * @date 2020-09-30
  * @param {{displayData: ''}} state - RTK state.displayData
  * @param {string} payload - action.payload, string for RegExp
  * @returns {string}
@@ -21,6 +21,28 @@ export default function (state = { displayData: '' }, payload = '') {
         case /error/i.test(middleStr):
             // 'error' ~> ''
             return middleStr.replace(/error/gi, '')
+        case /e - /.test(middleStr):
+            // '8.1e - 9' ~> '8.1e-9'
+            middleStr = middleStr.replace(/e - /gi, 'e-')
+        case /[a-z]/gi.test(middleStr):
+            // '0.1e-9' match exponential
+            const regExp = /\d*\.*\de-\d+/
+            // only words matching
+            const regExpTwo = /(\s*)([a-z]+\d*)/gi
+            // if exponential number exist, f.e.'0.1e-9'
+            if (regExp.test(middleStr)) {
+                // take expotential f.e.'0.1e-9'
+                const expl = middleStr.match(regExp).join('')
+                middleStr = middleStr.replace(regExp, '##%#')
+                middleStr = middleStr.replace(regExpTwo, '')
+                // return expotential
+                middleStr = middleStr.replace(/##%#/, expl)
+            } else {
+                // '1.1 + 1 / meow + 4 meow4 blah' ~> '1.1 + 1 /  + 4  '
+                middleStr = middleStr.replace(regExpTwo, '')
+            }
+
+        // middleStr.replace(/(\d)\w/gi, $1)
         case /\//.test(middleStr):
             // '/' ~> '÷'
             middleStr = middleStr.replace(/\//g, '÷')
@@ -70,9 +92,10 @@ export default function (state = { displayData: '' }, payload = '') {
         case /\s{2}/.test(middleStr):
             // '1     +    2    ' ~> '1 + 2'
             middleStr = middleStr.replace(/\s{2}/g, ' ')
+
         case /e - /.test(middleStr):
             // '8.1e - 9' ~> '8.1e-9'
-            middleStr = middleStr.replace(/e - /g, 'e-')
+            middleStr = middleStr.replace(/e - /gi, 'e-')
 
         default:
             break

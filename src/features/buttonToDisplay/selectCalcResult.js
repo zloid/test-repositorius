@@ -15,39 +15,47 @@
  * selectCalcResult({displayData: '0 ÷ 0'})
  */
 
-export default (state) => {
-    // todo
-    console.log(state.displayData)
+export default ({ displayData }) => {
+    // let { displayData } = state
 
     // todo
-    // let { displayData } = state
+    console.log('displayData::: ', displayData)
+
     // displayData = 123123
     // console.log('dd::: ', displayData)
-    
 
-    if (/error/gi.test(state.displayData)) {
+    // todo
+    /*
+     * @param {string} stringForCheck - from state
+     * @returns {void | string}
+     */
+    /* function errorHandler(stringForCheck) {
+        if (/error/gi.test(stringForCheck)) {
+            return 'Error'
+        }
+    } */
+
+    // errorHandler for getting quick answer
+    if (/error|nan/gi.test(displayData)) {
         return 'Error'
     }
 
-    // todo
-    //'^-3' ~> '0 - 3'
-    // inp = inp.replace(/^-(\d*)/, '0 - $1')
+    /**
+     * For handle of early data
+     * @param {string} data - from state
+     * @example
+     * // '0 - 8'
+     * correctBeginOfSingleNegativeNmbr('- 8')
+     */
+    function correctBeginOfSingleNegativeNmbr(data) {
+        return data.replace(/^-\s*(\d*)/, '0 - $1')
+    }
 
-    // let beginDataSubstract = state.displayData().replace(/^-(\d*)/, '0 - $1')
-    // todo
-    // '- 8' ~> '0 - 8'
-    const beginDataSubstract = state.displayData.replace(/^-\s*(\d*)/, '0 - $1')
-    // console.log('beginDataSubstract::: ', beginDataSubstract)
+    displayData = correctBeginOfSingleNegativeNmbr(displayData)
 
-    // initial
     // '2 + 225' ~> [2, '+', 225]
-    let displayDataToArray = beginDataSubstract.split(' ').map((e) => {
+    let displayDataToArray = displayData.split(' ').map((e) => {
         if (/\d/.test(e)) {
-            function name(params) {
-                function name(params) {
-                    function name(params) {}
-                }
-            }
             return Number(e)
         }
         return e

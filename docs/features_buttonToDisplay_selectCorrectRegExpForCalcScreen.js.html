@@ -1,41 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>
-            JSDoc: Source:
-            features/buttonToDisplay/selectCorrectRegExpForCalcScreen.js
-        </title>
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: features/buttonToDisplay/selectCorrectRegExpForCalcScreen.js</title>
 
-        <script src="scripts/prettify/prettify.js"></script>
-        <script src="scripts/prettify/lang-css.js"></script>
-        <!--[if lt IE 9]>
-            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
-        <link
-            type="text/css"
-            rel="stylesheet"
-            href="styles/prettify-tomorrow.css"
-        />
-        <link
-            type="text/css"
-            rel="stylesheet"
-            href="styles/jsdoc-default.css"
-        />
-    </head>
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
 
-    <body>
-        <div id="main">
-            <h1 class="page-title">
-                Source:
-                features/buttonToDisplay/selectCorrectRegExpForCalcScreen.js
-            </h1>
+<body>
 
-            <section>
-                <article>
-                    <pre
-                        class="prettyprint source linenums"
-                    ><code>/** @module selector-selectCorrectRegExpForCalcScreen */
+<div id="main">
+
+    <h1 class="page-title">Source: features/buttonToDisplay/selectCorrectRegExpForCalcScreen.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/** @module selector-selectCorrectRegExpForCalcScreen */
 
 /**
  * For transpile any string to correct data for calculator screen
@@ -119,134 +110,27 @@ export default function (state = { displayData: '' }, payload = '') {
     // 1000_000 ~> 1000000
 
     return middleStr
-
-    // old version
-    // todo_1
-    // 'error' ~> ''
-    // middleStr = middleStr.replace(/error/gi, '')
-
-    // todo_1
-    // '/' ~> '÷'
-    // middleStr = middleStr.replace(/\//g, '÷')
-
-    // todo_1
-    // ',' ~> '.'
-    // middleStr = middleStr.replace(/\,/g, '.')
-
-    // todo_1
-    // begin > 00 > 0
-    // middleStr = middleStr.replace(/^0+/, '0')
-
-    // todo_1
-    // begin > 02 > 0
-    // middleStr = middleStr.replace(/^0(\d|[(])/, '$1')
-
-    // todo_1
-    // begin > 012 > 12; + 02 > + 2 || -*÷
-    // middleStr = middleStr.replace(/([+-]|÷|\*)\s*0(\d)/, '$1 $2')
-
-    // todo_1
-    // '' * 5 > 5 * 5  ; ÷ 5 > 5 ÷ 5
-    // middleStr = middleStr.replace(/^\s*(\*|÷)\s*(\d+)/, '$2 $1 $2')
-
-    // todo_1
-    //++ -- ÷÷ *** +-÷  > + - * ÷
-    // '+5' ~> '+ 5'
-    /* 
-    middleStr = middleStr.replace(
-        /(\s*\+\s*|\s*-\s*|\s*÷\s*|\s*\*\s*)+/g,
-        ' $1 '
-    ) 
-    */
-
-    //++ -- ÷÷ *** +-÷  > + - * ÷
-    // '+5' ~> '+ 5'
-    // middleStr = middleStr.replace(
-    //     /(\s*\+\s*|\s*-\s*|\s*÷\s*|\s*\*\s*)+/g,
-    //     ' $1 '
-    // )
-
-    // todo_1
-    // '....' ~> '.' ; '((' ~> '(' ; '))' ~> ')'
-    // middleStr = middleStr.replace(/(\.|\(|\))+/g, '$1')
-
-    // todo_1
-    //begin > ) > (
-    // middleStr = middleStr.replace(/^0\)/, '(')
-
-    //() > ' '
-    // middleStr = middleStr.replace(/\(\)/, ' ');
-
-    // todo_1
-    //'431.55.66 + 1.2.3' ~> '431.5566 + 1.23'
-    // middleStr = middleStr.replace(/(\d+\.\d+)\./g, '$1')
-
-    // todo_1
-    // '^.7' ~> '0.7'
-    // '^.' ~> '0.'
-    // middleStr = middleStr.replace(/[^\d]\./, ' 0.')
-    // middleStr = middleStr.replace(/^\./, '0.')
-
-    // todo_1
-    //  '7. + 1' ~> '7 + 1'; '7. + 32. - 5.' ~> '7 + 32 - 5.'
-    // middleStr = middleStr.replace(/([\d])\.\s/g, '$1 ')
-
-    // todo_1
-    // '1     +    2    ' -> '1 + 2'
-    // middleStr = middleStr.replace(/\s{2}/g, ' ')
-
-    // todo_1
-    // '8.1e - 9' ~> '8.1e-9'
-    // middleStr = middleStr.replace(/e - /g, 'e-')
 }
 </code></pre>
-                </article>
-            </section>
-        </div>
+        </article>
+    </section>
 
-        <nav>
-            <h2><a href="index.html">Home</a></h2>
-            <h3>Modules</h3>
-            <ul>
-                <li>
-                    <a href="module-selector-selectCalcResult.html"
-                        >selector-selectCalcResult</a
-                    >
-                </li>
-                <li>
-                    <a
-                        href="module-selector-selectCorrectRegExpForCalcScreen.html"
-                        >selector-selectCorrectRegExpForCalcScreen</a
-                    >
-                </li>
-                <li>
-                    <a href="module-utils-iCreateElement.html"
-                        >utils-iCreateElement</a
-                    >
-                </li>
-                <li>
-                    <a href="module-utils-keyboardEventListener.html"
-                        >utils-keyboardEventListener</a
-                    >
-                </li>
-                <li><a href="module-utils-myLib.html">utils-myLib</a></li>
-                <li>
-                    <a href="module-utils-uiDidMount.html">utils-uiDidMount</a>
-                </li>
-            </ul>
-        </nav>
 
-        <br class="clear" />
 
-        <footer>
-            Documentation generated by
-            <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sun Sep
-            20 2020 13:44:20 GMT+0200 (GMT+02:00)
-        </footer>
 
-        <script>
-            prettyPrint()
-        </script>
-        <script src="scripts/linenumber.js"></script>
-    </body>
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-selector-selectCalcResult.html">selector-selectCalcResult</a></li><li><a href="module-selector-selectCorrectRegExpForCalcScreen.html">selector-selectCorrectRegExpForCalcScreen</a></li><li><a href="module-utils-iCreateElement.html">utils-iCreateElement</a></li><li><a href="module-utils-keyboardEventListener.html">utils-keyboardEventListener</a></li><li><a href="module-utils-myLib.html">utils-myLib</a></li><li><a href="module-utils-uiDidMount.html">utils-uiDidMount</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Wed Sep 30 2020 10:13:15 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
 </html>
