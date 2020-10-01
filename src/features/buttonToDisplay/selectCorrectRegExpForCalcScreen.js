@@ -12,13 +12,16 @@
  *  selectCorrectRegExpForCalcScreen({displayData: '0'}, '   000 00.....1 ++ 2214 *** 21   ')
  */
 export default function (state = { displayData: '' }, payload = '') {
-    // const oldWithNewScreenData = state.displayData.trim() + payload.trim()
-    // let middleStr = oldWithNewScreenData
-
     let middleStr = state.displayData.trim() + payload.trim()
 
     switch (true) {
+        case middleStr === '':
+            return '0'
+        case /error[a-z]/i.test(middleStr):
+            // 'errorabc7' ~> '0'
+            return middleStr.replace(/error\w*/gi, '0')
         case /error/i.test(middleStr):
+            // 'error123' ~> '123'
             // 'error' ~> ''
             return middleStr.replace(/error/gi, '')
         case /e - /.test(middleStr):
@@ -28,7 +31,7 @@ export default function (state = { displayData: '' }, payload = '') {
             // '0.1e-9' match exponential
             const regExp = /\d*\.*\de-\d+/
             // only words matching
-            const regExpTwo = /(\s*)([a-z]+\d*)/gi
+            const regExpTwo = /\s*[a-z]+\d*/gi
             // if exponential number exist, f.e.'0.1e-9'
             if (regExp.test(middleStr)) {
                 // take expotential f.e.'0.1e-9'
@@ -41,7 +44,6 @@ export default function (state = { displayData: '' }, payload = '') {
                 // '1.1 + 1 / meow + 4 meow4 blah' ~> '1.1 + 1 /  + 4  '
                 middleStr = middleStr.replace(regExpTwo, '')
             }
-
         // middleStr.replace(/(\d)\w/gi, $1)
         case /\//.test(middleStr):
             // '/' ~> '÷'
@@ -96,7 +98,6 @@ export default function (state = { displayData: '' }, payload = '') {
         case /e - /.test(middleStr):
             // '8.1e - 9' ~> '8.1e-9'
             middleStr = middleStr.replace(/e - /gi, 'e-')
-
         default:
             break
     }

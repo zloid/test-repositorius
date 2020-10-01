@@ -13,11 +13,8 @@ store.subscribe(() => {
     App.render()
 })
 
-describe('App.js - calc mixed logic', () => {
-    it('initial div "root" is exist', () => {
-        screen.getByTestId(/^mainRootDiv$/)
-    })
-    it('v98034298, calc button "÷" is working', () => {
+describe('App.js - calc mixed logic is working', () => {
+    beforeEach(() => {
         // initial
         // must be here
         document.getElementById('root').innerHTML += ''
@@ -27,9 +24,14 @@ describe('App.js - calc mixed logic', () => {
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // calc screen is clear
         expect(elementClcScrn.textContent.trim()).toBe('0')
-
-        // mixed
-        // 99 ÷ 3 + 11
+    })
+    it('initial div "root" is exist', () => {
+        screen.getByTestId(/^mainRootDiv$/)
+    })
+    it('"99 ÷ 3 + 11" ~> "44"', () => {
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
@@ -42,4 +44,92 @@ describe('App.js - calc mixed logic', () => {
         // calc screen result
         expect(elementClcScrn.textContent.trim()).toBe('44')
     })
+    it('"0 / 0 + 1 / 1234567890" ~> "Error"', () => {
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // mixed logic
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnFour$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnFive$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnSix$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnSeven$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnEight$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('Error')
+    })
+    it('exponential number: "00 + 1 / 1234567890" ~> "8.1e-10"', () => {
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // mixed logic
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnFour$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnFive$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnSix$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnSeven$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnEight$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('8.1e-10')
+    })
+    it('"1 / 1234567890 + 1" ~> "1.00000000081"', () => {
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // mixed logic
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnFour$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnFive$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnSix$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnSeven$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnEight$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('1.00000000081')
+    })
+
+    /* 
+    pattern
+    // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // mixed logic        
+        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('9999999')
+    
+    */
 })

@@ -25,6 +25,14 @@ describe('selectCorrectRegExpForCalcScreen.js', () => {
         // expectation
         expect(data).toBe('123')
     })
+    it('RegExp for calcScreen is work: "Errorabc" ~> "0" ', () => {
+        // run function
+        const data = selectCorrectRegExpForCalcScreen({
+            displayData: 'ErrorLaunchApplication2',
+        })
+        // expectation
+        expect(data).toBe('0')
+    })
     it('RegExp for calcScreen is work: "/" ~> "÷" ', () => {
         // run function
         const data = selectCorrectRegExpForCalcScreen({
@@ -177,22 +185,31 @@ describe('selectCorrectRegExpForCalcScreen.js', () => {
         // expectation
         expect(data).toBe('7 + 32 - 5.')
     })
-    // /////////////////////EXAMPLE//////////////////////////
+    it('RegExp for calcScreen is work: every character and word becoming to "" except "error" and "e" ', () => {
+        // run function
+        const data = selectCorrectRegExpForCalcScreen({
+            displayData: '321 LaunchApplication2 + 0.01e-123',
+        })
+        // expectation
+        expect(data).toBe('321 + 0.01e-123')
+    })
+    it('RegExp for "exponential number" is work: "0.01e-123 + 1 * 3 / 5 - 8 + blah" ~> "0.01e-123 + 1 * 3 / 5 - 8" ', () => {
+        // run function
+        const data = selectCorrectRegExpForCalcScreen({
+            displayData: 'foobar0.01e-123 + 1 * 3 / 5 - 8 + blah',
+        })
+        // expectation
+        expect(data).toBe('0.01e-123 + 1 * 3 ÷ 5 - 8 + ')
+    })
+
+    //EXAMPLE/////////////////////EXAMPLE//////////////////////////EXAMPLE
     it('RegExp for calcScreen is work: "" ~> "" ', () => {
         // run function
         const data = selectCorrectRegExpForCalcScreen({
             displayData: '',
         })
         // expectation
-        expect(data).toBe('')
+        expect(data).toBe('0')
     })
-    it('RegExp for calcScreen is work: every character and word becoming to "" except "error" and "e" ', () => {
-        // run function
-        const data = selectCorrectRegExpForCalcScreen({
-            // '2e-11 - 5658 + 645 * 465 ÷ 4LaunchApplication2 ÷ 6'
-            displayData: '321LaunchApplication2',
-        })
-        // expectation
-        expect(data).toBe('321')        
-    })
+    //EXAMPLE/////////////////////EXAMPLE//////////////////////////EXAMPLE
 })

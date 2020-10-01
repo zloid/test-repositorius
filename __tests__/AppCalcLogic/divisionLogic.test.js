@@ -43,7 +43,7 @@ describe('App.js - calc division logic', () => {
     })
     it('calc button "÷" is working: 99 / 3 / 10 = 3.3', () => {
         // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)                                                                                                                   
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // division
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
@@ -88,5 +88,5 @@ describe('App.js - calc division logic', () => {
     })
 
     // todo
-    // '123 /' ~> '123 /' 
+    // '123 /' ~> '123 /'
 })

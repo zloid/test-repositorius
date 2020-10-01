@@ -105,11 +105,12 @@ export default ({ displayData }) => {
 
     // avoid 0.1 + 0.2
     // additionResult = parseFloat(additionResult.toFixed(15))
-    additionResult = parseFloat(additionResult.toFixed(11))
+    additionResult = parseFloat(additionResult.toFixed(15))
 
     // todo
     // -8 ~> '-8' ~> '- 8'
     const finalResult = String(additionResult).replace(/^-(\s*)+/g, '- $1')
+    // const finalResult = additionResult.replace(/^-(\s*)+/g, '- $1')
 
     // 'NaN' ~> 'Error'
     if (/nan/gi.test(finalResult)) {
