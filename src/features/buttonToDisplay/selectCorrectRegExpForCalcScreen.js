@@ -17,6 +17,8 @@ export default function (state = { displayData: '' }, payload = '') {
     switch (true) {
         case middleStr === '':
             return '0'
+        case /infinity\d/i.test(middleStr):
+            middleStr = middleStr.replace(/(-*\s*infinity)\d/i, '$1')
         case /error[a-z]/i.test(middleStr):
             // 'errorabc7' ~> '0'
             return middleStr.replace(/error\w*/gi, '0')
@@ -37,12 +39,22 @@ export default function (state = { displayData: '' }, payload = '') {
                 // take expotential f.e.'0.1e-9'
                 const expl = middleStr.match(regExp).join('')
                 middleStr = middleStr.replace(regExp, '##%#')
+                // safe -Infinity-
+                middleStr = middleStr.replace(/infinity/gi, '%%#%')
+                // clear screen from unusual words
                 middleStr = middleStr.replace(regExpTwo, '')
                 // return expotential
                 middleStr = middleStr.replace(/##%#/, expl)
+                // return -Infinity-
+                middleStr = middleStr.replace(/%%#%/gi, 'Infinity')
             } else {
+                // safe -Infinity-
+                middleStr = middleStr.replace(/infinity/gi, '%%#%')
+                // clear screen from unusual words
                 // '1.1 + 1 / meow + 4 meow4 blah' ~> '1.1 + 1 /  + 4  '
                 middleStr = middleStr.replace(regExpTwo, '')
+                // return -Infinity-
+                middleStr = middleStr.replace(/%%#%/gi, 'Infinity')
             }
         // middleStr.replace(/(\d)\w/gi, $1)
         case /\//.test(middleStr):

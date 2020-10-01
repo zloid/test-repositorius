@@ -116,9 +116,118 @@ describe('App.js - calc mixed logic is working', () => {
         // calc screen result
         expect(elementClcScrn.textContent.trim()).toBe('1.00000000081')
     })
+    it('"- 1 / 0 " ~> "- Infinity"', () => {
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // mixed logic
+        fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
+    })
+    it('"- 1 / 0 - 1" ~> "- Infinity"', () => {
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // mixed logic
+        fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
+    })
+    it('"- Infinity - 1" ~> "- Infinity"', () => {
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // mixed logic
+        fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        // equal to get '- Infinity'
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // fire
+        fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
+    })
+    it('"- Infinity123 - 123" ~> "- Infinity"', () => {
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // mixed logic
+        fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        // equal to get '- Infinity'
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // fire next
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
+    })
+    it('"Infinity - Infinity" ~> "Error"', () => {
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // mixed logic
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        // equal to get '- Infinity'
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // fire next
+        fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
+         // mixed logic
+         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+         // equal to get '- Infinity'
+         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+         expect(elementClcScrn.textContent.trim()).toBe('Error')
+    })
+    it('"- Infinity - Infinity" ~> "- Infinity"', () => {
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // mixed logic
+        fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        // equal to get '- Infinity'
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // fire next
+        fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
+         // mixed logic
+         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+         // equal to get '- Infinity'
+         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+         expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
+    })
 
     /* 
     pattern
+
     // result will be here
         const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic        

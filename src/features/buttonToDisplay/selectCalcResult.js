@@ -17,27 +17,16 @@
 
 export default ({ displayData }) => {
     // let { displayData } = state
-
     // todo
-    console.log('displayData::: ', displayData)
+    // console.log('displayData::: ', displayData)
 
-    // displayData = 123123
-    // console.log('dd::: ', displayData)
-
-    // todo
-    /*
-     * @param {string} stringForCheck - from state
-     * @returns {void | string}
-     */
-    /* function errorHandler(stringForCheck) {
-        if (/error/gi.test(stringForCheck)) {
-            return 'Error'
-        }
-    } */
-
-    // errorHandler for getting quick answer
-    if (/error|nan/gi.test(displayData)) {
+    // error handler for getting quick answer
+    if (/error|nan/i.test(displayData)) {
         return 'Error'
+    }
+    // infinity handler for getting quick answer
+    if (/^-*\s*infinity$/i.test(displayData)) {        
+        return displayData
     }
 
     /**
@@ -105,7 +94,7 @@ export default ({ displayData }) => {
 
     // avoid 0.1 + 0.2
     // additionResult = parseFloat(additionResult.toFixed(15))
-    additionResult = parseFloat(additionResult.toFixed(15))
+    additionResult = parseFloat(additionResult.toFixed(11))
 
     // todo
     // -8 ~> '-8' ~> '- 8'
