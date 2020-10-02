@@ -196,13 +196,13 @@ describe('App.js - calc mixed logic is working', () => {
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // fire next
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
-         // mixed logic
-         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
-         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-         // equal to get '- Infinity'
-         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
-         expect(elementClcScrn.textContent.trim()).toBe('Error')
+        // mixed logic
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        // equal to get '- Infinity'
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        expect(elementClcScrn.textContent.trim()).toBe('Error')
     })
     it('"- Infinity - Infinity" ~> "- Infinity"', () => {
         // result will be here
@@ -216,13 +216,13 @@ describe('App.js - calc mixed logic is working', () => {
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // fire next
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
-         // mixed logic
-         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
-         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-         // equal to get '- Infinity'
-         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
-         expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
+        // mixed logic
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        // equal to get '- Infinity'
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
     })
 
     /* 

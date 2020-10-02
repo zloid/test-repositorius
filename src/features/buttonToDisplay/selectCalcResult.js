@@ -16,16 +16,12 @@
  */
 
 export default ({ displayData }) => {
-    // let { displayData } = state
-    // todo
-    // console.log('displayData::: ', displayData)
-
     // error handler for getting quick answer
     if (/error|nan/i.test(displayData)) {
         return 'Error'
     }
     // infinity handler for getting quick answer
-    if (/^-*\s*infinity$/i.test(displayData)) {        
+    if (/^-*\s*infinity$/i.test(displayData)) {
         return displayData
     }
 
@@ -40,50 +36,61 @@ export default ({ displayData }) => {
         return data.replace(/^-\s*(\d*)/, '0 - $1')
     }
 
-    displayData = correctBeginOfSingleNegativeNmbr(displayData)
+    /**
+     * For convert input sting to specific arrays of numbers and strings (operators and operands)
+     * @param {string} data - from state
+     * @returns {Array<string|number>}
+     * @example
+     * // [2, '+', 225]
+     * turnDisplayDataToArray('2 + 225')
+     */
+    function turnDisplayDataToArray(data) {
+        const outputData = data.split(' ').map((e) => {
+            if (/\d/.test(e)) {
+                return Number(e)
+            }
+            return e
+        })
+        return outputData
+    }
 
-    // '2 + 225' ~> [2, '+', 225]
-    let displayDataToArray = displayData.split(' ').map((e) => {
-        if (/\d/.test(e)) {
-            return Number(e)
-        }
-        return e
-    })
+    displayData = correctBeginOfSingleNegativeNmbr(displayData)
+    displayData = turnDisplayDataToArray(displayData)
 
     // multiplication and division logic
     // [9, '*', 4] ~> [null, null, 36]
     // [9, '÷', 4] ~> [null, null, 2.25]
-    displayDataToArray.forEach((element, index) => {
+    displayData.forEach((element, index) => {
         if (element === '*') {
-            displayDataToArray[index + 1] =
-                displayDataToArray[index - 1] * displayDataToArray[index + 1]
-            displayDataToArray[index] = null
-            displayDataToArray[index - 1] = null
+            displayData[index + 1] =
+                displayData[index - 1] * displayData[index + 1]
+            displayData[index] = null
+            displayData[index - 1] = null
         }
         if (element === '÷') {
-            displayDataToArray[index + 1] =
-                displayDataToArray[index - 1] / displayDataToArray[index + 1]
-            displayDataToArray[index] = null
-            displayDataToArray[index - 1] = null
+            displayData[index + 1] =
+                displayData[index - 1] / displayData[index + 1]
+            displayData[index] = null
+            displayData[index - 1] = null
         }
     })
 
     // subtraction logic
     // [null, null, 36, '-', 3] ~> [36, '-', 3]
-    displayDataToArray = displayDataToArray.filter((e) => e !== null)
+    displayData = displayData.filter((e) => e !== null)
     // [36, '-', 3] ~> [33]
-    displayDataToArray.forEach((element, index) => {
+    displayData.forEach((element, index) => {
         if (element === '-') {
-            displayDataToArray[index + 1] =
-                displayDataToArray[index - 1] - displayDataToArray[index + 1]
-            displayDataToArray[index] = null
-            displayDataToArray[index - 1] = null
+            displayData[index + 1] =
+                displayData[index - 1] - displayData[index + 1]
+            displayData[index] = null
+            displayData[index - 1] = null
         }
     })
     // addition logic
     // [null, 2, '+', 225] ~> [2, 225]
     // [null, null, 36] ~> [36]
-    const getAllNumbersForAddition = displayDataToArray.filter(
+    const getAllNumbersForAddition = displayData.filter(
         (e) => typeof e === 'number'
     )
     // [2, 225] ~> 227
