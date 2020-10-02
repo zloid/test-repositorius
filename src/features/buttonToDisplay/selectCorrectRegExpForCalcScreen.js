@@ -3,7 +3,7 @@
 /**
  * For transpile any string to correct data for calculator screen
  * @function selectCorrectRegExpForCalcScreen
- * @date 2020-09-07
+ * @date 2020-09-30
  * @param {{displayData: ''}} state - RTK state.displayData
  * @param {string} payload - action.payload, string for RegExp
  * @returns {string}
@@ -12,15 +12,51 @@
  *  selectCorrectRegExpForCalcScreen({displayData: '0'}, '   000 00.....1 ++ 2214 *** 21   ')
  */
 export default function (state = { displayData: '' }, payload = '') {
-    // const oldWithNewScreenData = state.displayData.trim() + payload.trim()
-    // let middleStr = oldWithNewScreenData
-
     let middleStr = state.displayData.trim() + payload.trim()
 
     switch (true) {
+        case middleStr === '':
+            return '0'
+        case /infinity\d/i.test(middleStr):
+            middleStr = middleStr.replace(/(-*\s*infinity)\d/i, '$1')
+        case /error[a-z]/i.test(middleStr):
+            // 'errorabc7' ~> '0'
+            return middleStr.replace(/error\w*/gi, '0')
         case /error/i.test(middleStr):
+            // 'error123' ~> '123'
             // 'error' ~> ''
             return middleStr.replace(/error/gi, '')
+        case /e - /.test(middleStr):
+            // '8.1e - 9' ~> '8.1e-9'
+            middleStr = middleStr.replace(/e - /gi, 'e-')
+        case /[a-z]/gi.test(middleStr):
+            // '0.1e-9' match exponential
+            const regExp = /\d*\.*\de-\d+/
+            // only words matching
+            const regExpTwo = /\s*[a-z]+\d*/gi
+            // if exponential number exist, f.e.'0.1e-9'
+            if (regExp.test(middleStr)) {
+                // take expotential f.e.'0.1e-9'
+                const expl = middleStr.match(regExp).join('')
+                middleStr = middleStr.replace(regExp, '##%#')
+                // safe -Infinity-
+                middleStr = middleStr.replace(/infinity/gi, '%%#%')
+                // clear screen from unusual words
+                middleStr = middleStr.replace(regExpTwo, '')
+                // return expotential
+                middleStr = middleStr.replace(/##%#/, expl)
+                // return -Infinity-
+                middleStr = middleStr.replace(/%%#%/gi, 'Infinity')
+            } else {
+                // safe -Infinity-
+                middleStr = middleStr.replace(/infinity/gi, '%%#%')
+                // clear screen from unusual words
+                // '1.1 + 1 / meow + 4 meow4 blah' ~> '1.1 + 1 /  + 4  '
+                middleStr = middleStr.replace(regExpTwo, '')
+                // return -Infinity-
+                middleStr = middleStr.replace(/%%#%/gi, 'Infinity')
+            }
+        // middleStr.replace(/(\d)\w/gi, $1)
         case /\//.test(middleStr):
             // '/' ~> '÷'
             middleStr = middleStr.replace(/\//g, '÷')
@@ -70,10 +106,10 @@ export default function (state = { displayData: '' }, payload = '') {
         case /\s{2}/.test(middleStr):
             // '1     +    2    ' ~> '1 + 2'
             middleStr = middleStr.replace(/\s{2}/g, ' ')
+
         case /e - /.test(middleStr):
             // '8.1e - 9' ~> '8.1e-9'
-            middleStr = middleStr.replace(/e - /g, 'e-')
-
+            middleStr = middleStr.replace(/e - /gi, 'e-')
         default:
             break
     }
@@ -82,83 +118,4 @@ export default function (state = { displayData: '' }, payload = '') {
     // 1000_000 ~> 1000000
 
     return middleStr
-
-    // old version
-    // todo_1
-    // 'error' ~> ''
-    // middleStr = middleStr.replace(/error/gi, '')
-
-    // todo_1
-    // '/' ~> '÷'
-    // middleStr = middleStr.replace(/\//g, '÷')
-
-    // todo_1
-    // ',' ~> '.'
-    // middleStr = middleStr.replace(/\,/g, '.')
-
-    // todo_1
-    // begin > 00 > 0
-    // middleStr = middleStr.replace(/^0+/, '0')
-
-    // todo_1
-    // begin > 02 > 0
-    // middleStr = middleStr.replace(/^0(\d|[(])/, '$1')
-
-    // todo_1
-    // begin > 012 > 12; + 02 > + 2 || -*÷
-    // middleStr = middleStr.replace(/([+-]|÷|\*)\s*0(\d)/, '$1 $2')
-
-    // todo_1
-    // '' * 5 > 5 * 5  ; ÷ 5 > 5 ÷ 5
-    // middleStr = middleStr.replace(/^\s*(\*|÷)\s*(\d+)/, '$2 $1 $2')
-
-    // todo_1
-    //++ -- ÷÷ *** +-÷  > + - * ÷
-    // '+5' ~> '+ 5'
-    /* 
-    middleStr = middleStr.replace(
-        /(\s*\+\s*|\s*-\s*|\s*÷\s*|\s*\*\s*)+/g,
-        ' $1 '
-    ) 
-    */
-
-    //++ -- ÷÷ *** +-÷  > + - * ÷
-    // '+5' ~> '+ 5'
-    // middleStr = middleStr.replace(
-    //     /(\s*\+\s*|\s*-\s*|\s*÷\s*|\s*\*\s*)+/g,
-    //     ' $1 '
-    // )
-
-    // todo_1
-    // '....' ~> '.' ; '((' ~> '(' ; '))' ~> ')'
-    // middleStr = middleStr.replace(/(\.|\(|\))+/g, '$1')
-
-    // todo_1
-    //begin > ) > (
-    // middleStr = middleStr.replace(/^0\)/, '(')
-
-    //() > ' '
-    // middleStr = middleStr.replace(/\(\)/, ' ');
-
-    // todo_1
-    //'431.55.66 + 1.2.3' ~> '431.5566 + 1.23'
-    // middleStr = middleStr.replace(/(\d+\.\d+)\./g, '$1')
-
-    // todo_1
-    // '^.7' ~> '0.7'
-    // '^.' ~> '0.'
-    // middleStr = middleStr.replace(/[^\d]\./, ' 0.')
-    // middleStr = middleStr.replace(/^\./, '0.')
-
-    // todo_1
-    //  '7. + 1' ~> '7 + 1'; '7. + 32. - 5.' ~> '7 + 32 - 5.'
-    // middleStr = middleStr.replace(/([\d])\.\s/g, '$1 ')
-
-    // todo_1
-    // '1     +    2    ' -> '1 + 2'
-    // middleStr = middleStr.replace(/\s{2}/g, ' ')
-
-    // todo_1
-    // '8.1e - 9' ~> '8.1e-9'
-    // middleStr = middleStr.replace(/e - /g, 'e-')
 }

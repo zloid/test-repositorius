@@ -1,18 +1,20 @@
 import { createPopper } from '@popperjs/core'
+// import { createPopper } from '@popperjs/core/lib/popper-lite';
 
 const calcFeaturesLogic = () => {
     const button = document.getElementById('calcFeatures')
-    const tooltip = document.getElementById('tooltip')
+    const tooltip = document.getElementById('calc-tooltip')
 
     let popperInstance = null
 
     function create() {
         popperInstance = createPopper(button, tooltip, {
+            // placement: 'top',
             modifiers: [
                 {
                     name: 'offset',
                     options: {
-                        offset: [0, 8],
+                        offset: [0, 0],
                     },
                 },
             ],

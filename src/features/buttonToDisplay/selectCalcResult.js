@@ -14,27 +14,36 @@
  * // returns: 'Error'
  * selectCalcResult({displayData: '0 ÷ 0'})
  */
-export default (state) => {
-    // todo
-    console.log(state.displayData)
 
-    if (/error/gi.test(state.displayData)) {
+export default ({ displayData }) => {
+    // let { displayData } = state
+    // todo
+    // console.log('displayData::: ', displayData)
+
+    // error handler for getting quick answer
+    if (/error|nan/i.test(displayData)) {
         return 'Error'
     }
+    // infinity handler for getting quick answer
+    if (/^-*\s*infinity$/i.test(displayData)) {        
+        return displayData
+    }
 
-    // todo
-    //'^-3' ~> '0 - 3'
-    // inp = inp.replace(/^-(\d*)/, '0 - $1')
+    /**
+     * For handle of early data
+     * @param {string} data - from state
+     * @example
+     * // '0 - 8'
+     * correctBeginOfSingleNegativeNmbr('- 8')
+     */
+    function correctBeginOfSingleNegativeNmbr(data) {
+        return data.replace(/^-\s*(\d*)/, '0 - $1')
+    }
 
-    // let beginDataSubstract = state.displayData().replace(/^-(\d*)/, '0 - $1')
-    // todo
-    // '- 8' ~> '0 - 8'
-    const beginDataSubstract = state.displayData.replace(/^-\s*(\d*)/, '0 - $1')
-    // console.log('beginDataSubstract::: ', beginDataSubstract)
+    displayData = correctBeginOfSingleNegativeNmbr(displayData)
 
-    // initial
     // '2 + 225' ~> [2, '+', 225]
-    let displayDataToArray = beginDataSubstract.split(' ').map((e) => {
+    let displayDataToArray = displayData.split(' ').map((e) => {
         if (/\d/.test(e)) {
             return Number(e)
         }
@@ -71,7 +80,6 @@ export default (state) => {
             displayDataToArray[index - 1] = null
         }
     })
-
     // addition logic
     // [null, 2, '+', 225] ~> [2, 225]
     // [null, null, 36] ~> [36]
@@ -91,6 +99,7 @@ export default (state) => {
     // todo
     // -8 ~> '-8' ~> '- 8'
     const finalResult = String(additionResult).replace(/^-(\s*)+/g, '- $1')
+    // const finalResult = additionResult.replace(/^-(\s*)+/g, '- $1')
 
     // 'NaN' ~> 'Error'
     if (/nan/gi.test(finalResult)) {

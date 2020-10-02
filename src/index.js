@@ -6,9 +6,7 @@ import uiDidMount from './utils/uiDidMount'
 
 import store from './app/store'
 
-// styles
-import './bootstrap.css'
-// import './own.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './app/app.css'
 
 // creating DOM element: <div id="root"></div>
@@ -17,12 +15,10 @@ document.body.innerHTML = '<div id="root"></div>'
 // render Reef's App to #root
 // first render
 App.render()
+// run some scripts after App's first render
 uiDidMount()
-
-console.log('store.modernReducer.foo::: ', store.getState().modernReducer.foo)
 
 // render each time when dispatch redux actions
 store.subscribe(() => {
     App.render()
-    // console.log(store.getState().modernReducer)
 })

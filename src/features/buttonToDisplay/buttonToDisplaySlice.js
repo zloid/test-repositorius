@@ -10,11 +10,8 @@ const buttonToDisplaySlice = createSlice({
     name: 'digitalsDisplay',
     initialState,
     reducers: {
-        addButtonValueToScreen(state, action) {
-            state.displayData = selectCorrectRegExpForCalcScreen(
-                state,
-                action.payload
-            )
+        addButtonValueToScreen(state, { payload }) {
+            state.displayData = selectCorrectRegExpForCalcScreen(state, payload)
         },
         clearAllFromCalcScreen(state) {
             state.displayData = '0'

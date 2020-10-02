@@ -1,12 +1,12 @@
 # test-repositorius
 
-## Branch: master-calc ~> husky-try ~> calc-begin
+## Current branch: master-calc ~> husky-try ~> calc-begin ~> rpi_features_area ~> refactoring
 
 ## Features for USER:
 
-[+] click on calc's screen for get answer
-[-] keyboard for input numbers
-[-][-]
+[+] click on calc's screen for get result \
+[+] keyboard is enable for inputting numbers \
+[-] 1000000 ~> 1000_000 ~> 1000000
 
 ## Features for DEV:
 
@@ -21,6 +21,7 @@
 -   @babel for: es6 to es5 and correct work with jest & ESM
 -   JSDoc as documentation
 -   husky: for pre-commit hooks
+-   CSS is Auto-Purge, while build creating
 
 ## You can:
 
@@ -30,3 +31,4 @@
 -   npm run build (for creating public build, index.html autogenerate)
 -   npm run doc (for create docs for app by jsdoc)
 -   npm run serve (for run app local server and www)
+-   use VSC + Extensions: "Comment tagged templates", "lit-html", for best expierence with js template literals

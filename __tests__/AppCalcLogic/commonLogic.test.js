@@ -131,6 +131,8 @@ describe('App.js - calc logic', () => {
     // after
     // click 5 = 5
 
-    // todo -fn- + F4 ~> -nothing-
-    // '9LaunchApplication2' ~> '9'
+    // todo
+    // click 5 / 0 = 'infiniti'
+    // after
+    // click f4 = 0
 })

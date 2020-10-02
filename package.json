@@ -1,6 +1,6 @@
 {
     "name": "test-repositorius",
-    "version": "0.7.9",
+    "version": "0.7.45",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -26,8 +26,12 @@
         "html-webpack-plugin": "^4.3.0",
         "husky": "^4.2.5",
         "jest": "^26.1.0",
+        "jest-cli": "^26.4.2",
         "jsdoc": "^3.6.4",
+        "mini-css-extract-plugin": "^0.11.2",
         "prettier": "2.0.5",
+        "purgecss": "^3.0.0",
+        "purgecss-webpack-plugin": "^3.0.0",
         "serve": "^11.3.2",
         "style-loader": "^1.2.1",
         "webpack": "^4.43.0",
@@ -37,9 +41,10 @@
     "dependencies": {
         "@popperjs/core": "^2.3.3",
         "@reduxjs/toolkit": "^1.4.0",
+        "bootstrap": "^4.5.2",
         "reefjs": "^7.3.3"
     },
     "engines": {
-        "node": "14.4.0"
+        "node": "14.4.0>10.21.0"
     }
 }

@@ -14,10 +14,7 @@ store.subscribe(() => {
 })
 
 describe('App.js - calc division logic', () => {
-    it('initial div "root" is exist', () => {
-        screen.getByTestId(/^mainRootDiv$/)
-    })
-    it('v78945651, calc button "÷" is working', () => {
+    beforeEach(() => {
         // initial
         // must be here
         document.getElementById('root').innerHTML += ''
@@ -27,9 +24,14 @@ describe('App.js - calc division logic', () => {
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // calc screen is clear
         expect(elementClcScrn.textContent.trim()).toBe('0')
-
+    })
+    it('initial div "root" is exist', () => {
+        screen.getByTestId(/^mainRootDiv$/)
+    })
+    it('calc button "÷" is working: 99 / 3 = 33', () => {
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // division
-        // 99 ÷ 3
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
@@ -39,19 +41,10 @@ describe('App.js - calc division logic', () => {
         // calc screen result
         expect(elementClcScrn.textContent.trim()).toBe('33')
     })
-    it('v123465, calc button "÷" is working', () => {
-        // initial
-        // must be here
-        document.getElementById('root').innerHTML += ''
+    it('calc button "÷" is working: 99 / 3 / 10 = 3.3', () => {
         // result will be here
         const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // clear screen
-        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
-        // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
-
         // division
-        // 99 ÷ 3 ÷ 10
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
@@ -64,19 +57,10 @@ describe('App.js - calc division logic', () => {
         // calc screen result
         expect(elementClcScrn.textContent.trim()).toBe('3.3')
     })
-    it('v23156213, calc button "÷" is working', () => {
-        // initial
-        // must be here
-        document.getElementById('root').innerHTML += ''
+    it('calc button "÷" is working: 0 / 0 = "Error" ', () => {
         // result will be here
         const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // clear screen
-        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
-        // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
-
         // division
-        // 0 ÷ 0
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
@@ -85,4 +69,24 @@ describe('App.js - calc division logic', () => {
         // calc screen result
         expect(elementClcScrn.textContent.trim()).toBe('Error')
     })
+    it('is correct: 0 / 0 = "Error", "=", "=", "Error" ', () => {
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // division
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('Error')
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('Error')
+    })
+
+    // todo
+    // '123 /' ~> '123 /'
 })

@@ -1,17 +1,14 @@
-import CalcDisplay from '../calcDisplay/CalcDisplay'
-import CalcButtons from '../calcButtons/CalcButtons'
-import CalcFeatures from '../CalcFeatures/CalcFeatures'
+import { CalcDisplay } from '../calcDisplay/CalcDisplay'
+import { CalcButtons } from '../calcButtons/CalcButtons'
+import { FeaturesArea } from '../featuresArea/FeaturesArea'
 
-const CalcUi = () => `<div>
-
+const CalcUi = () => /* html */ `<div class="container">
     ${CalcDisplay()}
 
-    <hr />  
+    <hr />
 
-    ${CalcButtons()}
-    
-    ${CalcFeatures()}
-               
+    ${CalcButtons()} 
+    ${FeaturesArea()}
 </div>`
 
 export default CalcUi
