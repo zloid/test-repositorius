@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>JSDoc: Source: features/buttonToDisplay/selectCalcResult.js</title>
+    <head>
+        <meta charset="utf-8" />
+        <title>
+            JSDoc: Source: features/buttonToDisplay/selectCalcResult.js
+        </title>
 
-    <script src="scripts/prettify/prettify.js"> </script>
-    <script src="scripts/prettify/lang-css.js"> </script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-</head>
+        <script src="scripts/prettify/prettify.js"></script>
+        <script src="scripts/prettify/lang-css.js"></script>
+        <!--[if lt IE 9]>
+            <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <link
+            type="text/css"
+            rel="stylesheet"
+            href="styles/prettify-tomorrow.css"
+        />
+        <link
+            type="text/css"
+            rel="stylesheet"
+            href="styles/jsdoc-default.css"
+        />
+    </head>
 
-<body>
+    <body>
+        <div id="main">
+            <h1 class="page-title">
+                Source: features/buttonToDisplay/selectCalcResult.js
+            </h1>
 
-<div id="main">
-
-    <h1 class="page-title">Source: features/buttonToDisplay/selectCalcResult.js</h1>
-
-    
-
-
-
-    
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>/** @module selector-selectCalcResult */
+            <section>
+                <article>
+                    <pre
+                        class="prettyprint source linenums"
+                    ><code>/** @module selector-selectCalcResult */
 
 /**
  * Selector for getting calc result, main logic
@@ -45,6 +52,7 @@
 export const selectCalcResult = ({ displayData }) => {
     /**
      * Function for handle of early data
+     * @function correctBeginOfSingleNegativeNmbr
      * @param {string} data - from state
      * @example
      * // '0 - 8'
@@ -56,8 +64,9 @@ export const selectCalcResult = ({ displayData }) => {
 
     /**
      * Function for convert input sting to specific arrays of numbers and strings (operators and operands)
+     * @function turnDisplayDataToArray
      * @param {string} data - from state
-     * @returns {Array&lt;string|number>} - specific arrays of numbers and strings (operators and operands)
+     * @returns {Array&lt;string|number>} specific arrays of numbers and strings (operators and operands)
      * @example
      * // [2, '+', 225]
      * turnDisplayDataToArray('2 + 225')
@@ -72,17 +81,18 @@ export const selectCalcResult = ({ displayData }) => {
         return outputData
     }
 
-/**
- * Function for calc subtraction
- * @param {Array&lt;string|number>} data - specific arrays of numbers and strings (operators and operands) 
- * @returns {Array&lt;string|number>} - specific arrays of numbers and strings
- * @example
- * // [4, '+', 33]
- * subtraction([4, '+', 36, '-', 3])
- */
+    /**
+     * Function for calc subtraction
+     * @function subtraction
+     * @param {Array&lt;string|number>} data - specific arrays of numbers and strings (operators and operands)
+     * @returns {Array&lt;string|number>} specific arrays of numbers and strings
+     * @example
+     * // [4, '+', 33]
+     * subtraction([4, '+', 36, '-', 3])
+     */
     function subtraction(data) {
         // [null, null, 36, '-', 3] ~> [36, '-', 3]
-        data = data.filter((e) => e !== null)
+        // data = data.filter((e) => e !== null)
         // [36, '-', 3] ~> [33]
         for (let i = 0; i &lt; data.length; i++) {
             if (data[i] === '-') {
@@ -90,7 +100,49 @@ export const selectCalcResult = ({ displayData }) => {
                 data[i] = data[i - 1] = null
             }
         }
-        return data
+        return data.filter((e) => e !== null)
+    }
+
+    /**
+     * Function for calc multiplication
+     * @function multiplication
+     * @param {Array&lt;string|number>} data - specific arrays of numbers and strings (operators and operands)
+     * @returns {Array&lt;string|number>} specific arrays of numbers and strings
+     * @example
+     * // [4, '+', 12]
+     * multiplication([4, '+', 3, '*', 4])
+     */
+    function multiplication(data) {
+        // data = data.filter((e) => e !== null)
+        for (let i = 0; i &lt; data.length; i++) {
+            if (data[i] === '*') {
+                data[i + 1] = data[i - 1] * data[i + 1]
+                data[i] = data[i - 1] = null
+            }
+        }
+        // [4, '+', null, null, 12] ~> [4, '+', 12]
+        return data.filter((e) => e !== null)
+    }
+
+    /**
+     * Function for calc division
+     * @function division
+     * @param {Array&lt;string|number>} data - specific arrays of numbers and strings (operators and operands)
+     * @returns {Array&lt;string|number>} specific arrays of numbers and strings
+     * @example
+     * // [7, '+', 1]
+     * division([7, '+', 4, '÷', 4])
+     */
+    function division(data) {
+        // data = data.filter((e) => e !== null)
+        for (let i = 0; i &lt; data.length; i++) {
+            if (data[i] === '÷') {
+                data[i + 1] = data[i - 1] / data[i + 1]
+                data[i] = data[i - 1] = null
+            }
+        }
+        // [4, '+', null, null, 1] ~> [4, '+', 1]
+        return data.filter((e) => e !== null)
     }
 
     // error handler for getting quick answer
@@ -104,44 +156,10 @@ export const selectCalcResult = ({ displayData }) => {
 
     displayData = correctBeginOfSingleNegativeNmbr(displayData)
     displayData = turnDisplayDataToArray(displayData)
-    /* 
-    function calculateOperandOperatorLogic(displayData, operator) {
-       
-    }
- */
-    // multiplication and division logic
-    // [9, '*', 4] ~> [null, null, 36]
-    // [9, '÷', 4] ~> [null, null, 2.25]
-    displayData.forEach((e, i) => {
-        if (e === '*') {
-            displayData[i + 1] = displayData[i - 1] * displayData[i + 1]
-            displayData[i] = null
-            displayData[i - 1] = null
-        }
-        if (e === '÷') {
-            displayData[i + 1] = displayData[i - 1] / displayData[i + 1]
-            displayData[i] = null
-            displayData[i - 1] = null
-        }
-    })
-
-    // subtraction logic
-    // [null, null, 36, '-', 3] ~> [36, '-', 3]
-    // displayData = displayData.filter((e) => e !== null)
-    // [36, '-', 3] ~> [33]
-
+    displayData = multiplication(displayData)
+    displayData = division(displayData)
     displayData = subtraction(displayData)
-    /* 
-    displayData.forEach((e, i) => {
-        if (e === '-') {
-            displayData[i + 1] =
-                displayData[i - 1] - displayData[i + 1]
-            displayData[i] = null
-            displayData[i - 1] = null
-        }
-    })
- */
-
+    
     // addition logic
     // [null, 2, '+', 225] ~> [2, 225]
     // [null, null, 36] ~> [36]
@@ -172,25 +190,53 @@ export const selectCalcResult = ({ displayData }) => {
     // return String(additionResult)
 }
 </code></pre>
-        </article>
-    </section>
+                </article>
+            </section>
+        </div>
 
+        <nav>
+            <h2><a href="index.html">Home</a></h2>
+            <h3>Modules</h3>
+            <ul>
+                <li>
+                    <a href="module-selector-selectCalcResult.html"
+                        >selector-selectCalcResult</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="module-selector-selectCorrectRegExpForCalcScreen.html"
+                        >selector-selectCorrectRegExpForCalcScreen</a
+                    >
+                </li>
+                <li>
+                    <a href="module-utils-iCreateElement.html"
+                        >utils-iCreateElement</a
+                    >
+                </li>
+                <li>
+                    <a href="module-utils-keyboardEventListener.html"
+                        >utils-keyboardEventListener</a
+                    >
+                </li>
+                <li><a href="module-utils-myLib.html">utils-myLib</a></li>
+                <li>
+                    <a href="module-utils-uiDidMount.html">utils-uiDidMount</a>
+                </li>
+            </ul>
+        </nav>
 
+        <br class="clear" />
 
+        <footer>
+            Documentation generated by
+            <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sun Oct
+            04 2020 20:48:36 GMT+0200 (Central European Summer Time)
+        </footer>
 
-</div>
-
-<nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-selector-selectCalcResult.html">selector-selectCalcResult</a></li><li><a href="module-selector-selectCorrectRegExpForCalcScreen.html">selector-selectCorrectRegExpForCalcScreen</a></li><li><a href="module-utils-iCreateElement.html">utils-iCreateElement</a></li><li><a href="module-utils-keyboardEventListener.html">utils-keyboardEventListener</a></li><li><a href="module-utils-myLib.html">utils-myLib</a></li><li><a href="module-utils-uiDidMount.html">utils-uiDidMount</a></li></ul>
-</nav>
-
-<br class="clear">
-
-<footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sun Oct 04 2020 16:06:48 GMT+0200 (Central European Summer Time)
-</footer>
-
-<script> prettyPrint(); </script>
-<script src="scripts/linenumber.js"> </script>
-</body>
+        <script>
+            prettyPrint()
+        </script>
+        <script src="scripts/linenumber.js"></script>
+    </body>
 </html>

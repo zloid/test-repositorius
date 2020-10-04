@@ -17,6 +17,7 @@
 export const selectCalcResult = ({ displayData }) => {
     /**
      * Function for handle of early data
+     * @function correctBeginOfSingleNegativeNmbr
      * @param {string} data - from state
      * @example
      * // '0 - 8'
@@ -28,8 +29,9 @@ export const selectCalcResult = ({ displayData }) => {
 
     /**
      * Function for convert input sting to specific arrays of numbers and strings (operators and operands)
+     * @function turnDisplayDataToArray
      * @param {string} data - from state
-     * @returns {Array<string|number>} - specific arrays of numbers and strings (operators and operands)
+     * @returns {Array<string|number>} specific arrays of numbers and strings (operators and operands)
      * @example
      * // [2, '+', 225]
      * turnDisplayDataToArray('2 + 225')
@@ -46,15 +48,16 @@ export const selectCalcResult = ({ displayData }) => {
 
     /**
      * Function for calc subtraction
+     * @function subtraction
      * @param {Array<string|number>} data - specific arrays of numbers and strings (operators and operands)
-     * @returns {Array<string|number>} - specific arrays of numbers and strings
+     * @returns {Array<string|number>} specific arrays of numbers and strings
      * @example
      * // [4, '+', 33]
      * subtraction([4, '+', 36, '-', 3])
      */
     function subtraction(data) {
         // [null, null, 36, '-', 3] ~> [36, '-', 3]
-        data = data.filter((e) => e !== null)
+        // data = data.filter((e) => e !== null)
         // [36, '-', 3] ~> [33]
         for (let i = 0; i < data.length; i++) {
             if (data[i] === '-') {
@@ -62,7 +65,49 @@ export const selectCalcResult = ({ displayData }) => {
                 data[i] = data[i - 1] = null
             }
         }
-        return data
+        return data.filter((e) => e !== null)
+    }
+
+    /**
+     * Function for calc multiplication
+     * @function multiplication
+     * @param {Array<string|number>} data - specific arrays of numbers and strings (operators and operands)
+     * @returns {Array<string|number>} specific arrays of numbers and strings
+     * @example
+     * // [4, '+', 12]
+     * multiplication([4, '+', 3, '*', 4])
+     */
+    function multiplication(data) {
+        // data = data.filter((e) => e !== null)
+        for (let i = 0; i < data.length; i++) {
+            if (data[i] === '*') {
+                data[i + 1] = data[i - 1] * data[i + 1]
+                data[i] = data[i - 1] = null
+            }
+        }
+        // [4, '+', null, null, 12] ~> [4, '+', 12]
+        return data.filter((e) => e !== null)
+    }
+
+    /**
+     * Function for calc division
+     * @function division
+     * @param {Array<string|number>} data - specific arrays of numbers and strings (operators and operands)
+     * @returns {Array<string|number>} specific arrays of numbers and strings
+     * @example
+     * // [7, '+', 1]
+     * division([7, '+', 4, '÷', 4])
+     */
+    function division(data) {
+        // data = data.filter((e) => e !== null)
+        for (let i = 0; i < data.length; i++) {
+            if (data[i] === '÷') {
+                data[i + 1] = data[i - 1] / data[i + 1]
+                data[i] = data[i - 1] = null
+            }
+        }
+        // [4, '+', null, null, 1] ~> [4, '+', 1]
+        return data.filter((e) => e !== null)
     }
 
     // error handler for getting quick answer
@@ -76,43 +121,9 @@ export const selectCalcResult = ({ displayData }) => {
 
     displayData = correctBeginOfSingleNegativeNmbr(displayData)
     displayData = turnDisplayDataToArray(displayData)
-    /* 
-    function calculateOperandOperatorLogic(displayData, operator) {
-       
-    }
- */
-    // multiplication and division logic
-    // [9, '*', 4] ~> [null, null, 36]
-    // [9, '÷', 4] ~> [null, null, 2.25]
-    displayData.forEach((e, i) => {
-        if (e === '*') {
-            displayData[i + 1] = displayData[i - 1] * displayData[i + 1]
-            displayData[i] = null
-            displayData[i - 1] = null
-        }
-        if (e === '÷') {
-            displayData[i + 1] = displayData[i - 1] / displayData[i + 1]
-            displayData[i] = null
-            displayData[i - 1] = null
-        }
-    })
-
-    // subtraction logic
-    // [null, null, 36, '-', 3] ~> [36, '-', 3]
-    // displayData = displayData.filter((e) => e !== null)
-    // [36, '-', 3] ~> [33]
-
+    displayData = multiplication(displayData)
+    displayData = division(displayData)
     displayData = subtraction(displayData)
-    /* 
-    displayData.forEach((e, i) => {
-        if (e === '-') {
-            displayData[i + 1] =
-                displayData[i - 1] - displayData[i + 1]
-            displayData[i] = null
-            displayData[i - 1] = null
-        }
-    })
- */
 
     // addition logic
     // [null, 2, '+', 225] ~> [2, 225]
