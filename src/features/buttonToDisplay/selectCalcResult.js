@@ -1,10 +1,10 @@
 /** @module selector-selectCalcResult */
 
 /**
- * For getting calc result, main logic
+ * Selector for getting calc result, main logic
  * @function selectCalcResult
  * @date 2020-09-15
- * @param {object} state - Redux state
+ * @param {Object} state - Redux state
  * @param {string} state.displayData - data from calc screen, f.e. '2 + 456 * 9', spaces are required
  * @returns {string} result of calculation
  * @example
@@ -14,19 +14,9 @@
  * // returns: 'Error'
  * selectCalcResult({displayData: '0 ÷ 0'})
  */
-
-export default ({ displayData }) => {
-    // error handler for getting quick answer
-    if (/error|nan/i.test(displayData)) {
-        return 'Error'
-    }
-    // infinity handler for getting quick answer
-    if (/^-*\s*infinity$/i.test(displayData)) {
-        return displayData
-    }
-
+export const selectCalcResult = ({ displayData }) => {
     /**
-     * For handle of early data
+     * Function for handle of early data
      * @param {string} data - from state
      * @example
      * // '0 - 8'
@@ -37,9 +27,9 @@ export default ({ displayData }) => {
     }
 
     /**
-     * For convert input sting to specific arrays of numbers and strings (operators and operands)
+     * Function for convert input sting to specific arrays of numbers and strings (operators and operands)
      * @param {string} data - from state
-     * @returns {Array<string|number>}
+     * @returns {Array<string|number>} - specific arrays of numbers and strings (operators and operands)
      * @example
      * // [2, '+', 225]
      * turnDisplayDataToArray('2 + 225')
@@ -54,39 +44,76 @@ export default ({ displayData }) => {
         return outputData
     }
 
+    /**
+     * Function for calc subtraction
+     * @param {Array<string|number>} data - specific arrays of numbers and strings (operators and operands)
+     * @returns {Array<string|number>} - specific arrays of numbers and strings
+     * @example
+     * // [4, '+', 33]
+     * subtraction([4, '+', 36, '-', 3])
+     */
+    function subtraction(data) {
+        // [null, null, 36, '-', 3] ~> [36, '-', 3]
+        data = data.filter((e) => e !== null)
+        // [36, '-', 3] ~> [33]
+        for (let i = 0; i < data.length; i++) {
+            if (data[i] === '-') {
+                data[i + 1] = data[i - 1] - data[i + 1]
+                data[i] = data[i - 1] = null
+            }
+        }
+        return data
+    }
+
+    // error handler for getting quick answer
+    if (/error|nan/i.test(displayData)) {
+        return 'Error'
+    }
+    // infinity handler for getting quick answer
+    if (/^-*\s*infinity$/i.test(displayData)) {
+        return displayData
+    }
+
     displayData = correctBeginOfSingleNegativeNmbr(displayData)
     displayData = turnDisplayDataToArray(displayData)
-
+    /* 
+    function calculateOperandOperatorLogic(displayData, operator) {
+       
+    }
+ */
     // multiplication and division logic
     // [9, '*', 4] ~> [null, null, 36]
     // [9, '÷', 4] ~> [null, null, 2.25]
-    displayData.forEach((element, index) => {
-        if (element === '*') {
-            displayData[index + 1] =
-                displayData[index - 1] * displayData[index + 1]
-            displayData[index] = null
-            displayData[index - 1] = null
+    displayData.forEach((e, i) => {
+        if (e === '*') {
+            displayData[i + 1] = displayData[i - 1] * displayData[i + 1]
+            displayData[i] = null
+            displayData[i - 1] = null
         }
-        if (element === '÷') {
-            displayData[index + 1] =
-                displayData[index - 1] / displayData[index + 1]
-            displayData[index] = null
-            displayData[index - 1] = null
+        if (e === '÷') {
+            displayData[i + 1] = displayData[i - 1] / displayData[i + 1]
+            displayData[i] = null
+            displayData[i - 1] = null
         }
     })
 
     // subtraction logic
     // [null, null, 36, '-', 3] ~> [36, '-', 3]
-    displayData = displayData.filter((e) => e !== null)
+    // displayData = displayData.filter((e) => e !== null)
     // [36, '-', 3] ~> [33]
-    displayData.forEach((element, index) => {
-        if (element === '-') {
-            displayData[index + 1] =
-                displayData[index - 1] - displayData[index + 1]
-            displayData[index] = null
-            displayData[index - 1] = null
+
+    displayData = subtraction(displayData)
+    /* 
+    displayData.forEach((e, i) => {
+        if (e === '-') {
+            displayData[i + 1] =
+                displayData[i - 1] - displayData[i + 1]
+            displayData[i] = null
+            displayData[i - 1] = null
         }
     })
+ */
+
     // addition logic
     // [null, 2, '+', 225] ~> [2, 225]
     // [null, null, 36] ~> [36]

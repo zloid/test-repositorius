@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
-import selectCorrectRegExpForCalcScreen from './selectCorrectRegExpForCalcScreen'
-import selectCalcResult from './selectCalcResult'
+import { selectCorrectRegExpForCalcScreen } from './selectCorrectRegExpForCalcScreen'
+import { selectCalcResult } from './selectCalcResult'
 
 const initialState = {
     displayData: '0',

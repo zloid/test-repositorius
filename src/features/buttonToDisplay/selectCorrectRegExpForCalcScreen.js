@@ -11,7 +11,10 @@
  * //returns: '0.1 + 2214 * 21'
  *  selectCorrectRegExpForCalcScreen({displayData: '0'}, '   000 00.....1 ++ 2214 *** 21   ')
  */
-export default function (state = { displayData: '' }, payload = '') {
+export const selectCorrectRegExpForCalcScreen = (
+    state = { displayData: '' },
+    payload = ''
+) => {
     let middleStr = state.displayData.trim() + payload.trim()
 
     switch (true) {
