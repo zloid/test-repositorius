@@ -38,7 +38,7 @@ export const selectCalcResult = ({ displayData }) => {
      */
     function turnDisplayDataToArray(data) {
         const outputData = data.split(' ').map((e) => {
-            if (/\d/.test(e)) {
+            if (/\d|infinity/i.test(e)) {
                 return Number(e)
             }
             return e

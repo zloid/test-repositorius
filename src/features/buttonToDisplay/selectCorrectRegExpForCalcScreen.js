@@ -9,7 +9,7 @@
  * @returns {string}
  * @example
  * //returns: '0.1 + 2214 * 21'
- *  selectCorrectRegExpForCalcScreen({displayData: '0'}, '   000 00.....1 ++ 2214 *** 21   ')
+ *  selectCorrectRegExpForCalcScreen({displayData: '0'}, '   0.....1 ++ 2214 *** 21   ')
  */
 export const selectCorrectRegExpForCalcScreen = (
     state = { displayData: '' },
@@ -59,10 +59,10 @@ export const selectCorrectRegExpForCalcScreen = (
                 // return -Infinity-
                 middleStr = middleStr.replace(/%%#%/gi, 'Infinity')
             }
-        // middleStr.replace(/(\d)\w/gi, $1)
-        case /\//.test(middleStr):
+            
+        case /[\/]/.test(middleStr):
             // '/' ~> '÷'
-            middleStr = middleStr.replace(/\//g, '÷')
+            middleStr = middleStr.replace(/[\/]/g, '÷')
         case /\,/.test(middleStr):
             // ',' ~> '.'
             middleStr = middleStr.replace(/\,/g, '.')
@@ -113,6 +113,9 @@ export const selectCorrectRegExpForCalcScreen = (
         case /e - /.test(middleStr):
             // '8.1e - 9' ~> '8.1e-9'
             middleStr = middleStr.replace(/e - /gi, 'e-')
+        case /infinit[y]*\s*\d*\./i.test(middleStr):
+            // '- Infinit 0.' ~> '- Infinity'; 'Infinity.' ~> 'Infinity'
+            middleStr = middleStr.replace(/(-*\s*)infinit[y]*\s*\d*\./ig, '$1Infinity')
         default:
             break
     }

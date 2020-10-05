@@ -108,4 +108,25 @@ describe('App.js - calc subtraction logic', () => {
         // calc screen result
         expect(elementClcScrn.textContent.trim()).toBe('- 99')
     })
+    it('"- 9", "=", "=", "=" ~> "- 9"', () => {
+        // initial
+        // must be here
+        document.getElementById('root').innerHTML += ''
+        // result will be here
+        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
+        // clear screen
+        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
+        // calc screen is clear
+        expect(elementClcScrn.textContent.trim()).toBe('0')
+
+        // subtraction
+        fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(elementClcScrn.textContent.trim()).toBe('- 9')
+    })
 })
