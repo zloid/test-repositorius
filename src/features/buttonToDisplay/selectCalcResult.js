@@ -125,25 +125,33 @@ export const selectCalcResult = ({ displayData }) => {
         // [2, 225] ~> 227
         return data.reduce((accum, currentVal) => accum + currentVal)
     }
-/* 
-    function handleErrorAndInfinity(data) {
-           switch (true) {
-            case /error|nan/i.test(data):
-                return 'Error'        
+
+    
+    function finalResult(data) {
+        // avoiding 0.1 + 0.2
+        data = parseFloat(data.toFixed(11))
+        data = String(data)
+        switch (true) {
+            case /nan/i.test(data):
+                return 'Error'
+            case /^-./.test(data):
+                // '-876' ~> '- 876'
+                return data.replace(/^-(.)/, '- $1')
             default:
-                break;
+                return data
         }
-    } */
+    }
+
     // error handler for getting quick answer
     if (/error|nan/i.test(displayData)) {
         return 'Error'
     }
-    
+
     // infinity handler for getting quick answer
     if (/^-*\s*infinity$/i.test(displayData)) {
         return displayData
     }
- 
+
     displayData = correctBeginOfSingleNegativeNmbr(displayData)
     displayData = turnDisplayDataToArray(displayData)
     displayData = multiplication(displayData)
@@ -151,22 +159,9 @@ export const selectCalcResult = ({ displayData }) => {
     displayData = subtraction(displayData)
     displayData = addition(displayData)
 
+    return finalResult(displayData)
     /*
-    // addition logic
-    // [null, 2, '+', 225] ~> [2, 225]
-    // [null, null, 36] ~> [36]
-    const getAllNumbersForAddition = displayData.filter(
-        (e) => typeof e === 'number'
-    )
-    // [2, 225] ~> 227
-    // [36] ~> 36
-    let additionResult = getAllNumbersForAddition.reduce(
-        (accum, currentVal) => accum + currentVal
-    )
-    */
-
-    // avoid 0.1 + 0.2
-    // additionResult = parseFloat(additionResult.toFixed(15))
+    // avoiding 0.1 + 0.2
     displayData = parseFloat(displayData.toFixed(11))
 
     // todo
@@ -180,5 +175,5 @@ export const selectCalcResult = ({ displayData }) => {
     }
 
     return finalResult
-    // return String(additionResult)
+    */
 }
