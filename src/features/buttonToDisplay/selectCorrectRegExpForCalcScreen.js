@@ -29,12 +29,14 @@ export const selectCorrectRegExpForCalcScreen = (
             // 'error123' ~> '123'
             // 'error' ~> ''
             return middleStr.replace(/error/gi, '')
-        case /e - /.test(middleStr):
+        case /e\s(-|\+)\s/i.test(middleStr):
+            // exponential
             // '8.1e - 9' ~> '8.1e-9'
-            middleStr = middleStr.replace(/e - /gi, 'e-')
+            middleStr = middleStr.replace(/e\s(-|\+)\s/i, 'e$1')
         case /[a-z]/gi.test(middleStr):
             // '0.1e-9' match exponential
-            const regExp = /\d*\.*\de-\d+/
+            // const regExp = /\d*\.*\de-\d+/
+            const regExp = /\d*\.*\de[-\+]\d+/i
             // only words matching
             const regExpTwo = /\s*[a-z]+\d*/gi
             // if exponential number exist, f.e.'0.1e-9'
@@ -43,23 +45,23 @@ export const selectCorrectRegExpForCalcScreen = (
                 const expl = middleStr.match(regExp).join('')
                 middleStr = middleStr.replace(regExp, '##%#')
                 // safe -Infinity-
-                middleStr = middleStr.replace(/infinity/gi, '%%#%')
+                middleStr = middleStr.replace(/infinity/i, '%%#%')
                 // clear screen from unusual words
                 middleStr = middleStr.replace(regExpTwo, '')
                 // return expotential
                 middleStr = middleStr.replace(/##%#/, expl)
                 // return -Infinity-
-                middleStr = middleStr.replace(/%%#%/gi, 'Infinity')
+                middleStr = middleStr.replace(/%%#%/i, 'Infinity')
             } else {
                 // safe -Infinity-
-                middleStr = middleStr.replace(/infinity/gi, '%%#%')
+                middleStr = middleStr.replace(/infinity/i, '%%#%')
                 // clear screen from unusual words
                 // '1.1 + 1 / meow + 4 meow4 blah' ~> '1.1 + 1 /  + 4  '
                 middleStr = middleStr.replace(regExpTwo, '')
                 // return -Infinity-
-                middleStr = middleStr.replace(/%%#%/gi, 'Infinity')
+                middleStr = middleStr.replace(/%%#%/i, 'Infinity')
             }
-            
+
         case /[\/]/.test(middleStr):
             // '/' ~> '÷'
             middleStr = middleStr.replace(/[\/]/g, '÷')
@@ -110,12 +112,16 @@ export const selectCorrectRegExpForCalcScreen = (
             // '1     +    2    ' ~> '1 + 2'
             middleStr = middleStr.replace(/\s{2}/g, ' ')
 
-        case /e - /.test(middleStr):
+        case /e\s(-|\+)\s/i.test(middleStr):
+            // exponential
             // '8.1e - 9' ~> '8.1e-9'
-            middleStr = middleStr.replace(/e - /gi, 'e-')
+            middleStr = middleStr.replace(/e\s(-|\+)\s/i, 'e$1')
         case /infinit[y]*\s*\d*\./i.test(middleStr):
             // '- Infinit 0.' ~> '- Infinity'; 'Infinity.' ~> 'Infinity'
-            middleStr = middleStr.replace(/(-*\s*)infinit[y]*\s*\d*\./ig, '$1Infinity')
+            middleStr = middleStr.replace(
+                /(-*\s*)infinit[y]*\s*\d*\./gi,
+                '$1Infinity'
+            )
         default:
             break
     }

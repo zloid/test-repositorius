@@ -47,28 +47,6 @@ export const selectCalcResult = ({ displayData }) => {
     }
 
     /**
-     * Function for calc subtraction
-     * @function subtraction
-     * @param {Array<string|number>} data - specific arrays of numbers and strings (operators and operands)
-     * @returns {Array<string|number>} specific arrays of numbers and strings
-     * @example
-     * // [4, '+', 33]
-     * subtraction([4, '+', 36, '-', 3])
-     */
-    function subtraction(data) {
-        // [null, null, 36, '-', 3] ~> [36, '-', 3]
-        // data = data.filter((e) => e !== null)
-        // [36, '-', 3] ~> [33]
-        for (let i = 0; i < data.length; i++) {
-            if (data[i] === '-') {
-                data[i + 1] = data[i - 1] - data[i + 1]
-                data[i] = data[i - 1] = null
-            }
-        }
-        return data.filter((e) => e !== null)
-    }
-
-    /**
      * Function for calc multiplication
      * @function multiplication
      * @param {Array<string|number>} data - specific arrays of numbers and strings (operators and operands)
@@ -110,21 +88,70 @@ export const selectCalcResult = ({ displayData }) => {
         return data.filter((e) => e !== null)
     }
 
+    /**
+     * Function for calc subtraction
+     * @function subtraction
+     * @param {Array<string|number>} data - specific arrays of numbers and strings (operators and operands)
+     * @returns {Array<string|number>} specific arrays of numbers and strings
+     * @example
+     * // [4, '+', 33]
+     * subtraction([4, '+', 36, '-', 3])
+     */
+    function subtraction(data) {
+        // [null, null, 36, '-', 3] ~> [36, '-', 3]
+        // data = data.filter((e) => e !== null)
+        // [36, '-', 3] ~> [33]
+        for (let i = 0; i < data.length; i++) {
+            if (data[i] === '-') {
+                data[i + 1] = data[i - 1] - data[i + 1]
+                data[i] = data[i - 1] = null
+            }
+        }
+        return data.filter((e) => e !== null)
+    }
+
+    /**
+     * Function for calc addition
+     * @function addition
+     * @param {Array<string|number>} data - specific arrays of numbers and strings (operators, operands and anything else)
+     * @returns {number} result of addition all numbers in Array
+     * @example
+     * // 229
+     * addition([null, 2, '+', 225, 1, 1])
+     */
+    function addition(data) {
+        // [null, 2, '+', 225] ~> [2, 225]
+        data = data.filter((e) => typeof e === 'number')
+        // [2, 225] ~> 227
+        return data.reduce((accum, currentVal) => accum + currentVal)
+    }
+/* 
+    function handleErrorAndInfinity(data) {
+           switch (true) {
+            case /error|nan/i.test(data):
+                return 'Error'        
+            default:
+                break;
+        }
+    } */
     // error handler for getting quick answer
     if (/error|nan/i.test(displayData)) {
         return 'Error'
     }
+    
     // infinity handler for getting quick answer
     if (/^-*\s*infinity$/i.test(displayData)) {
         return displayData
     }
-
+ 
     displayData = correctBeginOfSingleNegativeNmbr(displayData)
     displayData = turnDisplayDataToArray(displayData)
     displayData = multiplication(displayData)
     displayData = division(displayData)
     displayData = subtraction(displayData)
+    displayData = addition(displayData)
 
+    /*
     // addition logic
     // [null, 2, '+', 225] ~> [2, 225]
     // [null, null, 36] ~> [36]
@@ -136,14 +163,15 @@ export const selectCalcResult = ({ displayData }) => {
     let additionResult = getAllNumbersForAddition.reduce(
         (accum, currentVal) => accum + currentVal
     )
+    */
 
     // avoid 0.1 + 0.2
     // additionResult = parseFloat(additionResult.toFixed(15))
-    additionResult = parseFloat(additionResult.toFixed(11))
+    displayData = parseFloat(displayData.toFixed(11))
 
     // todo
     // -8 ~> '-8' ~> '- 8'
-    const finalResult = String(additionResult).replace(/^-(\s*)+/g, '- $1')
+    const finalResult = String(displayData).replace(/^-(\s*)+/g, '- $1')
     // const finalResult = additionResult.replace(/^-(\s*)+/g, '- $1')
 
     // 'NaN' ~> 'Error'
