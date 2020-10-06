@@ -56,7 +56,6 @@ export const selectCalcResult = ({ displayData }) => {
      * multiplication([4, '+', 3, '*', 4])
      */
     function multiplication(data) {
-        // data = data.filter((e) => e !== null)
         for (let i = 0; i < data.length; i++) {
             if (data[i] === '*') {
                 data[i + 1] = data[i - 1] * data[i + 1]
@@ -77,7 +76,6 @@ export const selectCalcResult = ({ displayData }) => {
      * division([7, '+', 4, '÷', 4])
      */
     function division(data) {
-        // data = data.filter((e) => e !== null)
         for (let i = 0; i < data.length; i++) {
             if (data[i] === '÷') {
                 data[i + 1] = data[i - 1] / data[i + 1]
@@ -99,7 +97,6 @@ export const selectCalcResult = ({ displayData }) => {
      */
     function subtraction(data) {
         // [null, null, 36, '-', 3] ~> [36, '-', 3]
-        // data = data.filter((e) => e !== null)
         // [36, '-', 3] ~> [33]
         for (let i = 0; i < data.length; i++) {
             if (data[i] === '-') {
@@ -126,7 +123,21 @@ export const selectCalcResult = ({ displayData }) => {
         return data.reduce((accum, currentVal) => accum + currentVal)
     }
 
-    
+    /**
+     * For correct final result calculation
+     * @function finalResult
+     * @param {number} data - final answer
+     * @returns {string} correct final answer
+     * @example
+     * // 'Error'
+     * finalResult(NaN)
+     * @example
+     * // '- 876'
+     * finalResult(-876)
+     * @example
+     * // '0.3'
+     * finalResult(0.30000000000000004)
+     */
     function finalResult(data) {
         // avoiding 0.1 + 0.2
         data = parseFloat(data.toFixed(11))
@@ -160,20 +171,4 @@ export const selectCalcResult = ({ displayData }) => {
     displayData = addition(displayData)
 
     return finalResult(displayData)
-    /*
-    // avoiding 0.1 + 0.2
-    displayData = parseFloat(displayData.toFixed(11))
-
-    // todo
-    // -8 ~> '-8' ~> '- 8'
-    const finalResult = String(displayData).replace(/^-(\s*)+/g, '- $1')
-    // const finalResult = additionResult.replace(/^-(\s*)+/g, '- $1')
-
-    // 'NaN' ~> 'Error'
-    if (/nan/gi.test(finalResult)) {
-        return 'Error'
-    }
-
-    return finalResult
-    */
 }
