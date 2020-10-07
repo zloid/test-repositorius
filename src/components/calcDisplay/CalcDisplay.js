@@ -1,13 +1,9 @@
 import store from '../../app/store'
 
-export const CalcDisplay = () => /* html */ `<div>
+export const CalcDisplay = () => /* html */ `<div class="row">
     <div
-        class="row"
-        role="calcMainScreen"
+        class="col calcScreen"
         onclick="window.myLib.buttonToDisplay.doEqual()"
-    >
-        <div class="col calcScreen">
-            ${store.getState().buttonToDisplay.displayData}
-        </div>
-    </div>
+        role="calcMainScreen"
+    >${store.getState().buttonToDisplay.displayData}</div>
 </div>`

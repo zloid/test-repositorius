@@ -1,10 +1,10 @@
 /** @module selector-selectCalcResult */
 
 /**
- * For getting calc result, main logic
+ * Selector for getting calc result, main logic
  * @function selectCalcResult
  * @date 2020-09-15
- * @param {object} state - Redux state
+ * @param {Object} state - Redux state
  * @param {string} state.displayData - data from calc screen, f.e. '2 + 456 * 9', spaces are required
  * @returns {string} result of calculation
  * @example
@@ -14,19 +14,10 @@
  * // returns: 'Error'
  * selectCalcResult({displayData: '0 ÷ 0'})
  */
-
-export default ({ displayData }) => {
-    // error handler for getting quick answer
-    if (/error|nan/i.test(displayData)) {
-        return 'Error'
-    }
-    // infinity handler for getting quick answer
-    if (/^-*\s*infinity$/i.test(displayData)) {
-        return displayData
-    }
-
+export const selectCalcResult = ({ displayData }) => {
     /**
-     * For handle of early data
+     * Function for handle of early data
+     * @function correctBeginOfSingleNegativeNmbr
      * @param {string} data - from state
      * @example
      * // '0 - 8'
@@ -37,16 +28,17 @@ export default ({ displayData }) => {
     }
 
     /**
-     * For convert input sting to specific arrays of numbers and strings (operators and operands)
+     * Function for convert input sting to specific arrays of numbers and strings (operators and operands)
+     * @function turnDisplayDataToArray
      * @param {string} data - from state
-     * @returns {Array<string|number>}
+     * @returns {Array<string|number>} specific arrays of numbers and strings (operators and operands)
      * @example
      * // [2, '+', 225]
      * turnDisplayDataToArray('2 + 225')
      */
     function turnDisplayDataToArray(data) {
         const outputData = data.split(' ').map((e) => {
-            if (/\d/.test(e)) {
+            if (/\d|infinity/i.test(e)) {
                 return Number(e)
             }
             return e
@@ -54,65 +46,129 @@ export default ({ displayData }) => {
         return outputData
     }
 
-    displayData = correctBeginOfSingleNegativeNmbr(displayData)
-    displayData = turnDisplayDataToArray(displayData)
-
-    // multiplication and division logic
-    // [9, '*', 4] ~> [null, null, 36]
-    // [9, '÷', 4] ~> [null, null, 2.25]
-    displayData.forEach((element, index) => {
-        if (element === '*') {
-            displayData[index + 1] =
-                displayData[index - 1] * displayData[index + 1]
-            displayData[index] = null
-            displayData[index - 1] = null
+    /**
+     * Function for calc multiplication
+     * @function multiplication
+     * @param {Array<string|number>} data - specific arrays of numbers and strings (operators and operands)
+     * @returns {Array<string|number>} specific arrays of numbers and strings
+     * @example
+     * // [4, '+', 12]
+     * multiplication([4, '+', 3, '*', 4])
+     */
+    function multiplication(data) {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i] === '*') {
+                data[i + 1] = data[i - 1] * data[i + 1]
+                data[i] = data[i - 1] = null
+            }
         }
-        if (element === '÷') {
-            displayData[index + 1] =
-                displayData[index - 1] / displayData[index + 1]
-            displayData[index] = null
-            displayData[index - 1] = null
+        // [4, '+', null, null, 12] ~> [4, '+', 12]
+        return data.filter((e) => e !== null)
+    }
+
+    /**
+     * Function for calc division
+     * @function division
+     * @param {Array<string|number>} data - specific arrays of numbers and strings (operators and operands)
+     * @returns {Array<string|number>} specific arrays of numbers and strings
+     * @example
+     * // [7, '+', 1]
+     * division([7, '+', 4, '÷', 4])
+     */
+    function division(data) {
+        for (let i = 0; i < data.length; i++) {
+            if (data[i] === '÷') {
+                data[i + 1] = data[i - 1] / data[i + 1]
+                data[i] = data[i - 1] = null
+            }
         }
-    })
+        // [4, '+', null, null, 1] ~> [4, '+', 1]
+        return data.filter((e) => e !== null)
+    }
 
-    // subtraction logic
-    // [null, null, 36, '-', 3] ~> [36, '-', 3]
-    displayData = displayData.filter((e) => e !== null)
-    // [36, '-', 3] ~> [33]
-    displayData.forEach((element, index) => {
-        if (element === '-') {
-            displayData[index + 1] =
-                displayData[index - 1] - displayData[index + 1]
-            displayData[index] = null
-            displayData[index - 1] = null
+    /**
+     * Function for calc subtraction
+     * @function subtraction
+     * @param {Array<string|number>} data - specific arrays of numbers and strings (operators and operands)
+     * @returns {Array<string|number>} specific arrays of numbers and strings
+     * @example
+     * // [4, '+', 33]
+     * subtraction([4, '+', 36, '-', 3])
+     */
+    function subtraction(data) {
+        // [null, null, 36, '-', 3] ~> [36, '-', 3]
+        // [36, '-', 3] ~> [33]
+        for (let i = 0; i < data.length; i++) {
+            if (data[i] === '-') {
+                data[i + 1] = data[i - 1] - data[i + 1]
+                data[i] = data[i - 1] = null
+            }
         }
-    })
-    // addition logic
-    // [null, 2, '+', 225] ~> [2, 225]
-    // [null, null, 36] ~> [36]
-    const getAllNumbersForAddition = displayData.filter(
-        (e) => typeof e === 'number'
-    )
-    // [2, 225] ~> 227
-    // [36] ~> 36
-    let additionResult = getAllNumbersForAddition.reduce(
-        (accum, currentVal) => accum + currentVal
-    )
+        return data.filter((e) => e !== null)
+    }
 
-    // avoid 0.1 + 0.2
-    // additionResult = parseFloat(additionResult.toFixed(15))
-    additionResult = parseFloat(additionResult.toFixed(11))
+    /**
+     * Function for calc addition
+     * @function addition
+     * @param {Array<string|number>} data - specific arrays of numbers and strings (operators, operands and anything else)
+     * @returns {number} result of addition all numbers in Array
+     * @example
+     * // 229
+     * addition([null, 2, '+', 225, 1, 1])
+     */
+    function addition(data) {
+        // [null, 2, '+', 225] ~> [2, 225]
+        data = data.filter((e) => typeof e === 'number')
+        // [2, 225] ~> 227
+        return data.reduce((accum, currentVal) => accum + currentVal)
+    }
 
-    // todo
-    // -8 ~> '-8' ~> '- 8'
-    const finalResult = String(additionResult).replace(/^-(\s*)+/g, '- $1')
-    // const finalResult = additionResult.replace(/^-(\s*)+/g, '- $1')
+    /**
+     * For correct final result calculation
+     * @function finalResult
+     * @param {number} data - final answer
+     * @returns {string} correct final answer
+     * @example
+     * // 'Error'
+     * finalResult(NaN)
+     * @example
+     * // '- 876'
+     * finalResult(-876)
+     * @example
+     * // '0.3'
+     * finalResult(0.30000000000000004)
+     */
+    function finalResult(data) {
+        // avoiding 0.1 + 0.2
+        data = parseFloat(data.toFixed(11))
+        data = String(data)
+        switch (true) {
+            case /nan/i.test(data):
+                return 'Error'
+            case /^-./.test(data):
+                // '-876' ~> '- 876'
+                return data.replace(/^-(.)/, '- $1')
+            default:
+                return data
+        }
+    }
 
-    // 'NaN' ~> 'Error'
-    if (/nan/gi.test(finalResult)) {
+    // error handler for getting quick answer
+    if (/error|nan/i.test(displayData)) {
         return 'Error'
     }
 
-    return finalResult
-    // return String(additionResult)
+    // infinity handler for getting quick answer
+    if (/^-*\s*infinity$/i.test(displayData)) {
+        return displayData
+    }
+
+    displayData = correctBeginOfSingleNegativeNmbr(displayData)
+    displayData = turnDisplayDataToArray(displayData)
+    displayData = multiplication(displayData)
+    displayData = division(displayData)
+    displayData = subtraction(displayData)
+    displayData = addition(displayData)
+
+    return finalResult(displayData)
 }

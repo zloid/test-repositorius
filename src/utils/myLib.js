@@ -31,7 +31,8 @@ const myLib = {
         })
     },
     buttonToDisplay: {
-        btnToDspl: (payload) => store.dispatch(addButtonValueToScreen(payload)),
+        btnToDspl: (payload) =>
+            store.dispatch(addButtonValueToScreen(payload.trim())),
         clearAll: () => store.dispatch(clearAllFromCalcScreen()),
         doEqual: () => store.dispatch(doEqual()),
     },

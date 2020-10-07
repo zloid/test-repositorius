@@ -1,4 +1,4 @@
-import selectCorrectRegExpForCalcScreen from '../../src/features/buttonToDisplay/selectCorrectRegExpForCalcScreen'
+import { selectCorrectRegExpForCalcScreen } from '../../src/features/buttonToDisplay/selectCorrectRegExpForCalcScreen'
 
 describe('RegExp for calcScreen is work', () => {
     it('"0" ~> "0" ', () => {
