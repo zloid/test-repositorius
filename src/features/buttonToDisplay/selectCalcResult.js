@@ -170,5 +170,5 @@ export const selectCalcResult = ({ displayData }) => {
     displayData = subtraction(displayData)
     displayData = addition(displayData)
 
-    return finalResult(displayData)
+    return finalResult(displayData)    
 }

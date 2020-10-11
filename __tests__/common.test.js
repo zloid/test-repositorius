@@ -9,7 +9,7 @@ import store from './../src/app/store'
 document.body.innerHTML = '<div id="root" data-testid="mainRootDiv"></div>'
 // first render App to #root
 App.render()
-// render each time when dispatch redux actions
+// render each time when dispatch Redux actions
 store.subscribe(() => {
     App.render()
 })
@@ -65,8 +65,6 @@ describe("Calc's common tests", () => {
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('9')
     })
     it('click on -calc screen- for getting result: "99 ÷ 3 ÷ 33" ~> "1"', () => {
-        // result will be here
-        // const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // division
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
@@ -78,12 +76,10 @@ describe("Calc's common tests", () => {
         // click on screen
         fireEvent.click(screen.getByRole(/^calcMainScreen$/i))
         // calc screen result
-        // expect(elementClcScrn.textContent.trim()).toBe('1')
+        // expect(elementClcScrn.textContent).toBe('1')
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('1')
     })
     it('regExp for calcScreen is works: "9......3...1 + 0002" ~> "11.31" ', () => {
-        // const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // do clicks
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
@@ -103,7 +99,7 @@ describe("Calc's common tests", () => {
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
         // expect(screen.getByRole(/^calcMainScreen$/i).textContent).toBe('11.31')
-        // expect(elementClcScrn.textContent.trim()).toBe('11.31')
+        // expect(elementClcScrn.textContent).toBe('11.31')
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('11.31')
     })
 })

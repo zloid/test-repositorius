@@ -13,8 +13,8 @@ describe('CalcUi.js', () => {
     })
     it('calc screen data is -zero-', () => {
         const element = screen.getByRole(/^calcMainScreen$/i)
-
-        expect(element.textContent.trim()).toBe('0')
+        expect(element.textContent).toBe('0')
+        // expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('0')
     })
     it('calc button -7- is exist, with text 7', () => {
         const element = screen.getByRole(/^calcBtnSeven$/i)

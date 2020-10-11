@@ -1,4 +1,4 @@
-import { screen, fireEvent } from '@testing-library/dom'
+import { screen, fireEvent, getNodeText } from '@testing-library/dom'
 // -myLib- must be here, there all dispatch actions
 import myLib from '../../src/utils/myLib'
 import App from '../../src/app/App'
@@ -13,18 +13,19 @@ store.subscribe(() => {
     App.render()
 })
 
-describe('App.js - calc addition logic', () => {
-    it('initial div "root" is exist', () => {
-        screen.getByTestId(/^mainRootDiv$/)
-    })
-    it('calc button "+" is working', () => {
-        // initial
+describe("Calc's addition logic", () => {
+    beforeEach(() => {
+        //initial, must be here
         document.getElementById('root').innerHTML += ''
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // clear screen
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('0')
+    })
+    it('initial div "root" is exist', () => {
+        screen.getByTestId(/^mainRootDiv$/)
+    })
+    it('"2 + 2.2" ~> "4.2"', () => {
         // addition
         fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
@@ -34,16 +35,9 @@ describe('App.js - calc addition logic', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('4.2')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('4.2')
     })
-    it('v439872, calc button "+" is working', () => {
-        // initial
-        document.getElementById('root').innerHTML += ''
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // clear screen
-        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
-        // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
+    it('"9 + 4 + 1" ~> "14"', () => {
         // addition
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
@@ -53,18 +47,10 @@ describe('App.js - calc addition logic', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('14')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('14')
     })
-    it('v213456879, calc button "+" is working', () => {
-        // initial
-        document.getElementById('root').innerHTML += ''
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // clear screen
-        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
-        // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
+    it('"1 + 0003 + 1.4 + 7" ~> "12.4"', () => {
         // addition
-        // 1 + 0003 + 1.4 + 7
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
@@ -80,20 +66,10 @@ describe('App.js - calc addition logic', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('12.4')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('12.4')
+        
     })
-    it('calc addition is working: "0.1 + 0.2"', () => {
-        // todo
-        // 0.1 + 0.2
-
-        // initial
-        document.getElementById('root').innerHTML += ''
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // clear screen
-        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
-        // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
-
+    it('"0.1 + 0.2" ~> "0.3"', () => {
         // addition
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
@@ -107,20 +83,9 @@ describe('App.js - calc addition logic', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('0.3')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('0.3')
     })
-    it('calc addition is working: "0.1 + 0.002"', () => {
-        // todo
-        // 0.1 + 0.2
-
-        // initial
-        document.getElementById('root').innerHTML += ''
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // clear screen
-        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
-        // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
-
+    it('"0.1 + 0.002"', () => {
         // addition
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
@@ -136,9 +101,18 @@ describe('App.js - calc addition logic', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('0.102')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('0.102')
     })
-
-    // todo
-    // 2 + 2.11
+    it('"2 + 2.11" ~> "4.11"', () => {
+        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        // equal
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('4.11')
+    })
 })
