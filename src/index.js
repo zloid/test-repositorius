@@ -2,7 +2,7 @@
 import myLib from './utils/myLib'
 
 import App from './app/App'
-import uiDidMount from './utils/uiDidMount'
+import { uiDidMount } from './utils/uiDidMount'
 
 import store from './app/store'
 
