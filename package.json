@@ -1,6 +1,6 @@
 {
     "name": "test-repositorius",
-    "version": "0.7.64",
+    "version": "0.7.66",
     "description": "",
     "main": "index.js",
     "scripts": {

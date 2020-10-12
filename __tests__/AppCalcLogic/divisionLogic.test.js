@@ -1,4 +1,4 @@
-import { screen, fireEvent } from '@testing-library/dom'
+import { screen, fireEvent, getNodeText } from '@testing-library/dom'
 // -myLib- must be here, there all dispatch actions
 import myLib from '../../src/utils/myLib'
 import App from '../../src/app/App'
@@ -15,22 +15,17 @@ store.subscribe(() => {
 
 describe("Calc's division logic", () => {
     beforeEach(() => {
-        // initial
-        // must be here
+        //initial, must be here
         document.getElementById('root').innerHTML += ''
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // clear screen
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('0')
     })
     it('initial div "root" is exist', () => {
         screen.getByTestId(/^mainRootDiv$/)
     })
     it('"99 / 3" ~> "33"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // division
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
@@ -39,11 +34,9 @@ describe("Calc's division logic", () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('33')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('33')
     })
     it('"99 / 3 / 10" ~> "3.3"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // division
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
@@ -55,11 +48,9 @@ describe("Calc's division logic", () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('3.3')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('3.3')
     })
     it('"0 / 0" ~> "Error" ', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // division
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
@@ -67,11 +58,9 @@ describe("Calc's division logic", () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('Error')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('Error')
     })
     it('"0 / 0" ~> "Error" ~> "=", "=", "=" ~> "Error" ', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // division
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
@@ -79,17 +68,15 @@ describe("Calc's division logic", () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('Error')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('Error')
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('Error')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('Error')
     })
     it('"- 1 / 0" ~> "- Infinity" ~> "=", "=", "=" ~> "- Infinity" ', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // division
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
@@ -98,15 +85,15 @@ describe("Calc's division logic", () => {
         // equal for
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('- Infinity')
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('- Infinity')
     })
 
-    // todo
+    // todo ?
     // '123 /' ~> '123 /'
 })

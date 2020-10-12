@@ -35,7 +35,6 @@ describe("Calc's common tests", () => {
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
         fireEvent.click(screen.getByRole(/^calcBtnFive$/i))
         // calc screen after clicks
-        // expect(elementClcScrn.textContent.trim()).toBe('4105')
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('4105')
     })
     it('click "C (clear)" ~> "0"', () => {
@@ -44,12 +43,10 @@ describe("Calc's common tests", () => {
         fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
         // calc screen is not clear
-        // expect(elementClcScrn.textContent.trim()).not.toBe('0')
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).not.toBe('0')
         // click clear
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // calc screen is clear
-        // expect(elementClcScrn.textContent.trim()).toBe('0')
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('0')
     })
     it('click "=" for getting result: "99 ÷ 11" ~> "9"', () => {
@@ -61,7 +58,6 @@ describe("Calc's common tests", () => {
         // click "="
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        // expect(elementClcScrn.textContent.trim()).toBe('9')
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('9')
     })
     it('click on -calc screen- for getting result: "99 ÷ 3 ÷ 33" ~> "1"', () => {
@@ -76,7 +72,6 @@ describe("Calc's common tests", () => {
         // click on screen
         fireEvent.click(screen.getByRole(/^calcMainScreen$/i))
         // calc screen result
-        // expect(elementClcScrn.textContent).toBe('1')
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('1')
     })
     it('regExp for calcScreen is works: "9......3...1 + 0002" ~> "11.31" ', () => {
@@ -98,8 +93,6 @@ describe("Calc's common tests", () => {
         // click "="
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        // expect(screen.getByRole(/^calcMainScreen$/i).textContent).toBe('11.31')
-        // expect(elementClcScrn.textContent).toBe('11.31')
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('11.31')
     })
 })
