@@ -15,7 +15,7 @@ store.subscribe(() => {
 
 describe("Calc's division logic", () => {
     beforeEach(() => {
-        //initial, must be here
+        // initial, must be here
         document.getElementById('root').innerHTML += ''
         // clear screen
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))

@@ -9,6 +9,7 @@ import { uiDidMount } from '../../src/utils/uiDidMount'
 document.body.innerHTML = '<div id="root" data-testid="mainRootDiv"></div>'
 // first render App to #root
 App.render()
+// run some scripts after App did render
 uiDidMount()
 // render each time when dispatch redux actions
 store.subscribe(() => {

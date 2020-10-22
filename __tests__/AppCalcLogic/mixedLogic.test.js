@@ -1,4 +1,4 @@
-import { screen, fireEvent } from '@testing-library/dom'
+import { screen, fireEvent, getNodeText } from '@testing-library/dom'
 // -myLib- must be here, there all dispatch actions
 import myLib from '../../src/utils/myLib'
 import App from '../../src/app/App'
@@ -13,25 +13,19 @@ store.subscribe(() => {
     App.render()
 })
 
-describe('App.js - calc mixed logic is working', () => {
+describe("Calc's mixed logic", () => {
     beforeEach(() => {
-        // initial
-        // must be here
+        //initial, must be here
         document.getElementById('root').innerHTML += ''
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // clear screen
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('0')
     })
     it('initial div "root" is exist', () => {
         screen.getByTestId(/^mainRootDiv$/)
     })
-    it('"99 ÷ 3 + 11" ~> "44"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // mixed logic
+    it('"99 / 3 + 11" ~> "44"', () => {
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
@@ -42,11 +36,9 @@ describe('App.js - calc mixed logic is working', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('44')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('44')
     })
     it('"Error + 1 / 12345" ~> "Error"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
@@ -62,11 +54,9 @@ describe('App.js - calc mixed logic is working', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('Error')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('Error')
     })
     it('exponential number: "00 + 1 / 1234567890" ~> "8.1e-10"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
@@ -86,11 +76,11 @@ describe('App.js - calc mixed logic is working', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('8.1e-10')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            '8.1e-10'
+        )
     })
     it('"1 / 1234567890 + 1" ~> "1.00000000081"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
@@ -109,11 +99,11 @@ describe('App.js - calc mixed logic is working', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('1.00000000081')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            '1.00000000081'
+        )
     })
     it('exponential: "1 * 123456789012345678901234567890" ~> "=","=","=" ~> "1.2345678901234568e+29" ~> "+ 2" ~> "1.2345678901234568e+29" ', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMultiply$/i))
@@ -155,18 +145,20 @@ describe('App.js - calc mixed logic is working', () => {
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('1.2345678901234568e+29')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            '1.2345678901234568e+29'
+        )
         // fire next
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('1.2345678901234568e+29')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            '1.2345678901234568e+29'
+        )
     })
     it('"- 1 / 0 " ~> "- Infinity"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
@@ -175,11 +167,11 @@ describe('App.js - calc mixed logic is working', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            '- Infinity'
+        )
     })
     it('"- 1 / 0 - 1" ~> "- Infinity"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
@@ -190,11 +182,11 @@ describe('App.js - calc mixed logic is working', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            '- Infinity'
+        )
     })
     it('"- Infinity - 1" ~> "- Infinity"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
@@ -208,11 +200,11 @@ describe('App.js - calc mixed logic is working', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            '- Infinity'
+        )
     })
     it('"- Infinity123 - 123" ~> "- Infinity"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
@@ -231,11 +223,11 @@ describe('App.js - calc mixed logic is working', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            '- Infinity'
+        )
     })
     it('"Infinity - Infinity" ~> "Error"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
@@ -248,13 +240,12 @@ describe('App.js - calc mixed logic is working', () => {
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        // equal to get '- Infinity'
+        // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
-        expect(elementClcScrn.textContent.trim()).toBe('Error')
+        // calc screen result
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('Error')
     })
     it('"- Infinity - Infinity" ~> "- Infinity"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
@@ -270,11 +261,12 @@ describe('App.js - calc mixed logic is working', () => {
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
         // equal to get '- Infinity'
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
-        expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
+        // calc screen result
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            '- Infinity'
+        )
     })
     it('"- Infinity ." ~> "- Infinity"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
@@ -285,12 +277,13 @@ describe('App.js - calc mixed logic is working', () => {
         // fire next
         fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
         // equal
-        //  fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
-        expect(elementClcScrn.textContent.trim()).toBe('- Infinity')
+        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
+        // calc screen result
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            '- Infinity'
+        )
     })
     it('"Infinity ..." ~> "Infinity"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
@@ -303,11 +296,12 @@ describe('App.js - calc mixed logic is working', () => {
         fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
         // equal
         //  fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
-        expect(elementClcScrn.textContent.trim()).toBe('Infinity')
+        // calc screen result
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            'Infinity'
+        )
     })
     it('"- Infinity ... + 7" ~> "- Infinity + 7"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
@@ -323,11 +317,12 @@ describe('App.js - calc mixed logic is working', () => {
         fireEvent.click(screen.getByRole(/^calcBtnSeven$/i))
         // equal
         //  fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
-        expect(elementClcScrn.textContent.trim()).toBe('- Infinity + 7')
+        // calc screen result
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            ' - Infinity + 7'
+        )
     })
     it('"Infinity - 0.1" ~> "Infinity"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
@@ -340,11 +335,12 @@ describe('App.js - calc mixed logic is working', () => {
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
-        expect(elementClcScrn.textContent.trim()).toBe('Infinity')
+        // calc screen result
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            'Infinity'
+        )
     })
     it('"Infinity + 0.1" ~> "Infinity"', () => {
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
@@ -357,23 +353,9 @@ describe('App.js - calc mixed logic is working', () => {
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
-        expect(elementClcScrn.textContent.trim()).toBe('Infinity')
-    })
-
-    /* 
-    pattern
-
-    // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // mixed logic        
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
-        // equal
-        fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('9999999')
-    
-    */
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            'Infinity'
+        )
+    })
 })
