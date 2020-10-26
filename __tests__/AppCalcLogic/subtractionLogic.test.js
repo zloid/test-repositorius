@@ -1,4 +1,4 @@
-import { screen, fireEvent } from '@testing-library/dom'
+import { screen, fireEvent, getNodeText } from '@testing-library/dom'
 // -myLib- must be here, there all dispatch actions
 import myLib from '../../src/utils/myLib'
 import App from '../../src/app/App'
@@ -13,23 +13,20 @@ store.subscribe(() => {
     App.render()
 })
 
-describe('App.js - calc subtraction logic', () => {
-    it('initial div "root" is exist', () => {
-        screen.getByTestId(/^mainRootDiv$/)
-    })
-    it('v98756, calc button "-" is working', () => {
-        // initial
-        // must be here
+describe("Calc's subtraction logic", () => {
+    beforeEach(() => {
+        //initial, must be here
         document.getElementById('root').innerHTML += ''
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // clear screen
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
-
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('0')
+    })
+    it('initial div "root" is exist', () => {
+        screen.getByTestId(/^mainRootDiv$/)
+    })
+    it('"99 - 3" ~> "96"', () => {
         // subtraction
-        // 99 - 3
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
@@ -37,21 +34,10 @@ describe('App.js - calc subtraction logic', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('96')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('96')
     })
-    it('v1595, calc button "-" is working', () => {
-        // initial
-        // must be here
-        document.getElementById('root').innerHTML += ''
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // clear screen
-        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
-        // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
-
+    it('"99 - 3 - 10" ~> "86"', () => {        
         // subtraction
-        // 99 - 3 - 10
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
@@ -62,42 +48,20 @@ describe('App.js - calc subtraction logic', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('86')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('86')
     })
-    it('v4986521, calc button "-" is working', () => {
-        // initial
-        // must be here
-        document.getElementById('root').innerHTML += ''
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // clear screen
-        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
-        // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
-
+    it('"0 - 7" ~> "- 7"', () => {        
         // subtraction
-        // 0 - 7
         fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnSeven$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('- 7')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('- 7')
     })
-    it('985612, calc button "-" is working', () => {
-        // initial
-        // must be here
-        document.getElementById('root').innerHTML += ''
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // clear screen
-        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
-        // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
-
+    it('"1 - 100" ~> "- 99"', () => {
         // subtraction
-        // 1 - 100
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
@@ -106,19 +70,9 @@ describe('App.js - calc subtraction logic', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('- 99')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('- 99')
     })
-    it('"- 9", "=", "=", "=" ~> "- 9"', () => {
-        // initial
-        // must be here
-        document.getElementById('root').innerHTML += ''
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // clear screen
-        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
-        // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
-
+    it('"- 9", "=", "=", "=" ~> "- 9"', () => {        
         // subtraction
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
@@ -127,6 +81,6 @@ describe('App.js - calc subtraction logic', () => {
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('- 9')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('- 9')
     })
 })

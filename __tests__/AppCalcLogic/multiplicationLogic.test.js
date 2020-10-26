@@ -1,4 +1,4 @@
-import { screen, fireEvent } from '@testing-library/dom'
+import { screen, fireEvent, getNodeText } from '@testing-library/dom'
 // -myLib- must be here, there all dispatch actions
 import myLib from '../../src/utils/myLib'
 import App from '../../src/app/App'
@@ -13,42 +13,30 @@ store.subscribe(() => {
     App.render()
 })
 
-describe('App.js - calc multiplication logic', () => {
-    it('initial div "root" is exist', () => {
-        screen.getByTestId(/^mainRootDiv$/)
-    })
-    it('v9856, calc button "*" is working', () => {
-        // initial
-        // must be here
+describe("Calc's multiplication logic", () => {
+    beforeEach(() => {
+        //initial, must be here
         document.getElementById('root').innerHTML += ''
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // clear screen
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('0')
+    })
+    it('initial div "root" is exist', () => {
+        screen.getByTestId(/^mainRootDiv$/)
+    })
+    it('"9 * 4" ~> "36"', () => {        
         // multiplication
-        // 9 * 4
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMultiply$/i))
         fireEvent.click(screen.getByRole(/^calcBtnFour$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('36')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('36')
     })
-    it('v678985, calc button "*" is working', () => {
-        // initial
-        // must be here
-        document.getElementById('root').innerHTML += ''
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // clear screen
-        fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
-        // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
+    it('"9 * 9 * 100" ~> "8100"', () => {        
         // multiplication
-        // 9 * 9 * 100
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMultiply$/i))
         fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
@@ -59,6 +47,6 @@ describe('App.js - calc multiplication logic', () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('8100')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('8100')
     })
 })

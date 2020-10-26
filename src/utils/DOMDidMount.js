@@ -1,4 +1,4 @@
-/** @module utils-DOMDidMount */
+/** @module utils_DOMDidMount */
 
 import { keyboardEventListener } from './keyboardEventListener'
 import { calcFeaturesLogic } from './calcFeaturesLogic'
@@ -16,3 +16,5 @@ export const DOMDidMount = () =>
         keyboardEventListener()
         calcFeaturesLogic()
     })
+
+
