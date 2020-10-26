@@ -14,7 +14,7 @@
  * // click on keyboard -f5- ~> usual OS behavior, nothing for calc
  * keyboardEventListener()
  */
-export default () => {
+export const keyboardEventListener = () => {
     document.addEventListener(
         'keydown',
         (event) => {

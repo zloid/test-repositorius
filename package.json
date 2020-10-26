@@ -1,6 +1,6 @@
 {
     "name": "test-repositorius",
-    "version": "0.7.73",
+    "version": "0.7.75",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -24,6 +24,7 @@
         "babel-loader": "^8.1.0",
         "clean-webpack-plugin": "^3.0.0",
         "css-loader": "^3.6.0",
+        "docdash": "^1.2.0",
         "html-webpack-plugin": "^4.3.0",
         "husky": "^4.2.5",
         "jest": "^26.1.0",

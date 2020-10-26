@@ -85,13 +85,17 @@ describe("Calc's division logic", () => {
         // equal for
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('- Infinity')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            '- Infinity'
+        )
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('- Infinity')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            '- Infinity'
+        )
     })
 
     // todo ?

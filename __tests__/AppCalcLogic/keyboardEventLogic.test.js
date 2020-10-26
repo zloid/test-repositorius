@@ -3,14 +3,15 @@ import { screen, fireEvent, getNodeText } from '@testing-library/dom'
 import myLib from '../../src/utils/myLib'
 import App from '../../src/app/App'
 import store from '../../src/app/store'
-import { uiDidMount } from '../../src/utils/uiDidMount'
+// import { DOMDidMount } from '../../src/utils/DOMDidMount'
+import { keyboardEventListener } from '../../src/utils/keyboardEventListener'
 
 // creating DOM div #root
 document.body.innerHTML = '<div id="root" data-testid="mainRootDiv"></div>'
 // first render App to #root
 App.render()
-// run some scripts after App did render
-uiDidMount()
+// DOMDidMount()
+keyboardEventListener()
 // render each time when dispatch redux actions
 store.subscribe(() => {
     App.render()

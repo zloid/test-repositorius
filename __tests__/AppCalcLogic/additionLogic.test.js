@@ -66,7 +66,7 @@ describe("Calc's addition logic", () => {
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('12.4')        
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('12.4')
     })
     it('"0.1 + 0.2" ~> "0.3"', () => {
         // addition
