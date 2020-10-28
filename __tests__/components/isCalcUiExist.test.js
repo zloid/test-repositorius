@@ -17,57 +17,57 @@ describe('CalcUi.js', () => {
         // expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('0')
     })
     it('calc button -7- is exist, with text 7', () => {
-        const element = screen.getByRole(/^calcBtnSeven$/i)
+        const element = screen.getByRole(/^calcBtn7$/i)
 
         expect(element.textContent.trim()).toBe('7')
     })
     it('calc button -8- is exist, with text 8', () => {
-        const element = screen.getByRole(/^calcBtnEight$/i)
+        const element = screen.getByRole(/^calcBtn8$/i)
 
         expect(element.textContent.trim()).toBe('8')
     })
     it('calc button -9- is exist, with text 9', () => {
-        const element = screen.getByRole(/^calcBtnNine$/i)
+        const element = screen.getByRole(/^calcBtn9$/i)
 
         expect(element.textContent.trim()).toBe('9')
     })
     it('calc button -4- is exist, with text 4', () => {
-        const element = screen.getByRole(/^calcBtnFour$/i)
+        const element = screen.getByRole(/^calcBtn4$/i)
 
         expect(element.textContent.trim()).toBe('4')
     })
     it('calc button -5- is exist, with text 5', () => {
-        const element = screen.getByRole(/^calcBtnFive$/i)
+        const element = screen.getByRole(/^calcBtn5$/i)
 
         expect(element.textContent.trim()).toBe('5')
     })
     it('calc button -6- is exist, with text 6', () => {
-        const element = screen.getByRole(/^calcBtnSix$/i)
+        const element = screen.getByRole(/^calcBtn6$/i)
 
         expect(element.textContent.trim()).toBe('6')
     })
     it('calc button -1- is exist, with text 1', () => {
-        const element = screen.getByRole(/^calcBtnOne$/i)
+        const element = screen.getByRole(/^calcBtn1$/i)
 
         expect(element.textContent.trim()).toBe('1')
     })
     it('calc button -2- is exist, with text 2', () => {
-        const element = screen.getByRole(/^calcBtnTwo$/i)
+        const element = screen.getByRole(/^calcBtn2$/i)
 
         expect(element.textContent.trim()).toBe('2')
     })
     it('calc button -3- is exist, with text 3', () => {
-        const element = screen.getByRole(/^calcBtnThree$/i)
+        const element = screen.getByRole(/^calcBtn3$/i)
 
         expect(element.textContent.trim()).toBe('3')
     })
     it('calc button -0- is exist, with text 0', () => {
-        const element = screen.getByRole(/^calcBtnZero$/i)
+        const element = screen.getByRole(/^calcBtn0$/i)
 
         expect(element.textContent.trim()).toBe('0')
     })
     it('calc button -decimal point- is exist, with text "."', () => {
-        const element = screen.getByRole(/^calcBtnDecimalPoint$/i)
+        const element = screen.getByRole(/^calcBtnPoint$/i)
 
         expect(element.textContent.trim()).toBe('.')
     })

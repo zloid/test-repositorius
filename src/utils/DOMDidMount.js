@@ -16,5 +16,3 @@ export const DOMDidMount = () =>
         keyboardEventListener()
         calcFeaturesLogic()
     })
-
-

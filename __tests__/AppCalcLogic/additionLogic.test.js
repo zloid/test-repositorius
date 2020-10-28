@@ -27,11 +27,11 @@ describe("Calc's addition logic", () => {
     })
     it('"2 + 2.2" ~> "4.2"', () => {
         // addition
-        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn2$/i))
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn2$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn2$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
@@ -39,11 +39,11 @@ describe("Calc's addition logic", () => {
     })
     it('"9 + 4 + 1" ~> "14"', () => {
         // addition
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnFour$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn4$/i))
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
@@ -51,18 +51,18 @@ describe("Calc's addition logic", () => {
     })
     it('"1 + 0003 + 1.4 + 7" ~> "12.4"', () => {
         // addition
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnFour$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn4$/i))
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnSeven$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn7$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
@@ -70,15 +70,15 @@ describe("Calc's addition logic", () => {
     })
     it('"0.1 + 0.2" ~> "0.3"', () => {
         // addition
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
 
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
 
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn2$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
@@ -86,29 +86,29 @@ describe("Calc's addition logic", () => {
     })
     it('"0.1 + 0.002"', () => {
         // addition
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
 
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
 
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn2$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('0.102')
     })
     it('"2 + 2.11" ~> "4.11"', () => {
-        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn2$/i))
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn2$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result

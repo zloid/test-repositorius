@@ -27,34 +27,34 @@ describe("Calc's subtraction logic", () => {
     })
     it('"99 - 3" ~> "96"', () => {
         // subtraction
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('96')
     })
-    it('"99 - 3 - 10" ~> "86"', () => {        
+    it('"99 - 3 - 10" ~> "86"', () => {
         // subtraction
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('86')
     })
-    it('"0 - 7" ~> "- 7"', () => {        
+    it('"0 - 7" ~> "- 7"', () => {
         // subtraction
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnSeven$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn7$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
@@ -62,20 +62,20 @@ describe("Calc's subtraction logic", () => {
     })
     it('"1 - 100" ~> "- 99"', () => {
         // subtraction
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('- 99')
     })
-    it('"- 9", "=", "=", "=" ~> "- 9"', () => {        
+    it('"- 9", "=", "=", "=" ~> "- 9"', () => {
         // subtraction
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))

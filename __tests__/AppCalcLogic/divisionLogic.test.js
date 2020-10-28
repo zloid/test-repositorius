@@ -27,10 +27,10 @@ describe("Calc's division logic", () => {
     })
     it('"99 / 3" ~> "33"', () => {
         // division
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
@@ -38,13 +38,13 @@ describe("Calc's division logic", () => {
     })
     it('"99 / 3 / 10" ~> "3.3"', () => {
         // division
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
@@ -52,9 +52,9 @@ describe("Calc's division logic", () => {
     })
     it('"0 / 0" ~> "Error" ', () => {
         // division
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
@@ -62,9 +62,9 @@ describe("Calc's division logic", () => {
     })
     it('"0 / 0" ~> "Error" ~> "=", "=", "=" ~> "Error" ', () => {
         // division
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
@@ -79,9 +79,9 @@ describe("Calc's division logic", () => {
     it('"- 1 / 0" ~> "- Infinity" ~> "=", "=", "=" ~> "- Infinity" ', () => {
         // division
         fireEvent.click(screen.getByRole(/^calcBtnMinus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
         // equal for
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result

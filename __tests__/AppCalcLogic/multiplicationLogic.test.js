@@ -25,25 +25,25 @@ describe("Calc's multiplication logic", () => {
     it('initial div "root" is exist', () => {
         screen.getByTestId(/^mainRootDiv$/)
     })
-    it('"9 * 4" ~> "36"', () => {        
+    it('"9 * 4" ~> "36"', () => {
         // multiplication
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMultiply$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnFour$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn4$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('36')
     })
-    it('"9 * 9 * 100" ~> "8100"', () => {        
+    it('"9 * 9 * 100" ~> "8100"', () => {
         // multiplication
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMultiply$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMultiply$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
         // equal
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
