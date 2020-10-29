@@ -1,6 +1,6 @@
 import { screen, fireEvent, getNodeText } from '@testing-library/dom'
-// -myLib- must be here, there all dispatch actions
-import myLib from '../../src/utils/myLib'
+// -connectDispatch- must be here, there all dispatch actions
+import connectDispatch from '../../src/utils/connectDispatch'
 import App from '../../src/app/App'
 import store from '../../src/app/store'
 
@@ -46,13 +46,6 @@ describe("Calc's mixed logic", () => {
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
         fireEvent.click(screen.getByRole(/^calcBtn1$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-        /* 
-        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn2$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn4$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn5$/i))
-         */
         for (let i = 1; i < 6; i++) {
             fireEvent.click(screen.getByRole(`calcBtn${i}`))
         }
@@ -68,17 +61,6 @@ describe("Calc's mixed logic", () => {
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
         fireEvent.click(screen.getByRole(/^calcBtn1$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-        /*
-        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn2$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn4$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn5$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn6$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn7$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn8$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
-        */
         for (let i = 1; i < 10; i++) {
             fireEvent.click(screen.getByRole(`calcBtn${i}`))
         }
@@ -94,17 +76,6 @@ describe("Calc's mixed logic", () => {
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtn1$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-        /* 
-        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn2$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn4$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn5$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn6$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn7$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn8$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
-         */
         for (let i = 1; i < 10; i++) {
             fireEvent.click(screen.getByRole(`calcBtn${i}`))
         }
@@ -122,50 +93,12 @@ describe("Calc's mixed logic", () => {
         // mixed logic
         fireEvent.click(screen.getByRole(/^calcBtn1$/i))
         fireEvent.click(screen.getByRole(/^calcBtnMultiply$/i))
-        //
-        /* 
-        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn2$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn4$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn5$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn6$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn7$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn8$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
-         */
         for (let i = 1; i < 10; i++) {
             fireEvent.click(screen.getByRole(`calcBtn${i}`))
         }
-        /* 
-        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
-        //
-        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn2$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn4$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn5$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn6$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn7$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn8$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
-         */
         for (let i = 0; i < 10; i++) {
             fireEvent.click(screen.getByRole(`calcBtn${i}`))
         }
-        /* 
-        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
-        //
-        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn2$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn4$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn5$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn6$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn7$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn8$/i))
-        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
-         */
         for (let i = 0; i < 10; i++) {
             fireEvent.click(screen.getByRole(`calcBtn${i}`))
         }

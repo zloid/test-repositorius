@@ -1,9 +1,9 @@
 import { screen } from '@testing-library/dom'
-// import myLib from '../../src/utils/myLib'
+// import connectDispatch from '../../src/utils/connectDispatch'
 import CalcUi from '../../src/components/calcUi/CalcUi'
 
 // creating DOM div #root
-// myLib.create({ id: 'root', cut: 'all' })
+// connectDispatch.create({ id: 'root', cut: 'all' })
 // document.getElementById('root').innerHTML = CalcUi()
 document.body.innerHTML = CalcUi()
 

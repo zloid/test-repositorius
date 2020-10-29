@@ -1,6 +1,6 @@
 import { screen, fireEvent, getNodeText } from '@testing-library/dom'
-// -myLib- must be here, there all dispatch actions
-import myLib from '../../src/utils/myLib'
+// -connectDispatch- must be here, there all dispatch actions
+import connectDispatch from '../../src/utils/connectDispatch'
 import App from '../../src/app/App'
 import store from '../../src/app/store'
 // import { DOMDidMount } from '../../src/utils/DOMDidMount'

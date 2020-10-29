@@ -1,5 +1,5 @@
-// -myLib- must be here, there all dispatch actions
-import myLib from './utils/myLib'
+// -connectDispatch- must be here, there all dispatch actions
+import connectDispatch from './utils/connectDispatch'
 
 import App from './app/App'
 import { DOMDidMount } from './utils/DOMDidMount'
