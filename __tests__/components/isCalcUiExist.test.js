@@ -1,9 +1,9 @@
 import { screen } from '@testing-library/dom'
-// import connectDispatch from '../../src/utils/connectDispatch'
+// import mapAllDispatch from '../../src/utils/mapAllDispatch'
 import CalcUi from '../../src/components/calcUi/CalcUi'
 
 // creating DOM div #root
-// connectDispatch.create({ id: 'root', cut: 'all' })
+// mapAllDispatch.create({ id: 'root', cut: 'all' })
 // document.getElementById('root').innerHTML = CalcUi()
 document.body.innerHTML = CalcUi()
 

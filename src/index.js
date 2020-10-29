@@ -1,5 +1,5 @@
-// -connectDispatch- must be here, there all dispatch actions
-import connectDispatch from './utils/connectDispatch'
+// -mapAllDispatch- must be here, there all dispatch actions
+import mapAllDispatch from './utils/mapAllDispatch'
 
 import App from './app/App'
 import { DOMDidMount } from './utils/DOMDidMount'

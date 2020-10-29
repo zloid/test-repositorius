@@ -24,13 +24,13 @@ export const keyboardEventListener = () => {
 
             switch (true) {
                 case /[0-9|+|\-|/|\*|\.|\,]/.test(event.key):
-                    window.connectDispatch.buttonToDisplay.btnToDspl(event.key)
+                    window.mapAllDispatch.buttonToDisplay.getBtnValue(event.key)
                     break
                 case /enter/gi.test(event.key):
-                    window.connectDispatch.buttonToDisplay.doEqual()
+                    window.mapAllDispatch.buttonToDisplay.doEqual()
                     break
                 case /delete|backspace/gi.test(event.key):
-                    window.connectDispatch.buttonToDisplay.clearAll()
+                    window.mapAllDispatch.buttonToDisplay.clearAll()
                     break
                 default:
                     return // Quit when this doesn't handle the key event.
