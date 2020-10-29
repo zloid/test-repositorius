@@ -1,8 +1,8 @@
-// -myLib- must be here, there all dispatch actions
-import myLib from './utils/myLib'
+// -mapAllDispatch- must be here, there all dispatch actions
+import mapAllDispatch from './utils/mapAllDispatch'
 
 import App from './app/App'
-import uiDidMount from './utils/uiDidMount'
+import { DOMDidMount } from './utils/DOMDidMount'
 
 import store from './app/store'
 
@@ -15,8 +15,7 @@ document.body.innerHTML = '<div id="root"></div>'
 // render Reef's App to #root
 // first render
 App.render()
-// run some scripts after App's first render
-uiDidMount()
+DOMDidMount()
 
 // render each time when dispatch redux actions
 store.subscribe(() => {

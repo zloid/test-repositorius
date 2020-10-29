@@ -1,7 +1,12 @@
 import { createPopper } from '@popperjs/core'
 // import { createPopper } from '@popperjs/core/lib/popper-lite';
 
-const calcFeaturesLogic = () => {
+/**
+ * For creating user's features pop-up panel. Rely on popper.js lib.
+ * @function calcFeaturesLogic
+ * @returns {void} popper.js logic
+ */
+export const calcFeaturesLogic = () => {
     const button = document.getElementById('calcFeatures')
     const tooltip = document.getElementById('calc-tooltip')
 
@@ -49,5 +54,3 @@ const calcFeaturesLogic = () => {
         button.addEventListener(event, hide)
     })
 }
-
-export default calcFeaturesLogic

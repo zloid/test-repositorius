@@ -1,156 +1,83 @@
-import { screen, fireEvent } from '@testing-library/dom'
-// -myLib- must be here, there all dispatch actions
-import myLib from '../../src/utils/myLib'
+import { screen, fireEvent, getNodeText } from '@testing-library/dom'
+// -mapAllDispatch- must be here, there all dispatch actions
+import mapAllDispatch from '../../src/utils/mapAllDispatch'
 import App from '../../src/app/App'
 import store from '../../src/app/store'
-import uiDidMount from '../../src/utils/uiDidMount'
+// import { DOMDidMount } from '../../src/utils/DOMDidMount'
+import { keyboardEventListener } from '../../src/utils/keyboardEventListener'
 
 // creating DOM div #root
 document.body.innerHTML = '<div id="root" data-testid="mainRootDiv"></div>'
 // first render App to #root
 App.render()
-uiDidMount()
+// DOMDidMount()
+keyboardEventListener()
 // render each time when dispatch redux actions
 store.subscribe(() => {
     App.render()
 })
 
-describe('App.js - calc keyboard events logic', () => {
+describe('Keyboard and Numpad is working for calc App', () => {
+    beforeEach(() => {
+        //initial, must be here
+        document.getElementById('root').innerHTML += ''
+        // clear screen by click main keyboard key Delete
+        fireEvent.keyDown(document, { key: 'Delete', code: 'Delete' })
+        // calc screen is clear
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('0')
+    })
     it('initial div "root" is exist', () => {
         screen.getByTestId(/^mainRootDiv$/)
     })
-    it('v321654, calc keyboard keys is working, (1234567890 + 1234567890)', () => {
-        // initial
-        // must be here
-        document.getElementById('root').innerHTML += ''
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-
-        // clear screen
-        // fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
-        // main keyboard key Delete
-        fireEvent.keyDown(document, { key: 'Delete', code: 'Delete' })
-        // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
-
-        // main keyboard key 0-9
-        // '1234567890'
-        /* 
-        ;[...Array(9)].forEach((e, k) => {
+    it('"1234567890 + 1234567890" ~> "2469135780"', () => {
+        // main keyboard pressing: 1234567890
+        /* for (let i = 1; i < 10; i++) {
             fireEvent.keyDown(document, {
-                key: `${k + 1}`,
-                code: `Digit${k + 1}`,
+                key: `${i}`,
+                code: `Digit${i}`,
             })
-        })
-    */
-        for (let i = 0; i < 9; i++) {
-            fireEvent.keyDown(document, {
-                key: `${i + 1}`,
-                code: `Digit${i + 1}`,
-            })
-        }
+        } */
+        Array(9)
+            .fill()
+            .forEach((_, i) =>
+                fireEvent.keyDown(document, {
+                    key: `${i + 1}`,
+                    code: `Digit${i + 1}`,
+                })
+            )
         fireEvent.keyDown(document, { key: '0', code: 'Digit0' })
 
-        // keyboard key '+'
-        // fireEvent.keyDown(document, { key: '+' })
+        // Numpad key '+'
         fireEvent.keyDown(document, { key: '+', code: 'NumpadAdd' })
 
-        // Numpad keyboard key 0-9
-        // `1234567890`
-        /* ;[...Array(9)].forEach((e, k) => {
-            fireEvent.keyDown(document, {
-                key: `${k + 1}`,
-                code: `Numpad${k + 1}`,
-            })
-        }) */
-        for (let i = 0; i < 9; i++) {
-            fireEvent.keyDown(document, {
-                key: `${i + 1}`,
-                code: `Numpad${i + 1}`,
-            })
-        }
+        // Numpad keyboard pressing: 1234567890
+        Array(9)
+            .fill()
+            .forEach((_, i) =>
+                fireEvent.keyDown(document, {
+                    key: `${i + 1}`,
+                    code: `Numpad${i + 1}`,
+                })
+            )
         fireEvent.keyDown(document, { key: '0', code: 'Numpad0' })
 
         // equal, keyboard key Enter
         fireEvent.keyDown(document, { key: 'Enter', code: 'Enter' })
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('2469135780')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            '2469135780'
+        )
     })
-
-    it('v7865654, calc keyboard keys is working', () => {
-        // initial
-        // must be here
-        document.getElementById('root').innerHTML += ''
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // clear screen
-        // numPad key Delete
-        fireEvent.keyDown(document, { key: 'Delete', code: 'NumpadDecimal' })
-        // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
-
-        // main keyboard key 0-9
-        // '1234567890.1'
-        for (let i = 0; i < 9; i++) {
-            fireEvent.keyDown(document, {
-                key: `${i + 1}`,
-                code: `Digit${i + 1}`,
-            })
-        }
-        fireEvent.keyDown(document, { key: '0', code: 'Digit0' })
-        // point is work
-        fireEvent.keyDown(document, { key: '.', code: 'Period' })
-        fireEvent.keyDown(document, { key: '1', code: 'Digit1' })
-
-        // keyboard key '+'
-        // fireEvent.keyDown(document, { key: '+' })
-        fireEvent.keyDown(document, { key: '+', code: 'NumpadAdd' })
-
-        // Numpad keyboard key 0-9
-        // `1234567890,1`
-        for (let i = 0; i < 9; i++) {
-            fireEvent.keyDown(document, {
-                key: `${i + 1}`,
-                code: `Numpad${i + 1}`,
-            })
-        }
-        fireEvent.keyDown(document, { key: '0', code: 'Numpad0' })
-        // comma is work
-        fireEvent.keyDown(document, { key: ',', code: 'NumpadDecimal' })
-        fireEvent.keyDown(document, { key: '1', code: 'Numpad1' })
-
-        // equal, numPad key Enter
-        fireEvent.keyDown(document, { key: 'Enter', code: 'NumpadEnter' })
-        // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('2469135780.2')
-    })
-    it('v289562, calc keyboard keys is working: +,-,*,/, Delete, Enter', () => {
-        // initial
-        // must be here
-        document.getElementById('root').innerHTML += ''
-        // result will be here
-        const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-
-        // test keyboard key
-        fireEvent.keyDown(document, { key: '1' })
-
-        // clear screen
-        // key Delete
-        fireEvent.keyDown(document, { key: 'Delete' })
-        // calc screen is clear
-        expect(elementClcScrn.textContent.trim()).toBe('0')
-
-        // total
-        // '1234567890.1 + 1234567890,1 - 9 - 9 + 18 * 1 / 1'
-
-        // main keyboard key 0-9
-        // '1234567890.1'
-        for (let i = 0; i < 9; i++) {
-            fireEvent.keyDown(document, {
-                key: `${i + 1}`,
-                code: `Digit${i + 1}`,
-            })
-        }
+    it('"1234567890.1 + 1234567890,1" ~> "2469135780.2"', () => {
+        // main keyboard pressing: 1234567890.1
+        Array(9)
+            .fill()
+            .forEach((_, i) =>
+                fireEvent.keyDown(document, {
+                    key: `${i + 1}`,
+                    code: `Digit${i + 1}`,
+                })
+            )
         fireEvent.keyDown(document, { key: '0', code: 'Digit0' })
         // point is work
         fireEvent.keyDown(document, { key: '.', code: 'Period' })
@@ -159,20 +86,29 @@ describe('App.js - calc keyboard events logic', () => {
         // Numpad key '+'
         fireEvent.keyDown(document, { key: '+', code: 'NumpadAdd' })
 
-        // Numpad key 0-9
-        // `1234567890,1`
-        for (let i = 0; i < 9; i++) {
-            fireEvent.keyDown(document, {
-                key: `${i + 1}`,
-                code: `Numpad${i + 1}`,
-            })
-        }
+        // Numpad keyboard pressing: 1234567890.1
+        Array(9)
+            .fill()
+            .forEach((_, i) =>
+                fireEvent.keyDown(document, {
+                    key: `${i + 1}`,
+                    code: `Numpad${i + 1}`,
+                })
+            )
         fireEvent.keyDown(document, { key: '0', code: 'Numpad0' })
         // comma is work
         fireEvent.keyDown(document, { key: ',', code: 'NumpadDecimal' })
         fireEvent.keyDown(document, { key: '1', code: 'Numpad1' })
 
-        // '-' on keyboard
+        // equal, numPad key Enter
+        fireEvent.keyDown(document, { key: 'Enter', code: 'NumpadEnter' })
+        // calc screen result
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe(
+            '2469135780.2'
+        )
+    })
+    it('"- 9 - 9 + 1 * 17 / 17" ~> "- 17"', () => {
+        // main keyboard
         fireEvent.keyDown(document, { key: '-', code: 'Minus' })
         fireEvent.keyDown(document, { key: '9' })
         // '-' on numPad
@@ -181,17 +117,17 @@ describe('App.js - calc keyboard events logic', () => {
         // '+'
         fireEvent.keyDown(document, { key: '+' })
         fireEvent.keyDown(document, { key: '1' })
-        fireEvent.keyDown(document, { key: '8' })
         // '*'
         fireEvent.keyDown(document, { key: '*' })
         fireEvent.keyDown(document, { key: '1' })
+        fireEvent.keyDown(document, { key: '7' })
         // '/'
         fireEvent.keyDown(document, { key: '/' })
         fireEvent.keyDown(document, { key: '1' })
-
+        fireEvent.keyDown(document, { key: '7' })
         // equal, numPad key Enter
         fireEvent.keyDown(document, { key: 'Enter', code: 'NumpadEnter' })
         // calc screen result
-        expect(elementClcScrn.textContent.trim()).toBe('2469135780.2')
+        expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('- 17')
     })
 })

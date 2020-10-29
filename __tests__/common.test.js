@@ -1,6 +1,6 @@
 import { screen, fireEvent, getNodeText } from '@testing-library/dom'
-// -myLib- must be here, there all dispatch actions
-import myLib from './../src/utils/myLib'
+// -mapAllDispatch- must be here, there all dispatch actions
+import mapAllDispatch from './../src/utils/mapAllDispatch'
 import App from './../src/app/App'
 // import store from '../../src/app/store'
 import store from './../src/app/store'
@@ -9,7 +9,7 @@ import store from './../src/app/store'
 document.body.innerHTML = '<div id="root" data-testid="mainRootDiv"></div>'
 // first render App to #root
 App.render()
-// render each time when dispatch redux actions
+// render each time when dispatch Redux actions
 store.subscribe(() => {
     App.render()
 })
@@ -30,80 +30,69 @@ describe("Calc's common tests", () => {
         screen.getByRole(/^githubCorner$/i)
     })
     it('click on random calc button', () => {
-        fireEvent.click(screen.getByRole(/^calcBtnFour$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnFive$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn4$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn5$/i))
         // calc screen after clicks
-        // expect(elementClcScrn.textContent.trim()).toBe('4105')
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('4105')
     })
     it('click "C (clear)" ~> "0"', () => {
         // click some buttons
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
         // calc screen is not clear
-        // expect(elementClcScrn.textContent.trim()).not.toBe('0')
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).not.toBe('0')
         // click clear
         fireEvent.click(screen.getByRole(/^calcBtnClear$/i))
         // calc screen is clear
-        // expect(elementClcScrn.textContent.trim()).toBe('0')
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('0')
     })
     it('click "=" for getting result: "99 ÷ 11" ~> "9"', () => {
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
         // click "="
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        // expect(elementClcScrn.textContent.trim()).toBe('9')
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('9')
     })
     it('click on -calc screen- for getting result: "99 ÷ 3 ÷ 33" ~> "1"', () => {
-        // result will be here
-        // const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
         // division
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
         fireEvent.click(screen.getByRole(/^calcBtnDivision$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
         // click on screen
         fireEvent.click(screen.getByRole(/^calcMainScreen$/i))
         // calc screen result
-        // expect(elementClcScrn.textContent.trim()).toBe('1')
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('1')
     })
     it('regExp for calcScreen is works: "9......3...1 + 0002" ~> "11.31" ', () => {
-        // const elementClcScrn = screen.getByRole(/^calcMainScreen$/i)
-        // do clicks
-        fireEvent.click(screen.getByRole(/^calcBtnNine$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnThree$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnDecimalPoint$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnOne$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn9$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn3$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtnPoint$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn1$/i))
         fireEvent.click(screen.getByRole(/^calcBtnPlus$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnZero$/i))
-        fireEvent.click(screen.getByRole(/^calcBtnTwo$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn0$/i))
+        fireEvent.click(screen.getByRole(/^calcBtn2$/i))
         // click "="
         fireEvent.click(screen.getByRole(/^calcBtnEqual$/i))
         // calc screen result
-        // expect(screen.getByRole(/^calcMainScreen$/i).textContent).toBe('11.31')
-        // expect(elementClcScrn.textContent.trim()).toBe('11.31')
         expect(getNodeText(screen.getByRole(/^calcMainScreen$/i))).toBe('11.31')
     })
 })

@@ -1,6 +1,6 @@
 # test-repositorius
 
-## Current branch: master-calc ~> husky-try ~> calc-begin ~> rpi_features_area ~> refactoring ~> calc-begin ~> edit_select_calc_result ~> calc-begin
+## Current branch: master-calc ~> husky-try ~> calc-begin ~> rpi_features_area ~> refactoring ~> calc-begin ~> edit_select_calc_result ~> calc-begin ~> refactoring_tests
 
 ## Features for USER:
 
@@ -19,13 +19,13 @@
 -   TDD, Only jest and @testing-library/dom for tests
 -   Only ESM (EcmaScript modules): both source code and tests
 -   @babel for: es6 to es5 and correct work with jest & ESM
--   JSDoc as documentation
+-   JSDoc as documentation + docdash as template for JSDoc
 -   husky: for pre-commit hooks
 -   CSS is Auto-Purge, while build creating
 
 ## You can:
 
--   Install this repo on your machine: git clone _[this_repo_url]_ && cd _[repo_name]_ && npm i
+-   git clone [this_repo_url] && cd [repo_name] && npm i (install this repo on your machine)
 -   npm run test (for tests)
 -   npm run start (for run dev server)
 -   npm run build (for creating public build, index.html autogenerate)

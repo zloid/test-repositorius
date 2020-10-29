@@ -57,7 +57,7 @@ describe('RegExp for calcScreen is work', () => {
         // expectation
         expect(data).toBe('0')
     })
-    it('v9023, "000" ~> "0" ', () => {
+    it('"000" ~> "0" ', () => {
         // run function
         const data = selectCorrectRegExpForCalcScreen({
             displayData: '000008',
@@ -121,7 +121,7 @@ describe('RegExp for calcScreen is work', () => {
         // expectation
         expect(data).toBe('1.2')
     })
-    it('v4432, "1..........2" ~> "1.2"', () => {
+    it('"1..........2" ~> "1.2"', () => {
         // run function
         const data = selectCorrectRegExpForCalcScreen({
             displayData: '1..........2 * 3,,,,,,4,,,....5',
@@ -137,7 +137,7 @@ describe('RegExp for calcScreen is work', () => {
         // expectation
         expect(data).toBe('0.7')
     })
-    it('v345321, ".7" ~> "0.7" ', () => {
+    it('".7" ~> "0.7" ', () => {
         // run function
         const data = selectCorrectRegExpForCalcScreen({
             displayData: '.7 + .',
@@ -145,7 +145,7 @@ describe('RegExp for calcScreen is work', () => {
         // expectation
         expect(data).toBe('0.7 + 0.')
     })
-    it('v345321, ".7" ~> "0.7" ', () => {
+    it('".7" ~> "0.7" ', () => {
         // run function
         const data = selectCorrectRegExpForCalcScreen({
             displayData: '.7 + .',
@@ -153,7 +153,7 @@ describe('RegExp for calcScreen is work', () => {
         // expectation
         expect(data).toBe('0.7 + 0.')
     })
-    it('v2164, ".7" ~> "0.7" ', () => {
+    it('".7" ~> "0.7" ', () => {
         // run function
         const data = selectCorrectRegExpForCalcScreen({
             displayData: '.7 + .123 - .5 / ,8',
@@ -177,7 +177,7 @@ describe('RegExp for calcScreen is work', () => {
         // expectation
         expect(data).toBe('7 + 1')
     })
-    it('v3265, "7. + 1" ~> "7 + 1" ', () => {
+    it('"7. + 1" ~> "7 + 1" ', () => {
         // run function
         const data = selectCorrectRegExpForCalcScreen({
             displayData: '7. + 32. - 5.',
@@ -209,15 +209,4 @@ describe('RegExp for calcScreen is work', () => {
         // expectation
         expect(data).toBe('Infinity')
     })
-
-    //EXAMPLE/////////////////////EXAMPLE//////////////////////////EXAMPLE
-    it('"" ~> "" ', () => {
-        // run function
-        const data = selectCorrectRegExpForCalcScreen({
-            displayData: '',
-        })
-        // expectation
-        expect(data).toBe('0')
-    })
-    //EXAMPLE/////////////////////EXAMPLE//////////////////////////EXAMPLE
 })

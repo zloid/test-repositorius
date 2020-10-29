@@ -2,9 +2,9 @@ export const CalcButtons = () => /*html*/ `<div>
     <div class="row">
         <div class="col">
             <button
-                role="calcBtnSeven"
+                role="calcBtn7"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 7
             </button>
@@ -12,9 +12,9 @@ export const CalcButtons = () => /*html*/ `<div>
 
         <div class="col">
             <button
-                role="calcBtnEight"
+                role="calcBtn8"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 8
             </button>
@@ -22,9 +22,9 @@ export const CalcButtons = () => /*html*/ `<div>
 
         <div class="col">
             <button
-                role="calcBtnNine"
+                role="calcBtn9"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 9
             </button>
@@ -34,7 +34,7 @@ export const CalcButtons = () => /*html*/ `<div>
             <button
                 role="calcBtnDivision"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 ÷
             </button>
@@ -44,9 +44,9 @@ export const CalcButtons = () => /*html*/ `<div>
     <div class="row">
         <div class="col">
             <button
-                role="calcBtnFour"
+                role="calcBtn4"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 4
             </button>
@@ -54,9 +54,9 @@ export const CalcButtons = () => /*html*/ `<div>
 
         <div class="col">
             <button
-                role="calcBtnFive"
+                role="calcBtn5"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 5
             </button>
@@ -64,9 +64,9 @@ export const CalcButtons = () => /*html*/ `<div>
 
         <div class="col">
             <button
-                role="calcBtnSix"
+                role="calcBtn6"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 6
             </button>
@@ -76,7 +76,7 @@ export const CalcButtons = () => /*html*/ `<div>
             <button
                 role="calcBtnMultiply"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 *
             </button>
@@ -86,9 +86,9 @@ export const CalcButtons = () => /*html*/ `<div>
     <div class="row">
         <div class="col">
             <button
-                role="calcBtnOne"
+                role="calcBtn1"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 1
             </button>
@@ -96,9 +96,9 @@ export const CalcButtons = () => /*html*/ `<div>
 
         <div class="col">
             <button
-                role="calcBtnTwo"
+                role="calcBtn2"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 2
             </button>
@@ -106,9 +106,9 @@ export const CalcButtons = () => /*html*/ `<div>
 
         <div class="col">
             <button
-                role="calcBtnThree"
+                role="calcBtn3"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 3
             </button>
@@ -118,7 +118,7 @@ export const CalcButtons = () => /*html*/ `<div>
             <button
                 role="calcBtnMinus"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 -
             </button>
@@ -129,9 +129,9 @@ export const CalcButtons = () => /*html*/ `<div>
         <div class="col"></div>
         <div class="col">
             <button
-                role="calcBtnZero"
+                role="calcBtn0"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 0
             </button>
@@ -145,7 +145,7 @@ export const CalcButtons = () => /*html*/ `<div>
             <button
                 role="calcBtnClear"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.clearAll()"
+                onclick="window.mapAllDispatch.buttonToDisplay.clearAll()"
             >
                 C
             </button>
@@ -155,7 +155,7 @@ export const CalcButtons = () => /*html*/ `<div>
             <button
                 role="calcBtnEqual"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.doEqual()"
+                onclick="window.mapAllDispatch.buttonToDisplay.doEqual()"
             >
                 =
             </button>
@@ -163,9 +163,9 @@ export const CalcButtons = () => /*html*/ `<div>
 
         <div class="col">
             <button
-                role="calcBtnDecimalPoint"
+                role="calcBtnPoint"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 .
             </button>
@@ -175,7 +175,7 @@ export const CalcButtons = () => /*html*/ `<div>
             <button
                 role="calcBtnPlus"
                 class="calc-btn btn btn-outline-secondary btn-lg btn-block"
-                onclick="window.myLib.buttonToDisplay.btnToDspl(this.textContent)"
+                onclick="window.mapAllDispatch.buttonToDisplay.getBtnValue(this.textContent)"
             >
                 +
             </button>

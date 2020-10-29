@@ -14,7 +14,7 @@
  * // click on keyboard -f5- ~> usual OS behavior, nothing for calc
  * keyboardEventListener()
  */
-export default () => {
+export const keyboardEventListener = () => {
     document.addEventListener(
         'keydown',
         (event) => {
@@ -24,13 +24,13 @@ export default () => {
 
             switch (true) {
                 case /[0-9|+|\-|/|\*|\.|\,]/.test(event.key):
-                    window.myLib.buttonToDisplay.btnToDspl(event.key)
+                    window.mapAllDispatch.buttonToDisplay.getBtnValue(event.key)
                     break
                 case /enter/gi.test(event.key):
-                    window.myLib.buttonToDisplay.doEqual()
+                    window.mapAllDispatch.buttonToDisplay.doEqual()
                     break
                 case /delete|backspace/gi.test(event.key):
-                    window.myLib.buttonToDisplay.clearAll()
+                    window.mapAllDispatch.buttonToDisplay.clearAll()
                     break
                 default:
                     return // Quit when this doesn't handle the key event.
