@@ -13,9 +13,7 @@ describe('iCreateElement()', () => {
         const after = screen.getByText(/^my custom HTMLElement is ...$/i)
         expect(after.tagName).toBe('I')
         expect(after.textContent).toBe('my custom HTMLElement is ...')
-        // debug
-        screen.debug()
-        console.log(216837)
+        
         // clear DOM
         document.body.innerHTML = ''
     })
@@ -32,9 +30,7 @@ describe('iCreateElement()', () => {
         const after = screen.getByText(/^hello h3$/i)
         expect(after.tagName).toBe('H3')
         expect(after.textContent).toBe('hello h3')
-        // debug
-        screen.debug()
-        console.log(12987)
+        
         // clear DOM
         document.body.innerHTML = ''
     })
@@ -47,9 +43,7 @@ describe('iCreateElement()', () => {
         // create DOM-node
         iCreateElement({ tag: 'hr', only: 'true' })
         expect(document.body.innerHTML).toBe('<br><hr>')
-        // debug
-        screen.debug()
-        console.log(56423)
+        
         // clear DOm
         document.body.innerHTML = ''
     })
@@ -65,9 +59,7 @@ describe('iCreateElement()', () => {
         const after = screen.getByText(/^any html code$/i)
         expect(after.textContent).toBe('any html code')
         expect(after.tagName).toBe('P')
-        // debug
-        screen.debug()
-        console.log(213978)
+        
         // clear DOM
         document.body.innerHTML = ''
     })
@@ -80,9 +72,7 @@ describe('iCreateElement()', () => {
         // test
         const element = screen.getByText(/^html class$/i)
         expect(element.className).toBe('defaultClass')
-        // debug
-        screen.debug()
-        console.log(1209834)
+        
         // clear DOM
         document.body.innerHTML = ''
     })
@@ -98,9 +88,7 @@ describe('iCreateElement()', () => {
         // test
         const element = screen.getByText(/^html class$/i)
         expect(element.className).toBe('my-best-html-class')
-        // debug
-        screen.debug()
-        console.log(978011)
+        
         // clear DOM
         document.body.innerHTML = ''
     })
@@ -116,9 +104,7 @@ describe('iCreateElement()', () => {
         // test
         const element = screen.getByText(/^id must not exist$/i)
         expect(element.id).toBe('')
-        // debug
-        screen.debug()
-        console.log(487453)
+        
         // clear DOM
         document.body.innerHTML = ''
     })
@@ -134,9 +120,7 @@ describe('iCreateElement()', () => {
         // test
         const element = screen.getByText(/^html id$/i)
         expect(element.id).toBe('my-best-id')
-        // debug
-        screen.debug()
-        console.log(345123)
+        
         // clear DOM
         document.body.innerHTML = ''
     })
@@ -172,9 +156,7 @@ describe('iCreateElement()', () => {
         expect(document.body.innerHTML).toBe(
             '<button class="myButton">just a button<strong class="defaultClass">very strong</strong></button>'
         )
-        // debug
-        screen.debug()
-        console.log(674852)
+        
         // clear DOM
         document.body.innerHTML = ''
     })

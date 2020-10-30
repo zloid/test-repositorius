@@ -29,7 +29,7 @@ class Connect {
         return Connect.mapAllDispatch
     }
 }
-
+// Singleton
 const mapAllDispatch = new Connect()
 Object.freeze(mapAllDispatch)
 

@@ -1,6 +1,6 @@
 # test-repositorius
 
-## Current branch: master-calc ~> husky-try ~> calc-begin ~> rpi_features_area ~> refactoring ~> calc-begin ~> edit_select_calc_result ~> calc-begin ~> refactoring_tests
+## Current branch: master-calc ~> husky-try ~> calc-begin ~> rpi_features_area ~> refactoring ~> calc-begin ~> edit_select_calc_result ~> calc-begin ~> refactoring_tests ~> calc-begin
 
 ## Features for USER:
 

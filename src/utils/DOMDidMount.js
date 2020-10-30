@@ -1,4 +1,4 @@
-/** @module utils_DOMDidMount */
+/** @module utils-DOMDidMount */
 
 import { keyboardEventListener } from './keyboardEventListener'
 import { calcFeaturesLogic } from './calcFeaturesLogic'

@@ -1,3 +1,5 @@
+/** @module utils-calcFeaturesLogic */
+
 import { createPopper } from '@popperjs/core'
 // import { createPopper } from '@popperjs/core/lib/popper-lite';
 

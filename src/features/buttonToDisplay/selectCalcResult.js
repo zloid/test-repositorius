@@ -37,6 +37,9 @@ export const selectCalcResult = ({ displayData }) => {
      * turnDisplayDataToArray('2 + 225')
      */
     function turnDisplayDataToArray(data) {
+        // sanitizeHTML, f.e. window.mapAllDispatch.buttonToDisplay.getBtnValue(`<a href="javascript:alert(1)">this won't run</a>`)
+        data = data.replace(/<|>|\{|\}/g, '')
+
         const outputData = data.split(' ').map((e) => {
             if (/\d|infinity/i.test(e)) {
                 return Number(e)
@@ -163,6 +166,13 @@ export const selectCalcResult = ({ displayData }) => {
         return displayData
     }
 
+    /* const sanitizeHTML = function (str) {
+        const customElement = document.createElement('span')
+        customElement.textContent = str
+        return customElement.textContent
+    } */
+
+    // displayData = sanitizeHTML(displayData)
     displayData = correctBeginOfSingleNegativeNmbr(displayData)
     displayData = turnDisplayDataToArray(displayData)
     displayData = multiplication(displayData)

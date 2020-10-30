@@ -18,6 +18,10 @@ export const selectCorrectRegExpForCalcScreen = (
     let middleStr = state.displayData.trim() + payload.trim()
 
     switch (true) {
+        case /<|>|\{|\}/.test(middleStr):
+            // sanitizeHTML, f.e. window.mapAllDispatch.buttonToDisplay.getBtnValue(`<a href="javascript:alert(1)">this won't run</a>`)
+            // middleStr = middleStr.replace(/<|>|\{|\}/g, '')
+            return '0'
         case middleStr === '':
             return '0'
         case /infinity\d/i.test(middleStr):
