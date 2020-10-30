@@ -9,7 +9,7 @@ const App = new Reef('#root', {
 
         <!-- github-corner svg logo-link -->        
             <a
-            href="https://github.com/zloid/test-repositorius/tree/rpi_features_area"
+            href="https://github.com/zloid/test-repositorius/tree/calc-begin"
             target="_blank"
             role="githubCorner"
             class="github-corner"
