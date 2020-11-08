@@ -1,15 +1,16 @@
 - first 
-#1
+# 1
 jhgfkj
-##22
+## 22
 
-###333
+### 333
 
 - last
 
-[//]: # INVISIBLE_COMMENTS??? 87982U34OI32 JH42H3J4PO89*&(^%&*(^%*(
-[comment]: <> (This is a comment, it will not be included)
-[comment]: <> (in  the output file unless you use it in)
+[[//]: # INVISIBLE_COMMENTS??? 87982U34OI32 JH42H3J4PO89*&(^%&*(^%*(]
+<!-- blah blah -->
+[comment]: <> (This is a comment, it will not be included) /
+[comment]: <> (in  the output file unless you use it in) /
 [comment]: <> (a reference style link.)
 
 # API Reference
