@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>React</title>
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+const element = <strong>iElement</strong>;
+const element2 = React.createElement(
+  'u',
+  {className: 'greeting'},
+  'Hello, world!'
+);
+
+const App = ({animal, foo, name, i}) => {
+  return (
+    <div>look at {animal} and player <u>{foo}</u>
+      <ul>
+        <li>1</li>  
+        <li>{element}</li>  
+        <li>{name}</li>  
+        <li>i not {i}</li>  
+        <li>{element2} {i}</li>  
+        <li>{element2} {i}</li>  
+      </ul>      
+    </div>
+    
+  )
+}
+
+ReactDOM.render(
+<App animal="bull" name="Jack" foo="bar" i="Phone" />,
+  document.getElementById("root")
+)
+
+</script>
+
+  <p class="cls">dddddddd</p>
+  <p class="cls">asdasdv</p>
+  <p class="ddd">345</p>
+  <p class="cls">9999999999</p>
+
+  <script>
+    let someA = document.querySelectorAll('.cls');
+    // console.log('someA:', someA[1].innerHTML) 
+    // someA[2].style.color = 'red'
+    // let someA2 = ['asdf','asdf']
+    // someA.map((k,i) => console.log(i))
+    console.log('someA:', someA[2].style.color = 'red')
+
+    for (let i = 0; i < someA.length; i++) {
+      someA[i].style.color = 'green'
+
+    }
+
+
+    // for (var i = 5; i-- > 0;) {
+    // }
+    for (let i=9; i-->0;) console.log(i)
+
+    
+
+  </script>
+
+</body>
+
+</html>
